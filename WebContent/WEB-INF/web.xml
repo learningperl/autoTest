@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>s2sh</display-name>
+
+	<servlet>
+		<servlet-name>Init</servlet-name>
+		<servlet-class>com.test.servlet.servletInit</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Init</servlet-name>
+		<url-pattern>/Init</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Update</servlet-name>
+		<servlet-class>com.test.UI.servlet.UpdateCase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Update</servlet-name>
+		<url-pattern>/Update</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>delCase</servlet-name>
+		<servlet-class>com.test.UI.servlet.delCase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delCase</servlet-name>
+		<url-pattern>/delCase</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>Search</servlet-name>
+		<servlet-class>com.test.UI.servlet.servletSearch</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Search</servlet-name>
+		<url-pattern>/Search</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GetInfo</servlet-name>
+		<servlet-class>com.test.UI.servlet.servletGetinfo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetInfo</servlet-name>
+		<url-pattern>/GetInfo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>runTest</servlet-name>
+		<servlet-class>com.test.UI.servlet.runTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>runTest</servlet-name>
+		<url-pattern>/runTest</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>debug</servlet-name>
+		<servlet-class>com.test.UI.servlet.debugCase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>debug</servlet-name>
+		<url-pattern>/debug</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>delKey</servlet-name>
+		<servlet-class>com.test.KeyWord.servlet.delKeyWords</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delKey</servlet-name>
+		<url-pattern>/delKey</url-pattern>
+	</servlet-mapping>	
+	
+		<servlet>
+		<servlet-name>SearchKey</servlet-name>
+		<servlet-class>com.test.KeyWord.servlet.SearchKey</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchKey</servlet-name>
+		<url-pattern>/SearchKey</url-pattern>
+	</servlet-mapping>	
+	
+		<servlet>
+		<servlet-name>updateKeyWords</servlet-name>
+		<servlet-class>com.test.KeyWord.servlet.UpdateKeyWords</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateKeyWords</servlet-name>
+		<url-pattern>/updateKeyWords</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>GetKey</servlet-name>
+		<servlet-class>com.test.KeyWord.servlet.GetKeyWords</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetKey</servlet-name>
+		<url-pattern>/GetKey</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>interfaceSearch</servlet-name>
+		<servlet-class>com.test.interfaces.servlet.interfaceSearch</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>interfaceSearch</servlet-name>
+		<url-pattern>/interfaceSearch</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UpdateInterfaceCase</servlet-name>
+		<servlet-class>com.test.interfaces.servlet.UpdateInterfaceCase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateInterfaceCase</servlet-name>
+		<url-pattern>/UpdateInterfaceCase</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>interfaceGetinfo</servlet-name>
+		<servlet-class>com.test.interfaces.servlet.interfaceGetinfo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>interfaceGetinfo</servlet-name>
+		<url-pattern>/interfaceGetinfo</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>delInterfaceCase</servlet-name>
+		<servlet-class>com.test.interfaces.servlet.delInterfaceCase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>delInterfaceCase</servlet-name>
+		<url-pattern>/delInterfaceCase</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>runInterfaceTest</servlet-name>
+		<servlet-class>com.test.interfaces.servlet.runInterfaceTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>runInterfaceTest</servlet-name>
+		<url-pattern>/runInterfaceTest</url-pattern>
+	</servlet-mapping>
+	
+
+</web-app>
