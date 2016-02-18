@@ -11,6 +11,7 @@ import com.test.statics.Mysql;
 import com.test.tools.ChromeDriver;
 import com.test.tools.IEDriver;
 import com.test.tools.ImageTool;
+import com.test.tools.property;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -113,20 +114,15 @@ public class servicerunTest {				//UI用例执行类，未使用多线程，返�
 		String s = "PASS";
 		String res="";
 		actualRes="NULL";
+		property pro = new property();
 		if (driver == null && !map.get("optionss").equals("open"))
 			if (Browser.equals("") || Browser.equals("Chrome")
 					|| Browser.equals("chrome") || Browser == null) {
-				ChromeDriver browser1 = new ChromeDriver(
-						"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-						path
-								+ "\\workspace1\\WebTester\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+				ChromeDriver browser1 = new ChromeDriver(pro.readRcErpURL("chromepath"),pro.readRcErpURL("chromedriverpath"));
 				driver = browser1.getdriver();
 			} else if (Browser.equals("IE") || Browser.equals("ie")
 					|| Browser.equals("Ie")) {
-				IEDriver browser2 = new IEDriver(
-						"",
-						path
-								+ "\\workspace1\\WebTester\\WebContent\\WEB-INF\\lib\\IEDriver.exe");
+				IEDriver browser2 = new IEDriver(pro.readRcErpURL("IEpath"),pro.readRcErpURL("IEdriverpath"));
 				driver = browser2.getdriver();
 			} else
 				System.out.println("log--error:暂时不支持" + map.get("Browser")
@@ -140,16 +136,11 @@ public class servicerunTest {				//UI用例执行类，未使用多线程，返�
 				System.out
 						.println(path
 								+ "\\workspace1\\WebTester\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
-				c = new ChromeDriver(
-						"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-						path + "\\workspace\\Static\\Selenium\\chromedriver.exe");
+				c = new ChromeDriver(pro.readRcErpURL("chromepath"),pro.readRcErpURL("chromedriverpath"));
 				driver = c.getdriver();
 			} else if (Browser.equals("IE") || Browser.equals("ie")
 					|| Browser.equals("Ie")) {
-				e = new IEDriver(
-						"",
-						path
-								+ "\\workspace1\\WebTester\\WebContent\\WEB-INF\\lib\\IEDriver.exe");
+				e = new IEDriver(pro.readRcErpURL("IEpath"),pro.readRcErpURL("IEdriverpath"));
 				driver = e.getdriver();
 			} else
 				System.out.println("log--error:暂时不支持" + Browser + "浏览器。");
