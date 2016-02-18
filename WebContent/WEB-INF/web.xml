@@ -7,7 +7,7 @@
 
 	<servlet>
 		<servlet-name>Init</servlet-name>
-		<servlet-class>com.test.servlet.servletInit</servlet-class>
+		<servlet-class>com.test.service.servletInit</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>

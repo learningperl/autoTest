@@ -1,4 +1,4 @@
-package com.test.servlet;
+package com.test.service;
 
 import javax.servlet.http.HttpServlet;
 

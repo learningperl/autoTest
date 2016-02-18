@@ -7,8 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-import com.test.statics.outputList;
-
 public class ImageTool {	//图形处理类
 	public static int width=0;
 	public static int height=0;
@@ -28,7 +26,8 @@ public class ImageTool {	//图形处理类
 			BufferedImage image = robot.createScreenCapture(new Rectangle(width,height));  //全屏截取
 	        //image = image.getSubimage(0, 0, 200, 500);
 			//保存图片
-	        ImageIO.write (image, "png" , new File(outputList.path + "\\workspace1\\WebTester\\WebContent\\static\\imgs\\"+filename));
+			property pro = new property();
+	        ImageIO.write (image, "png" , new File(pro.readRcErpURL("imgPath")+filename));
 		} catch (Exception e) {
 			System.out.println("截图失败！");
 			e.printStackTrace();
