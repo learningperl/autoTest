@@ -1,0 +1,130 @@
+
+-- ----------------------------
+-- Table structure for `caseoption`
+-- ----------------------------
+DROP TABLE IF EXISTS `caseoption`;
+CREATE TABLE `caseoption` (
+  `id` int(8) unsigned NOT NULL COMMENT '与caseSence表caseid关联，一一对应',
+  `casesId` int(4) NOT NULL DEFAULT '1' COMMENT '用例归属编号，与用例场景的casesId关联',
+  `order_id` int(8) NOT NULL DEFAULT '0' COMMENT '用例的下一条执行id，非常重要',
+  `optionss` char(16) DEFAULT NULL COMMENT '可以是Keys表中的所有关键字',
+  `xPath` varchar(256) DEFAULT NULL COMMENT '定位元素的写法，包括xPath，DOM，css等。不同的浏览器可能不一样。需要注意',
+  `datas` varchar(32) DEFAULT NULL COMMENT '用例操作需要写入的数据',
+  `checkName` varchar(32) DEFAULT '' COMMENT '为空则不校验',
+  `checkMethod` char(16) DEFAULT NULL COMMENT '可以是Method表中的所有方法',
+  `expectedRes` varchar(32) DEFAULT NULL COMMENT '预期结果',
+  `actualRes` varchar(32) DEFAULT NULL COMMENT '实际结果，用于记录结果',
+  `imgName` varchar(32) DEFAULT NULL COMMENT '运行后存放用例结果截图图片名字',
+  `caseDescription` varchar(32) DEFAULT NULL COMMENT '用例描述',
+  `runState` varchar(16) CHARACTER SET utf8mb4 DEFAULT 'N/A' COMMENT '标记用例执行状态',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='整条用例执行需要的所有信息';
+
+-- ----------------------------
+-- Records of caseoption
+-- ----------------------------
+INSERT INTO `caseoption` VALUES ('1', '1', '1', 'open', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=1-1455698882900.jpg', '打开浏览器1', 'PASS');
+INSERT INTO `caseoption` VALUES ('2', '1', '2', 'get', 'http://i.yunhou.com/', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=2-1455698906485.jpg', '访问个人中心', 'PASS');
+INSERT INTO `caseoption` VALUES ('3', '1', '3', 'sendKeys', '//*[@id=\"loginName\"]', 'wuqingfqng5', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=3-1455698908251.jpg', '输入用户名', 'PASS');
+INSERT INTO `caseoption` VALUES ('4', '1', '4', 'sendKeys', '//*[@id=\"password\"]', 'apps1234', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=4-1455698909322.jpg', '输入密码', 'PASS');
+INSERT INTO `caseoption` VALUES ('5', '1', '6', 'getText', '//*[@id=\"jSiteLogin\"]/li/a[2]', 'NULL', 'NULL', 'equel', '退出', '退出', 'caseid=5-1455698915942.jpg', '校验登录是否成功', 'PASS');
+INSERT INTO `caseoption` VALUES ('6', '1', '5', 'click', '//*[@id=\"jSubmit\"]', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=6-1455698912158.jpg', '点击登录', 'PASS');
+INSERT INTO `caseoption` VALUES ('7', '2', '1', 'open', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=7-1455618108766.jpg', '打开浏览器', 'PASS');
+INSERT INTO `caseoption` VALUES ('8', '2', '2', 'get', 'https://ssl.yunhou.com/passport/register?returnUrl=http://i.yunhou.com/', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=8-1455618114082.jpg', '打开注册页面', 'PASS');
+INSERT INTO `caseoption` VALUES ('9', '2', '3', 'sendKeys', '//*[@id=\"loginName\"]', '18766666666', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=9-1455618115456.jpg', '输入用户名手机号', 'PASS');
+INSERT INTO `caseoption` VALUES ('10', '2', '4', 'sendKeys', '//*[@id=\"password\"]', 'apps1234', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=10-1455618116739.jpg', '输入密码', 'PASS');
+INSERT INTO `caseoption` VALUES ('11', '2', '5', 'click', '//*[@id=\"jSendMsg\"]', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'caseid=11-1455618119660.jpg', '点击获取验证码', 'PASS');
+
+
+-- ----------------------------
+-- Table structure for `interfacescene`
+-- ----------------------------
+DROP TABLE IF EXISTS `interfacescene`;
+CREATE TABLE `interfacescene` (
+  `sceneId` int(4) unsigned NOT NULL AUTO_INCREMENT COMMENT '场景id',
+  `sceneDescription` varchar(128) DEFAULT NULL COMMENT '场景描述',
+  `url` varchar(512) DEFAULT NULL COMMENT '场景url，可以不填',
+  `runStates` varchar(8) DEFAULT 'N/A' COMMENT '用例场景执行状态',
+  PRIMARY KEY (`sceneId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of interfacescene
+-- ----------------------------
+INSERT INTO `interfacescene` VALUES ('1', '登录', 'https://ssl.yunhou.com/bubugao-passport/login?1', 'PASS');
+
+
+-- ----------------------------
+-- Table structure for `keywords`
+-- ----------------------------
+DROP TABLE IF EXISTS `keywords`;
+CREATE TABLE `keywords` (
+  `id` int(4) NOT NULL,
+  `type` int(2) unsigned NOT NULL DEFAULT '0' COMMENT '类型',
+  `keyName` char(16) NOT NULL DEFAULT 'Method' COMMENT '方法名',
+  `describes` varchar(64) DEFAULT NULL COMMENT '方法描述',
+  `useCase` varchar(512) DEFAULT NULL COMMENT '示例',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of keywords
+-- ----------------------------
+INSERT INTO `keywords` VALUES ('1', '0', 'open', '打开浏览器', 'option:open xPath:浏览器位置');
+INSERT INTO `keywords` VALUES ('2', '0', 'get', '打开网页', 'option:get xPath:www.baiduc.com');
+INSERT INTO `keywords` VALUES ('3', '1', 'equel', '字符串相等', '$expectedRes equel $expectedRes');
+INSERT INTO `keywords` VALUES ('4', '0', 'click', '元素点击', 'option:click xPath:元素xPath路径');
+INSERT INTO `keywords` VALUES ('5', '0', 'sendKeys', '给元素输入字符串', 'option:sendKeys xPath:元素xPath');
+INSERT INTO `keywords` VALUES ('6', '0', 'getText', '获取元素的Text值', 'option:getText xPath:元素xPath');
+INSERT INTO `keywords` VALUES ('7', '1', 'contain', '字符串包含', '$expectedRes contain $expectedRes');
+
+
+-- ----------------------------
+-- Table structure for `interfacecase`
+-- ----------------------------
+DROP TABLE IF EXISTS `interfacecase`;
+CREATE TABLE `interfacecase` (
+  `id` int(4) unsigned NOT NULL AUTO_INCREMENT COMMENT '用例id',
+  `order_id` int(4) unsigned NOT NULL DEFAULT '1' COMMENT '用例排序的字段',
+  `sceneId` int(4) unsigned NOT NULL DEFAULT '1' COMMENT '用例所属场景id',
+  `method` varchar(32) DEFAULT NULL COMMENT 'url请求方法，可以是自定义的',
+  `url` varchar(512) DEFAULT NULL COMMENT '接口地址url',
+  `parameter` varchar(512) DEFAULT NULL COMMENT '接口请求参数',
+  `checkName` varchar(32) DEFAULT NULL COMMENT '校验属性名',
+  `checkMethod` varchar(32) DEFAULT NULL COMMENT '校验结果',
+  `expRes` varchar(32) DEFAULT NULL COMMENT '预期结果',
+  `actualRes` varchar(32) DEFAULT NULL COMMENT '实际结果',
+  `runState` varchar(8) DEFAULT 'N/A' COMMENT '运行状态',
+  `jsonResult` varchar(512) DEFAULT NULL COMMENT 'json结果展示',
+  `caseDescription` varchar(64) DEFAULT NULL COMMENT '用例描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of interfacecase
+-- ----------------------------
+INSERT INTO `interfacecase` VALUES ('1', '1', '1', 'post', 'https://ssl.yunhou.com/bubugao-passport/login?1', 'cookie=0&password=apps1234&loginName=wuqingfqng1', 'token', 'unEquel', 'NULL', 'NULL', 'N/A', 'NULL', '登录成功');
+INSERT INTO `interfacecase` VALUES ('2', '2', '1', 'post', 'https://ssl.yunhou.com/bubugao-passport/login?1', 'cookie=0&password=wuqing#&loginName=wuqingfqng11', 'retry', 'equel', '3', 'NULL', 'N/A', 'NULL', '用户名密码不匹配');
+INSERT INTO `interfacecase` VALUES ('3', '3', '1', 'post', 'NULL', 'cookie=0&password=a a&loginName=wuqingfqng1', 'retry', 'equel', '3', 'NULL', 'N/A', 'NULL', '密码包含空格');
+
+
+-- ----------------------------
+-- Table structure for `casescene`
+-- ----------------------------
+DROP TABLE IF EXISTS `casescene`;
+CREATE TABLE `casescene` (
+  `casesId` tinyint(4) unsigned NOT NULL AUTO_INCREMENT COMMENT '用例表，主要展示用例',
+  `casesN` varchar(32) NOT NULL DEFAULT '用例场景' COMMENT '用例场景名称',
+  `Browser` char(16) NOT NULL DEFAULT 'Chrome' COMMENT '场景执行的浏览器环境',
+  `Bpath` varchar(32) NOT NULL COMMENT '浏览器路径',
+  `runStates` varchar(16) DEFAULT 'N/A' COMMENT '标记用例场景执行状态',
+  PRIMARY KEY (`casesId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='用例场景，用于分类和查询';
+
+-- ----------------------------
+-- Records of casescene
+-- ----------------------------
+INSERT INTO `casescene` VALUES ('1', '登录', 'IE', 'NULL', 'PASS');
+INSERT INTO `casescene` VALUES ('2', '注册1', 'IE', 'NULL', 'PASS');
+
+
