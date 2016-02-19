@@ -8,6 +8,8 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.test.statics.responseList;
+
 public class jsonPase {//暂未使用
 
 	
@@ -17,7 +19,6 @@ public class jsonPase {//暂未使用
 	}
 		public void Pase(String str, int level, boolean flag) {
 			JSONObject jsonObject = null;
-			ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 			try {
 				if (str.indexOf("[") < str.indexOf("{"))
 					flag = true;
@@ -114,7 +115,7 @@ public class jsonPase {//暂未使用
 							}
 						}
 						// System.out.println(map_value);
-						list.add(map_value);
+						responseList.res.add(map_value);
 						// System.out.println("map:"+map_value);
 						// System.out.println("list:"+list);
 						if (!flag)

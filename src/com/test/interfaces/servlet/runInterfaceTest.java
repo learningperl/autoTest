@@ -45,4 +45,20 @@ public class runInterfaceTest extends HttpServlet {
 		// resp.sendRedirect("static/charts.jsp");
 		return;
 	}
+
+	// 多线程执行，解决servlet请求返回慢的情况
+	public void Run(final String[] check) {
+
+		new Thread(new Runnable() {// 启动数据获取，更新显示进程
+
+					public void run() {
+
+						InterfacerunService.run(check);
+						// System.out.println("开始运行程序：");
+
+					}
+
+				}).start(); //
+
+	}
 }
