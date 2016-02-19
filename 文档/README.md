@@ -21,7 +21,7 @@
 2. 将selenium-server-standalone-2.42.2.jar放到tomcat，lib目录下。如果tomcat，lib目录下没有servlet-api.jar，也将它放进去。
 3. 将war包放到tomcat，webapps目录下
 4. 配置tomcat/conf目录下的server.xml。添加：两个context。一个是war包对的context，另一个是静态图片的context。静态图片对的context目录需要和配置文件中的imgPath一致
-5. 配置好后启动tomcat。访问地址与context中配置的访问路径有关。
+5. 配置好后启动tomcat。访问地址与context中配置的访问路径有关。如果启动报错，请到tomcat/webapps目录下的war文件名目录下找到Test.properties文件，修改配置。
 6. 运行tomcat时，不能使用管理员模式，或者是管理员模式运行net start tomcat。这两种情况会导致用例执行时，看不到浏览器界面。
 
 ###any questions : i_wanting@yeah.net
