@@ -17,6 +17,7 @@ public class servletInit extends HttpServlet{
 		new Mysql();		//初始化Mysql类
 		new ImageTool();	//初始化图形处理类
 		//Mysql.Sort();
+		
 		outputList.logs="Server init secc!";
 		System.out.println("Init secc!");
 		return;
