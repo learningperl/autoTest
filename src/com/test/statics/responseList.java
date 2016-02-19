@@ -10,6 +10,7 @@ public class responseList {
 	public static Map<String,String> map = null;
 	public static String logs=null;
 	public String json;
+	public int	delay ;
 	
 	public responseList(){	//数据存储结构静态类
 		res = new ArrayList<Map<String, String>>();	//存储接口返回结果
@@ -17,5 +18,6 @@ public class responseList {
 		map = new HashMap<String, String>();	//存储单个字段对应值
 		logs = "";								//日志
 		json = "";								//解析前的json
+		delay = 0;
 	}
 }

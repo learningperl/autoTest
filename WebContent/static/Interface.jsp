@@ -184,6 +184,7 @@ function interfaceGetInfo(name, id, ele) {
 						var obj = eval("(" + data + ")");
 						document.getElementById("sceneId1").value = obj["sceneId"];
 						document.getElementById("Description").value = obj["Description"];
+						document.getElementById("delay").value = obj["delay"];
 						document.getElementById("url").value = obj["url"];
 						document.getElementById("runStates").value = obj["runStates"];
 					} else if (name == "id") {
@@ -210,6 +211,7 @@ function interfaceGetInfo(name, id, ele) {
 						var obj = eval("(" + data + ")");
 						document.getElementById("sceneId").value = obj["sceneId"];
 						document.getElementById("id").value = obj["id"];
+						document.getElementById("delay").value = obj["delay"];
 						document.getElementById("url").value = obj["url"];
 						document.getElementById("parameter").value = obj["parameter"];
 					}
@@ -340,6 +342,10 @@ function runTest() {
 								type="text" value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />&nbsp
+							delay:<input id="delay" name="delay" type="text"
+								value="0" class="c_input"
+								onfocus='if(this.value=="" || this.value=="undefined"){this.value="0"}'
+								onblur='if(this.value=="" || this.value=="undefined"){this.value="0"}' />
 							url:<input id="url" name="url" type="text"
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'

@@ -251,7 +251,7 @@ public class interfaceGetinfo extends HttpServlet {
 			rs.next();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-				map.put(rsmd.getColumnName(i), rs.getString(i));
+				map.put(rsmd.getColumnName(i), rs.getString(i).toString());
 				outputList.list += "\"" + rsmd.getColumnName(i) + "\":\""
 						+ rs.getString(i) + "\",";
 			}
@@ -275,8 +275,8 @@ public class interfaceGetinfo extends HttpServlet {
 			html += "<form id=\"cases_Edits\" action=\"../UpdateInterfaceCase\" method=\"post\"><a class=\"inedit_s\" >sceneId</a><input id=\"sceneId\" name=\"sceneId\" class=\"edit_input\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
-			if (outputList.l.get(i).get("Description") != null)
-				str = outputList.l.get(i).get("Description");
+			if (outputList.l.get(i).get("sceneDescription") != null)
+				str = outputList.l.get(i).get("sceneDescription");
 			else
 				str = "NULL";
 			html += "<a class=\"inedit_s\" >Description</a><input id=\"Description\" name=\"Description\" class=\"edit_input\" type=\"text\" value=\""
@@ -289,6 +289,15 @@ public class interfaceGetinfo extends HttpServlet {
 			html += "<a class=\"inedit_s\" >runStates</a><input id=\"runStates\" name=\"runStates\" class=\"edit_input\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
+			if (outputList.l.get(i).get("delay") != null)
+				str = outputList.l.get(i).get("delay");
+			else
+				str = "0";
+			str = Integer.toString(Integer.parseInt(str));
+			//System.out.println(str);
+			html += "<a class=\"inedit_s\" >delay</a><input id=\"delay\" name=\"delay\" class=\"edit_input\" type=\"text\" value=\""
+					+ str
+					+ "\" onfocus=\"if(this.value=='' || this.value=='undefined'){this.value='0'}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='0'}\" >";
 			if (outputList.l.get(i).get("url") != null)
 				str = outputList.l.get(i).get("url");
 			else

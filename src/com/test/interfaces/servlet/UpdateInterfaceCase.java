@@ -81,12 +81,14 @@ public class UpdateInterfaceCase extends HttpServlet {
 		} else if (sceneId != null) {
 			sqlu += "update interfacescene set sceneDescription='"
 					+ request.getParameter("Description") + "', url='"
-					+ request.getParameter("url") + "', runStates='"
+					+ request.getParameter("url") + "', delay="
+					+ request.getParameter("delay") + ", runStates='"
 					+ request.getParameter("runStates") + "' where sceneId='"
 					+ sceneId + "'";
 			sqli += "insert into interfacescene values(" + sceneId + ",'"
 					+ request.getParameter("Description") + "','"
-					+ request.getParameter("url") + "','"
+					+ request.getParameter("url") + "',"
+					+ request.getParameter("delay") + ",'"
 					+ request.getParameter("runStates") + "')";
 			ret = updateSceneSql(sqli, sqlu, sceneId);
 		} else

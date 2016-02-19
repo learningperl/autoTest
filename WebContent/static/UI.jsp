@@ -416,7 +416,7 @@
 			<div class="grid_wrapper">
 
 				<div class="g_6 contents_header">
-					<h3 class="i_16_message tab_label">UI &nbsp Tester</h3>
+					<h3 class="i_16_message tab_label">UI &nbsp; Tester</h3>
 					<div>
 						<span class="label">Your UI Cases Search, Add, Edit And Run</span>
 					</div>
@@ -441,14 +441,14 @@
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}'
-								readonly />&nbsp casesN:<input id="casesN" name="casesN"
+								readonly />&nbsp; casesN:<input id="casesN" name="casesN"
 								type="text" value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
-								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />&nbsp
+								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />&nbsp;
 							Browser:<input id="Browser" name="Browser" type="text"
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
-								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />&nbsp
+								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />&nbsp;
 							Bpath:<input id="Bpath" name="Bpath" type="text" value="NULL"
 								class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
@@ -475,15 +475,15 @@
 					<form id="EditForm" action="../Update" method="post">
 						<p class="p_input">
 						<div class="p_cli1" name="p_cli1">
-							id:&nbsp<input id="id" name="id" type="text" value="NULL"
+							id:&nbsp;<input id="id" name="id" type="text" value="NULL"
 								class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value="";}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL";}'
-								readonly /> casesId:&nbsp<input id="casesId" name="casesId"
+								readonly /> casesId:&nbsp;<input id="casesId" name="casesId"
 								type="text" value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value="";}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
-							order_id:&nbsp<input id="order_id" name="order_id" type="text"
+							order_id:&nbsp;<input id="order_id" name="order_id" type="text"
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
