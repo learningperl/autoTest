@@ -12,7 +12,10 @@ public class jsonPase {//暂未使用
 
 	
 	// 用json.jar开源的方法，使用递归方式将json结果解析成map结果。
-		public void jsonPase(String str, int level, boolean flag) {
+	public jsonPase(){
+		
+	}
+		public void Pase(String str, int level, boolean flag) {
 			JSONObject jsonObject = null;
 			ArrayList<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 			try {
@@ -89,13 +92,13 @@ public class jsonPase {//暂未使用
 														value.indexOf("["),
 														value.length());
 										map_value.put(key, values);
-										jsonPase(value, level + 1, true);
+										Pase(value, level + 1, true);
 									} else {
 										if (value.contains("{")) {
 											// System.out.println("value:" + value);
 											values = "string[" + value + "]";
 											map_value.put(key, values);
-											jsonPase(value, level + 1, false);
+											Pase(value, level + 1, false);
 										} else {
 											// System.out.println(key + "--" +
 											// value);
@@ -132,20 +135,15 @@ public class jsonPase {//暂未使用
 						} else {
 							str = "";
 						}
-					} catch (Exception e6) {
-						FrameDemo.str = "json汉字编码解析错误";
+					} catch (Exception e6) {	
+						System.out.println("json汉字编码解析错误");
 						break;
 					}
 				}
 			} catch (Exception e) {
 				// System.out.println("json 解析错误");
 				e.printStackTrace();
-				FrameDemo.str = "json 解析错误";
-			}
-			try {
-				listret[level - 1].add(list);
-			} catch (Exception e) {
-				listret[level - 1].add(null);
+				System.out.println("json 解析错误");
 			}
 		}
 	

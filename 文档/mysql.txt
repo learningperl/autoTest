@@ -44,14 +44,16 @@ CREATE TABLE `interfacescene` (
   `sceneId` int(4) unsigned NOT NULL AUTO_INCREMENT COMMENT '场景id',
   `sceneDescription` varchar(128) DEFAULT NULL COMMENT '场景描述',
   `url` varchar(512) DEFAULT NULL COMMENT '场景url，可以不填',
+  `delay` int(8) unsigned zerofill DEFAULT '00000000',
   `runStates` varchar(8) DEFAULT 'N/A' COMMENT '用例场景执行状态',
   PRIMARY KEY (`sceneId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of interfacescene
 -- ----------------------------
-INSERT INTO `interfacescene` VALUES ('1', '登录', 'https://ssl.yunhou.com/bubugao-passport/login?1', 'PASS');
+INSERT INTO `interfacescene` VALUES ('1', '登录', 'https://ssl.yunhou.com/bubugao-passport/login?1', null, 'PASS');
+
 
 
 -- ----------------------------

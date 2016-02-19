@@ -21,13 +21,12 @@ import javax.net.ssl.TrustManager;
 //http接口请求类
 public class sendUrl {
 	//private static ArrayList<List<Map<String, Object>>>[] listret = new ArrayList[6];
-	public String response = "";
 
 	public sendUrl() {
 		
 	}
 	// 实现get方法调用
-	public void sendGet(String url,	String param) {
+	public String sendGet(String url,	String param) {
 		String result = "";
 		BufferedReader in = null;
 		try {
@@ -78,8 +77,7 @@ public class sendUrl {
 				// TODO 自动生成的 catch 块
 				e1.printStackTrace();
 			}
-			response = "";
-			response = result;
+			return result;
 		} catch (Exception e) {
 			System.out.println("发送get请求失败！" + e);
 			e.printStackTrace();
@@ -95,11 +93,11 @@ public class sendUrl {
 		// System.out.println(result);
 		//jsonPase(result, 1, false);
 
-		return;
+		return null;
 	}
 
 	// 实现post请求发包
-	public void sendPost(String url,	String param) {
+	public String sendPost(String url,	String param) {
 		PrintWriter out = null;
 		BufferedReader in = null;
 		String result = "";
@@ -156,11 +154,8 @@ public class sendUrl {
 				result = new String(result.getBytes(), "utf-8");
 				result = decodeUnicode(result);
 			} catch (Exception e1) {
-				// TODO 自动生成的 catch 块
-				// e1.printStackTrace();
 			}
-			response = "";
-			response = result;
+			return result;
 
 		} catch (Exception e) {
 			 System.out.println("发送post请求失败！\n" + e);
@@ -181,7 +176,7 @@ public class sendUrl {
 		 System.out.println(result);
 		//jsonPase(result, 1, false);
 
-		return;
+		return null;
 	}
 
 	public static String decodeUnicode(String str) {	//解码类

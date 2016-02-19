@@ -17,7 +17,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class servicerunTest {				//UI用例执行类，未使用多线程，返回很慢
+public class servicerunTest {				//UI用例执行类
 	public static String state = "初始化";
 	public static String actualRes = "NULL";
 	private static String path = "";
@@ -29,7 +29,7 @@ public class servicerunTest {				//UI用例执行类，未使用多线程，返�
 	public static boolean runable = true;
 
 	public servicerunTest() {
-		servicerunTest.state = "等待运行";
+		servicerunTest.state = "开始运行";
 		File directory = new File("");
 		try {
 			path = directory.getCanonicalPath();
