@@ -49,7 +49,7 @@ public class serviceKey {
 		String sql = "";
 		try {
 			Statement sm = Mysql.ct.createStatement();
-			sql = "SELECT id FROM KeyWords WHERE describes LIKE '%"+p+"%'";
+			sql = "SELECT id FROM KeyWords WHERE describes LIKE '%"+p+"%' or keyName LIKE '%"+p+"%'";
 			ResultSet rs = sm.executeQuery(sql);
 			while (rs.next()) {
 				Statement sm2 = Mysql.ct.createStatement();

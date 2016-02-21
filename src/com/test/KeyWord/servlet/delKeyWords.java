@@ -36,6 +36,7 @@ public class delKeyWords extends HttpServlet{
 		} else 
 			System.out.print("方法不支持。");
 		out.print(str);
+		resp.sendRedirect("index.jsp");
 	}
 
 	private int delById(String id) {

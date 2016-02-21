@@ -38,6 +38,7 @@ public class delCase extends HttpServlet {
 		} else if (paramName.equals("id"))
 			str = delById(request.getParameter(paramName));
 		out.print(str);
+		resp.sendRedirect("static/UI.jsp");
 	}
 
 	private int delById(String id) {// 删除用例

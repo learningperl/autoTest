@@ -24,8 +24,9 @@
 	<header class="main_header">
 		<div class="wrapper">
 			<div class="logo">
-				<a href="#" Title="Kanrisha Home"> <img
-					src="/WebTester/static/Images/kanrisha_logo.png" alt="kanrisha_logo">
+				<a href="index.jsp" Title="autoTest框架"> <img
+					src="/WebTester/static/Images/Testlogo.png"
+					alt="Testlogo">
 				</a>
 			</div>
 		</div>

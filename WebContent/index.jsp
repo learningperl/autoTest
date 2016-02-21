@@ -76,7 +76,7 @@
 				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			var url = "";
-			url = "./delCase?id=" + id;
+			url = "./delKey?id=" + id;
 			xmlhttp.open("GET", url, true);
 			xmlhttp.send();
 			xmlhttp.onreadystatechange = function() {
@@ -148,9 +148,9 @@
 	<header class="main_header">
 		<div class="wrapper">
 			<div class="logo">
-				<a href="#" Title="Kanrisha Home"> <img
-					src="/WebTester/static/Images/kanrisha_logo.png"
-					alt="kanrisha_logo">
+				<a href="index.jsp" Title="autoTest框架"> <img
+					src="/WebTester/static/Images/Testlogo.png"
+					alt="Testlogo">
 				</a>
 			</div>
 		</div>
@@ -265,9 +265,5 @@
 	</div>
 
 	<footer> </footer>
-	<div style="display: none">
-		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
-			language='JavaScript' charset='gb2312'></script>
-	</div>
 </body>
 </html>

@@ -55,7 +55,6 @@ public class SearchKey extends HttpServlet {
 		}
 		String str = FlushTable();
 		out.print(str);
-		return;
 	}
 
 	private String FlushTable() {
