@@ -64,7 +64,7 @@ public class servletSearch extends HttpServlet {
 			for (int i = 0; i < myList.size();) {
 				map = (Map<String, String>) myList.get(i);
 				Text += "<input class=\"checkbox\" type=\"checkbox\" name=\"check\" value="+map.get("casesId")+" />";
-				Text += "<details class=\"menu\" open>";
+				Text += "<details class=\"menu\">";
 				Text += "<summary>"
 						+ map.get("casesN")
 						+ "<a name=\""

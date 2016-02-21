@@ -72,7 +72,7 @@ public class interfaceSearch extends HttpServlet {
 					url=map.get("url");
 				}
 				Text += "<input class=\"checkbox\" type=\"checkbox\" name=\"check\" value="+map.get("sceneId")+" />";
-				Text += "<details class=\"menu\" open>";
+				Text += "<details class=\"menu\">";
 				Text += "<summary>"
 						+ map.get("sceneDescription") + "&nbsp&nbsp("
 						+ url
@@ -107,10 +107,10 @@ public class interfaceSearch extends HttpServlet {
 								+ " class=\"edit_c\" href=\"#\" onclick='interfaceGetInfo(\"id\",this.name,this);'>编辑</a>"
 								+"&nbsp&nbsp<a name=" + map.get("id")
 								+ " class=\"edit_d\" href=\"#\" onclick='delInterfaceCase(\"id\",this.name);'>删除</a>"
-								+ "<img name=\"imgs/"
-								+ map.get("imgName")+"\" class=\"edit_img\" src=\"./imgs/"
-								+ map.get("imgName")
-								+"\" onclick='pops(\"pop_img\");Show_img(this.name);'/>"
+								+ "<img name=\"imgsjson\" id=\""
+								+ map.get("id")
+								+"\" class=\"edit_img\" src=\"/WebTester/static/Images/Icons/16/imgjson.png"
+								+"\" onclick='pops(\"pop_json\");Show_json(this.id);'/>"
 								+ "<a class=\""+ map.get("runState") +"\">" + map.get("runState")
 								+"</a></li>";
 						Text += "</ul>";

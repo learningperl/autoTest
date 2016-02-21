@@ -93,7 +93,7 @@ public class SearchKey extends HttpServlet {
 						System.out.println("请在SearchKey的servlet中添加type=" + t
 								+ "的描述。");
 					}
-					Text += "<details class=\"menu\" open>";
+					Text += "<details class=\"menu\">";
 					Text += "<summary>"
 							+ d
 							+ "</summary>";

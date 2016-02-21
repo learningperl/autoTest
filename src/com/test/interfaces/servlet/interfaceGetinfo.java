@@ -36,22 +36,33 @@ public class interfaceGetinfo extends HttpServlet {
 		while (en.hasMoreElements()) {
 			paramName = (String) en.nextElement();
 		}
-		if (paramName.equals("name")) {
+		//System.out.println(paramName);
+		switch(paramName){
+		case "name":
 			html = getByName(request.getParameter(paramName));
-			// System.out.println("??");
 			out.print(html);
-		} else if (paramName.equals("id")){
+			break;
+		case "id":
 			html = getById(request.getParameter(paramName));
 			out.print(html);
-		}
-		else if (paramName.equals("idadd")) {
+			break;
+		case "idadd":
 			getByidadd(request.getParameter(paramName));
 			out.print(outputList.list);
-		} else if (paramName.equals("nameadd")) {
+			break;
+		case "nameadd":
 			getByNameadd(request.getParameter(paramName));
 			out.print(outputList.list);
-		} else
+			break;
+		case "getJson":
+			getJson(request.getParameter(paramName));
+			// System.out.println("??");
+			out.print(outputList.list);
+			break;
+		default:
 			outputList.list = "{\"error\":\"方法不支持\"}";
+			out.print(outputList.list);
+		}
 	}
 
 	private void getByNameadd(String id) {
@@ -98,6 +109,22 @@ public class interfaceGetinfo extends HttpServlet {
 			outputList.list = outputList.list.substring(0,
 					outputList.list.length() - 1);
 			outputList.list += "}";
+			sm = null;
+			rs = null;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void getJson(String id) {
+		outputList.list = "";
+		try {
+			Statement sm = Mysql.ct.createStatement();
+			String sql = "";
+			sql = "select jsonResult from interfacecase where id='" + id + "'";
+			ResultSet rs = sm.executeQuery(sql);
+			rs.next();
+			outputList.list =rs.getString(1);
 			sm = null;
 			rs = null;
 		} catch (Exception e) {
