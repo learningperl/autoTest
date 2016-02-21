@@ -1,8 +1,8 @@
-# autoTest
+# ![Images/Testlogo.png](https://github.com/learningperl/autoTest/blob/master/WebContent/static/Images/Testlogo.png)
 使用servlet，实现WebUI自动化，和接口测试自动化。
 
 # 功能描述
-查看文档目录下的Feature.md
+请查看https://github.com/learningperl/autoTest/blob/master/文档/Feature.md
 
 # 项目部署
 ### eclipse中的部署
@@ -25,3 +25,4 @@
 6. 运行tomcat时，不能使用管理员模式，或者是管理员模式运行net start tomcat。这两种情况会导致用例执行时，看不到浏览器界面。
 
 ###any questions : i_wanting@yeah.net
+
