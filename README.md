@@ -1,5 +1,5 @@
 # ![Images/Testlogo.png](https://github.com/learningperl/autoTest/blob/master/WebContent/static/Images/Testlogo.png)
-使用servlet，实现WebUI自动化，和接口测试自动化。
+使用tomcat servlet和Selenium，实现WebUI自动化，和接口测试自动化。
 
 # 功能描述
 请查看https://github.com/learningperl/autoTest/blob/master/文档/Feature.md
@@ -20,9 +20,9 @@
 1. 下载(http://pan.baidu.com/s/1eQQw7Gu)或者eclipse导出jar包
 2. 将selenium-server-standalone-2.42.2.jar放到tomcat，lib目录下。如果tomcat，lib目录下没有servlet-api.jar，也将它放进去。
 3. 将war包放到tomcat，webapps目录下
-4. 配置tomcat/conf目录下的server.xml。添加：两个context。一个是war包对的context，另一个是静态图片的context。静态图片对的context目录需要和配置文件中的imgPath一致
+4. 配置tomcat/conf目录下的server.xml。添加：两个context。一个是war包的context，另一个是静态图片的context。静态图片的context目录需要和配置文件中的imgPath一致
 5. 配置好后启动tomcat。访问地址与context中配置的访问路径有关。如果启动报错，请到tomcat/webapps目录下的war文件名目录下找到Test.properties文件，修改配置。
-6. 运行tomcat时，不能使用管理员模式，或者是管理员模式运行net start tomcat。这两种情况会导致用例执行时，看不到浏览器界面。
+6. 运行tomcat时，windows下不能使用管理员模式，或者是管理员模式运行net start tomcat。这两种情况会导致用例执行时，看不到浏览器界面。
 
 ###any questions : i_wanting@yeah.net
 
