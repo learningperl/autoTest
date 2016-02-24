@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kanrisha - A Premium HTML5 Responsive Admin Template</title>
+<title>AutoTest - A HTML5 Template for Test</title>
 <!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -237,6 +237,12 @@
 								while (s.indexOf("'") > 0)
 									s = s.replace("'", "\"");
 								document.getElementsByName("parameter")[1].value = s;
+							}
+							if(document.getElementsByName("jsonResult")[1].value!=null){
+								var s = document.getElementsByName("jsonResult")[1].value;
+								while(s.indexOf("'")>0)
+									s = s.replace("'","\"");
+								document.getElementsByName("jsonResult")[1].value = s;
 							}
 						} else if (name == "name") {
 							ele.parentNode.value = ele.parentNode.innerHTML;

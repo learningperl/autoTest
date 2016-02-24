@@ -88,6 +88,9 @@ public class SearchKey extends HttpServlet {
 					case 3:
 						d = "接口结果处理";
 						break;
+					case 4:
+						d = "通用方法";
+						break;
 					default:
 						d = "请在SearchKey的servlet中添加type=" + t + "的描述。";
 						System.out.println("请在SearchKey的servlet中添加type=" + t
