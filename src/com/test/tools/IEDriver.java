@@ -12,9 +12,9 @@ public class IEDriver {			//IE浏览器驱动类
 	public WebDriver driver;
 
 	public IEDriver(String propath, String driverpath) {
-		// 设置 chrome 的路径
+		// 设置 IE 的路径
 		System.setProperty("webdriver.ie.driver", propath);
-		// 创建一个 ChromeDriver 的接口，用于连接 Chrome
+		// 创建一个 IEDriver 的接口，用于连接 IE
 		// @SuppressWarnings("deprecation")
 		InternetExplorerDriverService service = null;
 		try {
@@ -29,12 +29,13 @@ public class IEDriver {			//IE浏览器驱动类
 		}
 
 		try {
-			// 创建一个 Chrome 的浏览器实例
+			// 创建一个 IE 的浏览器实例
 			this.driver = new RemoteWebDriver(service.getUrl(),
 					DesiredCapabilities.internetExplorer());
 			// 让浏览器访问 云猴
 			driver.get("about:blank");
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("log--error：创建driver失败！！");
 		}
 	}
