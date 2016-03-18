@@ -21,7 +21,7 @@ public class servletInit extends HttpServlet{
 		//Mysql.Sort();
 		
 		outputList.logs="Server init secc!";
-		System.out.println("Init secc!");
+		System.out.println("log:info::Init secc!");
 		return;
 	}
 }

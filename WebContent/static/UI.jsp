@@ -17,7 +17,7 @@
 	rel="stylesheet">
 <!-- The Main CSS File -->
 <link rel="stylesheet" href="/WebTester/static/CSS/style.css">
-<script src="/WebTester/static/Javascript/jQuery/jquery-1.7.2.min.js"></script>
+<script src="/WebTester/static/Javascript/jQuery/jquery.min.js"></script>
 
 </head>
 <script>
@@ -407,7 +407,7 @@
 							Run</span>
 				</a></li>
 				<li class="i_32_tables"><a href="tables.jsp" title="Some Rows">
-						<span class="tab_label">结果报表</span> <span class="tab_info">Res
+						<span class="tab_label">调试工具</span> <span class="tab_info">Res
 							Table</span>
 				</a></li>
 			</ul>

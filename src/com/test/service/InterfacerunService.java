@@ -104,7 +104,30 @@ public class InterfacerunService { // 接口测试用例运行，未完成
 		}
 		runable = true;
 	}
-
+	
+	public static void debug(String url,String param,String method){
+		
+		state = "正在调试";
+		
+		sendUrl obj = new sendUrl();
+		switch (method) { // 发送请求
+		case "post":
+			if(param.equals("请输入接口地址"))
+				param = "";
+			responseList.json = obj.sendPost(url, param).toString();
+			break;
+		case "get":
+			if(param.equals("请输入接口地址"))
+				param = "";
+			System.out.println(url+param);
+			responseList.json = obj.sendGet(url, param).toString();
+			break;
+		default :
+			responseList.json = "方法:"+method+"不支持！";
+		}
+		state = "调试完成";		
+	}
+	
 	public static String runCase(sendUrl obj, jsonPase json) {
 		runable = false;
 		String s = "PASS";

@@ -17,10 +17,60 @@
 	rel="stylesheet">
 <!-- The Main CSS File -->
 <link rel="stylesheet" href="/WebTester/static/CSS/style.css">
-<script src="/WebTester/static/Javascript/jQuery/jquery-1.7.2.min.js"></script>
+<script src="/WebTester/static/Javascript/jQuery/jquery.min.js"></script>
+<script src="/WebTester/static/Javascript/jQuery/jquery-form.js"></script>
+
+<script>
+
+function saveReport() { 
+	document.getElementById("jsonRes").value="等待响应...";
+	// jquery 表单提交 
+	$("#debugA").ajaxSubmit(function(message) { 
+		setApi(message)// 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容 
+	}); 
+
+	return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转 
+	} 
+
+	function setApi(message) {
+		var url = "";
+		url+=document.getElementById("api_url").value;
+		url+="?" + document.getElementById("api_param").value;
+		document.getElementById("jsonRes").value=message;
+		document.getElementById("Url").value+="\n"+url;
+	}
+	
+function getOptions() {
+	var xmlhttp;
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp = new XMLHttpRequest();
+	} else {// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	var url = "../getOptions";
+	var data = "";
+	var str = "<option value=\"请求方式\">请求方式</option>";
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4)
+			if (xmlhttp.status == 200)
+				data = xmlhttp.responseText;
+				if(data !=""){
+					while(data.indexOf(",")>0){
+						str+="<option value=\"" +data+ "\">"+ data.substring(0,data.indexOf(",")) +"</option>";
+						data = data.substring(data.indexOf(",")+1,data.length);
+					}
+					str+="<option value=\""+data+"\">"+ data +"</option>";
+					document.getElementById("selectOp").innerHTML=str;
+				}
+	};
+}
+	
+</script>
 
 </head>
-<body onload="">
+<body onload="getOptions()">
 	<header class="main_header">
 		<div class="wrapper">
 			<div class="logo">
@@ -52,40 +102,36 @@
 						<span class="tab_label">接口测试</span> <span class="tab_info">Interface Run</span>
 				</a></li>
 				<li class="active_tab i_32_tables"><a href="tables.jsp" title="Some Rows">
-						<span class="tab_label">结果报表</span> <span class="tab_info">Res Table</span>
+						<span class="tab_label">调试工具</span> <span class="tab_info">Res Table</span>
 				</a></li>
 			</ul>
 		</aside>
 		<div class="contents">
 			<div class="grid_wrapper">
-
-				<div class="g_6 contents_header">
-					<h3 class="i_16_message tab_label">结果报表</h3>
-					<div>
-						<span class="label">待实现</span>
-					</div>
+				<a class="i_16_message tab_menu">输入</a>
+				<form id="debugA" action="../debugApi" method="post" onsubmit="return saveReport();">
+				<div class="tab_div">
+					<input id="api_url" name="url" class="tab_input" type="text" value="请输入接口地址"	onfocus='if(this.value=="请输入接口地址"){this.value=""}' onblur='if(this.value==""){this.value="请输入接口地址"}' />
+					<input id="api_param" name="param" class="tab_input" type="text" value="请输入接口参数"	onfocus='if(this.value=="请输入接口参数"){this.value=""}' onblur='if(this.value==""){this.value="请输入接口参数"}' />
 				</div>
-
-				<div class="g_12 separator">
-					<span></span>
+				<div class="tab_div">
+					 <select name="selectOp" id="selectOp" class="tab_select">
+					 		<option value="1">null</option>
+				     </select> 
+				     <input type="submit" class="tab_btn" value="调试">
 				</div>
-
+				</form>			
+				<HR color=#9D9D9D SIZE=1>
 				
-				<div class="g_12">
-					
-					<h1 >待实现</h1>
-					
+				<a class="i_16_message tab_menu">结果</a>
+				<a class="tab_menuc">记录</a>
+				<div class="tab_div">
+					<textarea id="jsonRes"	style="margin:5px 5px 5px -15px; width: 500px; height: 330px;">json返回结果</textarea>
+					<textarea id="Url"	style="margin:5px 5px 5px 60px; width: 500px; height: 330px;">调试记录</textarea>
 				</div>
+
 			</div>
 		</div>
-	</div>
-
-	<footer>
-		
-	</footer>
-	<div style="display: none">
-		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
-			language='JavaScript' charset='gb2312'></script>
 	</div>
 </body>
 </html>

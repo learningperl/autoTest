@@ -39,7 +39,7 @@
 	float: left;
 }
 
-.menu {overflow£ºauto;
+.menu {overflowï¿½ï¿½auto;
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #ccc;
 }
@@ -65,7 +65,7 @@
 	display: none;
 }
 
-/*¿ÉÓÃÍ¼Æ¬»ò×Ö·û,Èç¹ûÊ¹ÓÃÍ¼Æ¬£¬Çë°ÑcontentµÄÖµÉèÖÃ³É¿Õ×Ö·û*/
+/*ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½Ö·ï¿½,ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½contentï¿½ï¿½Öµï¿½ï¿½ï¿½Ã³É¿ï¿½ï¿½Ö·ï¿½*/
 .menu summary:before {
 	content: "+";
 	display: inline-block;
@@ -80,7 +80,7 @@
 .menu[open] summary:before {
 	content: "-";
 	/*background: url(../Images/down.png) no-repeat center center;*/
-	/*Õ¹¿ªÊ±µÄÍ¼Æ¬*/
+	/*Õ¹ï¿½ï¿½Ê±ï¿½ï¿½Í¼Æ¬*/
 }
 
 .menu ul {
@@ -440,7 +440,7 @@
 	top: 180px;
 	line-height: 77px;
 	padding: 0px 30px;
-	font-family: »ªÎÄ¿¬Ìå;
+	font-family: ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½;
 	font-size: x-large;
 }
 
@@ -451,7 +451,7 @@
 	top: 90px;
 	line-height: 77px;
 	padding: 0px 30px;
-	font-family: »ªÎÄ¿¬Ìå;
+	font-family: ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½;
 	font-size: x-large;
 }
 
@@ -1096,6 +1096,57 @@ a.smActive {
 	padding-top: 26px;
 }
 
+.tab_menu {
+	position: relative;
+	height: 20px;
+	line-height: 20px;
+	font-family: Oswald;
+	color: #9D9D9D;
+	font-size: 25px;
+	padding-left: 30px;
+}
+
+.tab_menuc {
+	position: relative;
+	height: 20px;
+	line-height: 20px;
+	font-family: Oswald;
+	color: #9D9D9D;
+	font-size: 25px;
+	padding-left: 520px;
+}
+
+.tab_input {
+	position: relative;
+    top: -5px;
+    width: 1000px;
+    height: 20px;
+    left: 40px;
+    margin:5px 5px 5px 5px;
+}
+
+.tab_select {
+	position: relative;
+    top: -5px;
+    width: 80px;
+    height: 25px;
+    left: 375px;
+}
+
+.tab_btn {
+	position: relative;
+    top: -5px;
+    width: 80px;
+    height: 25px;
+    left: 410px;
+}
+
+.tab_div {
+	position: relative;
+    top: 5px;
+    left: 50px;
+}
+
 .tab_info {
 	display: block;
 	height: 20px;
@@ -1443,280 +1494,12 @@ a.smActive {
 }
 
 /* Icons */
-.i_22_pages {
-	background: url("../Images/Icons/22/i_22_pages.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_ui {
-	background: url("../Images/Icons/16/i_16_ui.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_table {
-	background: url("../Images/Icons/16/i_16_table.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_forms {
-	background: url("../Images/Icons/16/i_16_forms.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_dashboard {
-	background: url("../Images/Icons/16/i_16_dashboard.png") no-repeat
-		scroll transparent;
-}
-
-.i_16_help {
-	background: url("../Images/Icons/16/i_16_help.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_login {
-	background: url("../Images/Icons/16/i_16_login.png") no-repeat scroll
-		transparent;
-}
 
 .i_16_message {
 	background: url("../Images/Icons/16/i_16_message.png") no-repeat scroll
 		transparent;
 }
 
-.i_16_chats {
-	background: url("../Images/Icons/16/i_16_chats.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_icons {
-	background: url("../Images/Icons/16/i_16_icons.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_tooltip {
-	background: url("../Images/Icons/16/i_16_tooltip.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_cHorizontal {
-	background: url("../Images/Icons/16/i_16_cHorizontal.png") no-repeat
-		scroll transparent;
-}
-
-.i_16_downT {
-	background: url("../Images/Icons/16/i_16_downT.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_calendar {
-	background: url("../Images/Icons/16/i_16_calendar.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_wysiwyg {
-	background: url("../Images/Icons/16/i_16_wysiwyg.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_spinner {
-	background: url("../Images/Icons/16/i_16_spinner.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_valid {
-	background: url("../Images/Icons/16/i_16_valid.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_pacman {
-	background: url("../Images/Icons/16/i_16_pacman.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_data {
-	background: url("../Images/Icons/16/i_16_data.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_tabs {
-	background: url("../Images/Icons/16/i_16_tabs.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_settings_small {
-	background: url("../Images/Icons/16/i_16_settings_small.png") no-repeat
-		scroll transparent;
-}
-
-.i_16_checkbox {
-	background: url("../Images/Icons/16/i_16_checked.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_settings {
-	background: url("../Images/Icons/16/i_16_settings.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_resize {
-	background: url("../Images/Icons/16/i_16_resize.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_tables {
-	background: url("../Images/Icons/16/i_16_tables.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_charts {
-	background: url("../Images/Icons/16/i_16_charts.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_pie {
-	background: url("../Images/Icons/16/i_16_pie.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_bars {
-	background: url("../Images/Icons/16/i_16_bars.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_add {
-	background: url("../Images/Icons/16/i_16_add.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_progress {
-	background: url("../Images/Icons/16/i_16_progress.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_files {
-	background: url("../Images/Icons/16/i_16_files.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_profile {
-	background: url("../Images/Icons/16/i_16_profile.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_tasks {
-	background: url("../Images/Icons/16/i_16_tasks.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_notes {
-	background: url("../Images/Icons/16/i_16_notes.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_options {
-	background: url("../Images/Icons/16/i_16_options.png") no-repeat scroll
-		transparent;
-}
-
-.i_16_logout {
-	background: url("../Images/Icons/16/i_16_logout.png") no-repeat scroll
-		transparent;
-}
-
-.i_22_inbox {
-	background: url("../Images/Icons/22/i_22_inbox.png") no-repeat scroll
-		transparent;
-}
-
-.i_22_settings {
-	background: url("../Images/Icons/22/i_22_settings.png") no-repeat scroll
-		transparent;
-}
-
-.i_22_upload {
-	background: url("../Images/Icons/22/i_22_upload.png") no-repeat scroll
-		transparent;
-}
-
-.i_22_search {
-	background: url("../Images/Icons/22/i_22_search.png") no-repeat scroll
-		transparent;
-}
-
-.i_32_statistic {
-	background: url("../Images/Icons/32/i_32_statistic.png") no-repeat
-		scroll transparent;
-}
-
-.i_32_delivery {
-	background: url("../Images/Icons/32/i_32_delivery.png") no-repeat scroll
-		transparent;
-}
-
-.i_32_dollar {
-	background: url("../Images/Icons/32/i_32_dollar.png") no-repeat scroll
-		transparent;
-}
-
-.i_32_support {
-	background: url("../Images/Icons/32/i_32_support.png") no-repeat scroll
-		transparent;
-}
-
-.i_32_dashboard {
-	background: url("../Images/Icons/32/i_32_dashboard.png") no-repeat
-		scroll transparent;
-}
-
-.i_32_inbox {
-	background: url("../Images/Icons/32/i_32_inbox.png") no-repeat scroll
-		transparent;
-}
-
-.i_32_charts {
-	background: url("../Images/Icons/32/i_32_charts.png") no-repeat scroll
-		transparent;
-}
-
-.i_32_ui {
-	background: url("../Images/Icons/32/i_32_ui.png") no-repeat scroll
-		transparent;
-}
-
-.i_32_tables {
-	background: url("../Images/Icons/32/i_32_tables.png") no-repeat scroll
-		transparent;
-}
-
-.i_32_forms {
-	background: url("../Images/Icons/32/i_32_forms.png") no-repeat scroll
-		transparent;
-}
-
-.i_22_dashboard {
-	background: url("../Images/Icons/22/i_22_dashboard.png") no-repeat
-		scroll transparent;
-}
-
-.i_22_charts {
-	background: url("../Images/Icons/22/i_22_charts.png") no-repeat scroll
-		transparent;
-}
-
-.i_22_ui {
-	background: url("../Images/Icons/22/i_22_ui.png") no-repeat scroll
-		transparent;
-}
-
-.i_22_tables {
-	background: url("../Images/Icons/22/i_22_tables.png") no-repeat scroll
-		transparent;
-}
-
-.i_22_forms {
-	background: url("../Images/Icons/22/i_22_forms.png") no-repeat scroll
-		transparent;
-}
 
 /* Footer */
 footer {
@@ -1748,7 +1531,7 @@ footer {
 	padding: 15.5px;
 	width: auto;
 	height: auto;
-	min-height: 496px;
+	min-height: 524px;
 	/* You can change here if you have more than 6 buttons on the sidebar */
 }
 

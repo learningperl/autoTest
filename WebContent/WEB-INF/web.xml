@@ -151,5 +151,23 @@
 		<url-pattern>/runInterfaceTest</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>getOptions</servlet-name>
+		<servlet-class>com.test.interfaces.servlet.getOptions</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>getOptions</servlet-name>
+		<url-pattern>/getOptions</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>debugApi</servlet-name>
+		<servlet-class>com.test.interfaces.servlet.debugApi</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>debugApi</servlet-name>
+		<url-pattern>/debugApi</url-pattern>
+	</servlet-mapping>
+	
 
 </web-app>

@@ -17,7 +17,7 @@
 	rel="stylesheet">
 <!-- The Main CSS File -->
 <link rel="stylesheet" href="/WebTester/static/CSS/style.css">
-<script src="/WebTester/static/Javascript/jQuery/jquery-1.7.2.min.js"></script>
+<script src="/WebTester/static/Javascript/jQuery/jquery.min.js"></script>
 
 </head>
 
@@ -387,7 +387,7 @@
 						class="tab_info">Interface Run</span>
 				</a></li>
 				<li class="i_32_tables"><a href="tables.jsp" title="Some Rows">
-						<span class="tab_label">结果报表</span> <span class="tab_info">Res
+						<span class="tab_label">调试工具</span> <span class="tab_info">Res
 							Table</span>
 				</a></li>
 			</ul>
@@ -564,13 +564,6 @@
 				</section>
 			</div>
 		</div>
-	</div>
-	</div>
-
-	<footer> </footer>
-	<div style="display: none">
-		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
-			language='JavaScript' charset='gb2312'></script>
 	</div>
 </body>
 </html>
