@@ -249,7 +249,12 @@
 							//alert(ele.parentNode.value);
 							ele.parentNode.style.height = "120px";
 							ele.parentNode.style.textIndent = "0px";
-							ele.parentNode.parentNode.parentNode.children[0].style.display = "none";
+							var e=document.getElementsByName("check");
+							for(var i=0;i<e.length;i++){
+								if(e[i].value==id){
+									e[i].style.display="none"
+								}
+							}
 							//alert(data);
 							ele.parentNode.innerHTML = data;
 						} else {
@@ -269,7 +274,10 @@
 		if (me == "name") {
 			ele.parentNode.style.height = "40px";
 			ele.parentNode.style.textIndent = "10px";
-			ele.parentNode.parentNode.parentNode.children[0].style.display = "";
+			var e=document.getElementsByName("check");
+			for(var i=0;i<e.length;i++){
+				e[i].style.display=""
+			}
 			ele.parentNode.innerHTML = ele.parentNode.value;
 		} else {
 			ele.parentNode.style.height = "25px";

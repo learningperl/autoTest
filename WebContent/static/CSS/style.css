@@ -668,10 +668,6 @@ a:focus {
 }
 
 /* Pattern */
-body {
-	background: url("../Images/Textures/pattern4.png") repeat scroll 0 0
-		#f4f4f4;
-}
 
 .top_panel {
 	background: url("../Images/Textures/top_panel.png") repeat-x scroll 0 0
@@ -712,16 +708,6 @@ body {
 .drop_menu>li {
 	background: url("../Images/Textures/drop_menu.png") repeat-x scroll 0 0
 		#f6f7f8;
-}
-
-.separator {
-	background: url("../Images/Textures/separator_line.png") repeat-x scroll
-		0 14px transparent;
-}
-
-.separator>span {
-	background: url("../Images/Textures/separator_circle.png") no-repeat
-		scroll center center #F9F9F9;
 }
 
 /* Top Panel */
@@ -2898,9 +2884,6 @@ input[disabled="disabled"] {
 	background: url("../Images/Patterns/pattern3.png") no-repeat 0 0;
 }
 
-#pattern4 {
-	background: url("../Images/Patterns/pattern4.png") no-repeat 0 0;
-}
 
 #pattern5 {
 	background: url("../Images/Patterns/pattern5.png") no-repeat 0 0;
