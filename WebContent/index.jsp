@@ -16,8 +16,8 @@
 <link href="http://fonts.useso.com/css?family=Oswald|Droid+Sans:400,700"
 	rel="stylesheet">
 <!-- The Main CSS File -->
-<link rel="stylesheet" href="/WebTester/static/CSS/style.css">
-<script src="/WebTester/static/Javascript/jQuery/jquery.min.js"></script>
+<link rel="stylesheet" href="/static/CSS/style.css">
+<script src="/static/Javascript/jQuery/jquery.min.js"></script>
 
 </head>
 
@@ -149,7 +149,7 @@
 		<div class="wrapper">
 			<div class="logo">
 				<a href="index.jsp" Title="autoTest框架"> <img
-					src="/WebTester/static/Images/Testlogo.png"
+					src="/static/Images/Testlogo.png"
 					alt="Testlogo">
 				</a>
 			</div>
@@ -235,7 +235,7 @@
 						<div class="widget_header">
 							<h4 class="widget_header_title wwIcon i_16_charts">Options:&nbsp&nbsp</h4>
 							<img title="添加用例场景"
-								src="/WebTester/static/Images/Icons/16/add.png"
+								src="/static/Images/Icons/16/add.png"
 								style="position: relative; top: 2px; left: 20px; cursor: pointer;"
 								onclick='pops("pop1");GetKey("idadd",this.name);' /> <input
 								id="searchText" type="text" value="Search"
@@ -243,7 +243,7 @@
 								onkeydown='if(event.keyCode==13){AllKeyWords()}'
 								onfocus='if(this.value=="Search"){this.value=""}'
 								onblur='if(this.value==""){this.value="Search"}' /> <img
-								title="搜索 " src="/WebTester/static/Images/Icons/16/Search.png"
+								title="搜索 " src="/static/Images/Icons/16/Search.png"
 								style="position: relative; top: 11px; left: 125px; cursor: pointer; float: right;"
 								onclick='AllKeyWords()' />
 						</div>

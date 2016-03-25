@@ -16,8 +16,8 @@
 <link href="http://fonts.useso.com/css?family=Oswald|Droid+Sans:400,700"
 	rel="stylesheet">
 <!-- The Main CSS File -->
-<link rel="stylesheet" href="/WebTester/static/CSS/style.css">
-<script src="/WebTester/static/Javascript/jQuery/jquery.min.js"></script>
+<link rel="stylesheet" href="/static/CSS/style.css">
+<script src="/static/Javascript/jQuery/jquery.min.js"></script>
 
 </head>
 <script>
@@ -375,7 +375,7 @@
 		<div class="wrapper">
 			<div class="logo">
 				<a href="index.jsp" Title="autoTest框架"> <img
-					src="/WebTester/static/Images/Testlogo.png"
+					src="/static/Images/Testlogo.png"
 					alt="Testlogo">
 				</a>
 			</div>
@@ -554,11 +554,11 @@
 					<div class="widget_header">
 						<h4 class="widget_header_title wwIcon i_16_charts">Options:</h4>
 						<img
-							title="添加用例场景" src="/WebTester/static/Images/Icons/16/add.png"
+							title="添加用例场景" src="/static/Images/Icons/16/add.png"
 							style="position: relative; top: 2px; left: 20px; cursor: pointer;"
 							onclick='pops("pop1");GetInfo("nameadd",this.name,this);' />
 						<img
-							title="执行选中用例" src="/WebTester/static/Images/Icons/16/run.png"
+							title="执行选中用例" src="/static/Images/Icons/16/run.png"
 							style="position: relative; top: 2px; left: 20px; cursor: pointer; width: 18px"
 							onclick='runTest()' />
 						<input id="caseId" type="text" value="1"
@@ -566,7 +566,7 @@
 							onkeydown='if(event.keyCode==13){debugCase()}'
 							onblur = 'this.value = this.value.replace(/\D+/g, "");if(this.value==""){this.value="1";}' />
 						<img
-							title="调试选中用例" src="/WebTester/static/Images/Icons/16/debug.png"
+							title="调试选中用例" src="/static/Images/Icons/16/debug.png"
 							style="position: relative; top: 2px; left: 28px; cursor: pointer; width: 18px"
 							onclick='debugCase()' />
 						<input id="searchText" type="text" value="Search"
@@ -575,7 +575,7 @@
 							onfocus='if(this.value=="Search"){this.value=""}'
 							onblur='if(this.value==""){this.value="Search"}' />
 						<img
-							id="Search" title="搜索" src="/WebTester/static/Images/Icons/16/Search.png"
+							id="Search" title="搜索" src="/static/Images/Icons/16/Search.png"
 							style="position: relative; top: 11px; left: 125px; cursor: pointer; float: right;"
 							onclick='SearchAll()' />
 					</div>

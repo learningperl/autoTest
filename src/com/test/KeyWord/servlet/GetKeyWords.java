@@ -48,7 +48,7 @@ public class GetKeyWords extends HttpServlet {
 		try {
 			Statement sm = Mysql.ct.createStatement();
 			String sql = "";
-			sql = "SELECT MAX(id) FROM KeyWords";
+			sql = "SELECT MAX(id) FROM keywords";
 			ResultSet rs = sm.executeQuery(sql);
 			rs.next();
 			int str = 1;
@@ -71,7 +71,7 @@ public class GetKeyWords extends HttpServlet {
 		try {
 			Statement sm = Mysql.ct.createStatement();
 			String sql = "";
-			sql = "select * from KeyWords where id='" + id + "'";
+			sql = "select * from keywords where id='" + id + "'";
 			ResultSet rs = sm.executeQuery(sql);
 			while (rs.next()) {
 				ResultSetMetaData rsmd = rs.getMetaData();

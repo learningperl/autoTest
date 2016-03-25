@@ -17,7 +17,8 @@ public class MyX509TrustManager implements X509TrustManager { //开源证书类
     MyX509TrustManager() throws Exception { 
         // create a "default" JSSE X509TrustManager. 
         KeyStore ks = KeyStore.getInstance("JKS"); 
-        ks.load(new FileInputStream("C:/Program Files/Java/jre7/lib/security/cacerts"),"changeit".toCharArray()); 
+        property pro =new property();
+        ks.load(new FileInputStream(pro.readRcErpURL("cacerts")),"changeit".toCharArray()); 
         TrustManagerFactory tmf = 
         TrustManagerFactory.getInstance("SunX509", "SunJSSE"); 
         tmf.init(ks); 

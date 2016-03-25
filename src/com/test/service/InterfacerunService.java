@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 import com.test.statics.Mysql;
 import com.test.statics.responseList;
+import com.test.tools.encodeType;
 import com.test.tools.jsonPase;
 import com.test.tools.sendUrl;
 
@@ -112,12 +113,12 @@ public class InterfacerunService { // 接口测试用例运行，未完成
 		sendUrl obj = new sendUrl();
 		switch (method) { // 发送请求
 		case "post":
-			if(param.equals("请输入接口地址"))
+			if(param.equals("请输入接口参数"))
 				param = "";
 			responseList.json = obj.sendPost(url, param).toString();
 			break;
 		case "get":
-			if(param.equals("请输入接口地址"))
+			if(param.equals("请输入接口参数"))
 				param = "";
 			System.out.println(url+param);
 			responseList.json = obj.sendGet(url, param).toString();
@@ -125,6 +126,7 @@ public class InterfacerunService { // 接口测试用例运行，未完成
 		default :
 			responseList.json = "方法:"+method+"不支持！";
 		}
+		System.out.println(encodeType.getEncoding(responseList.json));
 		state = "调试完成";		
 	}
 	

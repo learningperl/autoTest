@@ -35,8 +35,12 @@ public class sendUrl {
 			sslContext.init(null, tm, new java.security.SecureRandom());
 			// 从上述SSLContext对象中得到SSLSocketFactory对象
 			SSLSocketFactory ssf = sslContext.getSocketFactory();
-			// 创建URL对象
-			URL realUrl = new URL(url + "?" + param);
+			// 创建URL对象\
+			URL realUrl;
+			if(param.length()>0)
+				realUrl = new URL(url + "?" + param);
+			else
+				realUrl = new URL(url);
 			// 创建HttpsURLConnection对象，并设置其SSLSocketFactory对象
 			HttpURLConnection conn = null;
 			// 创建HttpsURLConnection对象，并设置其SSLSocketFactory对象

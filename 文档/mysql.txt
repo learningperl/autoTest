@@ -50,7 +50,7 @@ CREATE TABLE `caseoption` (
   `actualRes` varchar(512) DEFAULT NULL COMMENT '实际结果，用于记录结果',
   `imgName` varchar(32) DEFAULT NULL COMMENT '运行后存放用例结果截图图片名字',
   `caseDescription` varchar(32) DEFAULT NULL COMMENT '用例描述',
-  `runState` varchar(16) CHARACTER SET utf8mb4 DEFAULT 'N/A' COMMENT '标记用例执行状态',
+  `runState` varchar(16) CHARACTER SET utf8 DEFAULT 'N/A' COMMENT '标记用例执行状态',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='整条用例执行需要的所有信息';
 

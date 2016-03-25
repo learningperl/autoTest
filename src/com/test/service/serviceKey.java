@@ -15,11 +15,11 @@ public class serviceKey {
 		String sql = "";
 		try {
 			Statement sm = Mysql.ct.createStatement();
-			ResultSet rs = sm.executeQuery("select DISTINCT type from KeyWords  order by type");
+			ResultSet rs = sm.executeQuery("select DISTINCT type from keywords  order by type");
 			while (rs.next()) {
 				Statement sm1 = Mysql.ct.createStatement();
 				//System.out.println("+1");
-				sql="select * from KeyWords where type='" + rs.getString(1) +"' order by id";
+				sql="select * from keywords where type='" + rs.getString(1) +"' order by id";
 				ResultSet rs1 = sm1.executeQuery(sql);
 				while (rs1.next()) {
 					ResultSetMetaData rsmd1 = rs1.getMetaData();
@@ -49,14 +49,14 @@ public class serviceKey {
 		String sql = "";
 		try {
 			Statement sm = Mysql.ct.createStatement();
-			sql = "SELECT id FROM KeyWords WHERE describes LIKE '%"+p+"%' or keyName LIKE '%"+p+"%'";
+			sql = "SELECT id FROM keywords WHERE describes LIKE '%"+p+"%' or keyName LIKE '%"+p+"%'";
 			ResultSet rs = sm.executeQuery(sql);
 			while (rs.next()) {
 				Statement sm2 = Mysql.ct.createStatement();
-				ResultSet rs2 = sm2.executeQuery("select DISTINCT type from KeyWords order by type");
+				ResultSet rs2 = sm2.executeQuery("select DISTINCT type from keywords order by type");
 				while (rs2.next()) {
 					Statement sm1 = Mysql.ct.createStatement();
-					sql="select * from KeyWords where id='"+rs.getString(1)+"' and type='" + rs2.getString(1) +"' order by id";
+					sql="select * from keywords where id='"+rs.getString(1)+"' and type='" + rs2.getString(1) +"' order by id";
 					ResultSet rs1 = sm1.executeQuery(sql);
 					while (rs1.next()) {
 						ResultSetMetaData rsmd1 = rs1.getMetaData();

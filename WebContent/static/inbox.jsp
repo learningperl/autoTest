@@ -16,8 +16,8 @@
 <link href="http://fonts.useso.com/css?family=Oswald|Droid+Sans:400,700"
 	rel="stylesheet">
 <!-- The Main CSS File -->
-<link rel="stylesheet" href="/WebTester/static/CSS/style.css">
-<script src="/WebTester/static/Javascript/jQuery/jquery.min.js"></script>
+<link rel="stylesheet" href="/static/CSS/style.css">
+<script src="/static/Javascript/jQuery/jquery.min.js"></script>
 
 </head>
 <body onload="">
@@ -25,7 +25,7 @@
 		<div class="wrapper">
 			<div class="logo">
 				<a href="index.jsp" Title="autoTest框架"> <img
-					src="/WebTester/static/Images/Testlogo.png"
+					src="/static/Images/Testlogo.png"
 					alt="Testlogo">
 				</a>
 			</div>

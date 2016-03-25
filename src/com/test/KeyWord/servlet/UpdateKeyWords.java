@@ -49,12 +49,12 @@ public class UpdateKeyWords extends HttpServlet {
 		} catch (Exception e) {
 		}
 		if (id != null && type != null) {
-			sqlu += "update KeyWords set id=" + id + ", type=" + type
+			sqlu += "update keywords set id=" + id + ", type=" + type
 					+ ", keyName='" + request.getParameter("keyName")
 					+ "', describes='" + request.getParameter("describes")
 					+ "', useCase='" + request.getParameter("useCase")
 					+ "' where id='" + id + "'";
-			sqli += "insert into KeyWords values(" + id + "," + type + ",'"
+			sqli += "insert into keywords values(" + id + "," + type + ",'"
 					+ request.getParameter("keyName") + "','"
 					+ request.getParameter("describes") + "','"
 					+ request.getParameter("useCase") + "')";
@@ -72,7 +72,7 @@ public class UpdateKeyWords extends HttpServlet {
 		// System.out.println(sqlu);
 		try {
 			Statement sm = Mysql.ct.createStatement();
-			String sql = "select id from KeyWords where id='" + id + "'";
+			String sql = "select id from keywords where id='" + id + "'";
 			ResultSet rs = sm.executeQuery(sql);
 			while (rs.next()) {
 				str = rs.getString(1);

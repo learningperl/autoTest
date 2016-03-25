@@ -44,7 +44,7 @@ public class delKeyWords extends HttpServlet{
 		try {
 			Statement sm = Mysql.ct.createStatement();
 			String sql="";
-			sql="delete from KeyWords where id='"+id+"'";
+			sql="delete from keywords where id='"+id+"'";
 			rs = sm.executeUpdate(sql);
 			sm=null;
 		}catch (Exception e){

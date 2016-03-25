@@ -16,9 +16,9 @@
 <link href="http://fonts.useso.com/css?family=Oswald|Droid+Sans:400,700"
 	rel="stylesheet">
 <!-- The Main CSS File -->
-<link rel="stylesheet" href="/WebTester/static/CSS/style.css">
-<script src="/WebTester/static/Javascript/jQuery/jquery.min.js"></script>
-<script src="/WebTester/static/Javascript/jQuery/jquery-form.js"></script>
+<link rel="stylesheet" href="/static/CSS/style.css">
+<script src="/static/Javascript/jQuery/jquery.min.js"></script>
+<script src="/static/Javascript/jQuery/jquery-form.js"></script>
 
 <script>
 
@@ -58,7 +58,7 @@ function getOptions() {
 				data = xmlhttp.responseText;
 				if(data !=""){
 					while(data.indexOf(",")>0){
-						str+="<option value=\"" +data+ "\">"+ data.substring(0,data.indexOf(",")) +"</option>";
+						str+="<option value=\"" +data.substring(0,data.indexOf(","))+ "\">"+ data.substring(0,data.indexOf(",")) +"</option>";
 						data = data.substring(data.indexOf(",")+1,data.length);
 					}
 					str+="<option value=\""+data+"\">"+ data +"</option>";
@@ -75,7 +75,7 @@ function getOptions() {
 		<div class="wrapper">
 			<div class="logo">
 				<a href="index.jsp" Title="autoTest框架"> <img
-					src="/WebTester/static/Images/Testlogo.png"
+					src="/static/Images/Testlogo.png"
 					alt="Testlogo">
 				</a>
 			</div>
