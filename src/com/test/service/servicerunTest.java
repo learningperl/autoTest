@@ -129,6 +129,7 @@ public class servicerunTest { // UI用例执行类
 		String s = "PASS";
 		String res = "";
 		String method = "";
+		String url = "";
 		actualRes = "NULL";
 		property pro = new property();
 		if (driver == null && !map.get("optionss").equals("open"))
@@ -178,16 +179,21 @@ public class servicerunTest { // UI用例执行类
 				driver = e.getdriver();
 			} else
 				System.out.println("log--error:暂时不支持" + Browser + "浏览器。");
+			break;
 
 		case "get":
 			try {
+				url = map.get("xPath");
+				if(!url.contains("http"))
+					url="http//:"+url;
 				Thread.sleep(1000);
-				driver.get(map.get("xPath"));
+				driver.get(url);
 				Thread.sleep(3000);
 			} catch (Exception e) {
+				//e.printStackTrace();
 				s = "FAIL";
 				actualRes = "打开网页失败！";
-				System.out.println("log--warn:打开网页失败！");
+				System.out.println("log--warn:打开网页失败！网页需要http形式。");
 			}
 			break;
 

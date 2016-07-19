@@ -71,9 +71,9 @@ public class servletSearch extends HttpServlet {
 						+ map.get("casesId")
 						+ "\" class=\"edit_c\" href=\"#\" onclick='GetInfo(\"name\",this.name,this);'>编辑</a>&nbsp&nbsp<a name=\""
 						+ map.get("casesId")
-						+ "\" class=\"edit_d\" href=\"#\" onclick='delCase(\"name\",this.name);'>删除</a>&nbsp&nbsp<a name=\""
+						+ "\" class=\"edit_d\" href=\"#\" onclick='popdel(\"name\",this.name);'>删除</a>&nbsp&nbsp<a name=\""
 						+ map.get("casesId")
-						+ "\" class=\"edit_e\" href=\"#\" onclick='pops(\"pop\");GetInfo(\"idadd\",this.name,this);'>添加</a>"
+						+ "\" class=\"edit_e\" href=\"#\" onclick='pops(\"pop\");GetInfo(\"idadd\",this.name,this);keyOption();'>添加</a>"
 						+ "<a class=\""+ map.get("runStates") +"\">" + map.get("runStates")
 						+"</a></summary>";
 				i++;
@@ -89,7 +89,7 @@ public class servletSearch extends HttpServlet {
 								+ map.get("id")
 								+ " class=\"edit_c\" href=\"#\" onclick='GetInfo(\"id\",this.name,this);'>编辑</a>"
 								+"&nbsp&nbsp<a name=" + map.get("id")
-								+ " class=\"edit_d\" href=\"#\" onclick='delCase(\"id\",this.name);'>删除</a>"
+								+ " class=\"edit_d\" href=\"#\" onclick='popdel(\"id\",this.name);'>删除</a>"
 								+ "<img name=\"imgs/"
 								+ map.get("imgName")+"\" class=\"edit_img\" src=\"./imgs/"
 								+ map.get("imgName")

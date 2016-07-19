@@ -144,7 +144,7 @@ public class servletGetinfo extends HttpServlet {
 				str = outputList.l.get(i).get("id");
 			else
 				str = "NULL";
-			html += "<form id=\"cases_Edits\" action=\"../Update\" method=\"post\"><a class=\"inedit_s\" >id</a><input id=\"id\" name=\"id\" class=\"edit_input_id\" type=\"text\" value=\""
+			html += "<form id=\"cases_Edits\" onsubmit=\"AjaxSubmit('cases_Edits')\" method=\"post\"><a class=\"inedit_s\" >id</a><input id=\"id\" name=\"id\" class=\"edit_input_id\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
 			if (outputList.l.get(i).get("casesId") != null)
@@ -186,7 +186,7 @@ public class servletGetinfo extends HttpServlet {
 				str = outputList.l.get(i).get("xPath");
 			else
 				str = "NULL";
-			html += "<a class=\"inedit_s\" >xPath</a><input id=\"xPath\" name=\"xPath\" class=\"edit_input_l_id\" type=\"text\" value=\""
+			html += "<br><a class=\"inedit_s\" >xPath</a><input id=\"xPath\" name=\"xPath\" class=\"edit_input_l_id\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
 			if (outputList.l.get(i).get("datas") != null)
@@ -232,7 +232,7 @@ public class servletGetinfo extends HttpServlet {
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" > </form>";
 		}
-		html += "<a class=\"edit_save\" href=\"javascript:document.getElementById('cases_Edits').submit()\">保存</a>";
+		html += "<a class=\"edit_save\" href=\"javascript:AjaxSubmit('cases_Edits');\">保存</a>";
 		html += "<a class=\"edit_cancle\" href=\"#\" onclick='setInfo(\"id\",this)'>取消</a>";
 		//System.out.println(html);
 		return html;
@@ -271,7 +271,7 @@ public class servletGetinfo extends HttpServlet {
 				str = outputList.l.get(i).get("casesId");
 			else
 				str = "NULL";
-			html += "<form id=\"cases_Edits\" action=\"../Update\" method=\"post\"><a class=\"inedit_s\" >casesId</a><input id=\"casesId\" name=\"casesId\" class=\"edit_input\" type=\"text\" value=\""
+			html += "<form id=\"cases_Edits\" onsubmit=\"AjaxSubmit('cases_Edits')\" method=\"post\"><a class=\"inedit_s\" >casesId</a><input id=\"casesId\" name=\"casesId\" class=\"edit_input\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
 			if (outputList.l.get(i).get("casesN") != null)
@@ -292,7 +292,7 @@ public class servletGetinfo extends HttpServlet {
 				str = outputList.l.get(i).get("Bpath");
 			else
 				str = "NULL";
-			html += "<a>&nbsp&nbsp-&nbsp&nbsp&nbsp</a><a class=\"inedit_s\" >Bpath</a><input id=\"Bpath\" name=\"Bpath\" class=\"edit_input_l\" type=\"text\" value=\""
+			html += "<br><a>&nbsp&nbsp-&nbsp&nbsp&nbsp</a><a class=\"inedit_s\" >Bpath</a><input id=\"Bpath\" name=\"Bpath\" class=\"edit_input_l\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
 			if (outputList.l.get(i).get("runStates") != null)
@@ -303,7 +303,7 @@ public class servletGetinfo extends HttpServlet {
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" > </form>";
 		}
-		html += "<a class=\"edit_save\" href=\"javascript:document.getElementById('cases_Edits').submit()\">保存</a>";
+		html += "<a class=\"edit_save\" href=\"javascript:AjaxSubmit('cases_Edits');\">保存</a>";
 		html += "<a class=\"edit_cancle\" href=\"#\" onclick='setInfo(\"name\",this)'>取消</a>";
 		// System.out.println(html);
 		return html;

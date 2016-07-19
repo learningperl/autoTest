@@ -9,7 +9,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsoup-1.7.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jxl.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json.jar"/>
-	<classpathentry kind="lib" path="E:/tomcat/lib/selenium-server-standalone-2.42.2.jar"/>
-	<classpathentry kind="lib" path="E:/tomcat/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="F:/apache-tomcat-8.0.26/lib/selenium-server-standalone-2.42.2.jar"/>
+	<classpathentry kind="lib" path="F:/apache-tomcat-8.0.26/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

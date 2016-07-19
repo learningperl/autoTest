@@ -37,7 +37,7 @@ public class delInterfaceCase extends HttpServlet {
 		} else if (paramName.equals("id"))
 			str = delById(request.getParameter(paramName));
 		out.print(str);
-		resp.sendRedirect("static/Interface.jsp");
+		//resp.sendRedirect("static/Interface.jsp");
 	}
 
 	private int delById(String id) {

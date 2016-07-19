@@ -5,20 +5,10 @@
 <html lang="en-US">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AutoTest - A HTML5 Template for Test</title>
-<!--[if lt IE 9]>
-		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<script src="Javascript/Flot/excanvas.js"></script>
-	<![endif]-->
-<!-- The Fonts -->
-<link href="http://fonts.useso.com/css?family=Oswald|Droid+Sans:400,700"
-	rel="stylesheet">
 <!-- The Main CSS File -->
-<link rel="stylesheet" href="/static/CSS/style.css">
-<script src="/static/Javascript/jQuery/jquery.min.js"></script>
-<script src="/static/Javascript/jQuery/jquery-form.js"></script>
+<link rel="stylesheet" href="./CSS/style.css">
+<script src="./Javascript/jQuery/jquery.min.js"></script>
+<script src="./Javascript/jQuery/jquery-form.js"></script>
 
 <script>
 
@@ -71,18 +61,14 @@ function getOptions() {
 
 </head>
 <body onload="getOptions()">
-	<header class="main_header">
-		<div class="wrapper">
-			<div class="logo">
-				<a href="index.jsp" Title="autoTest框架"> <img
-					src="/static/Images/Testlogo.png"
-					alt="Testlogo">
-				</a>
-			</div>
+	<header>
+		<div class="logo">
+			<a href="../index.jsp" Title="autoTest框架"> <img
+				src="./Images/Testlogo.png"
+				alt="Testlogo">
+			</a>
 		</div>
 	</header>
-
-	<div class="wrapper contents_wrapper">
 
 		<aside class="sidebar">
 			<ul class="tab_nav">
@@ -90,23 +76,24 @@ function getOptions() {
 					title="General Info"> <span class="tab_label">Home Page</span>
 						<span class="tab_info">Frame Info</span>
 				</a></li>
-				<li class="i_32_charts"><a href="UI.jsp"
+				<li class="i_32_charts"><a href="./UI.jsp"
 					title="Visual Data"> <span class="tab_label">UI自动化</span> <span
 						class="tab_info">Edit and Run</span>
 				</a></li>
-				<li class="i_32_inbox"><a href="inbox.jsp"
+				<li class="i_32_inbox"><a href="./inbox.jsp"
 					title="Your Messages"> <span class="tab_label">用例生成</span> <span
 						class="tab_info">Interface Case</span>
 				</a></li>
-				<li class="i_32_ui"><a href="Interface.jsp" title="Kit elements">
+				<li class="i_32_ui"><a href="./Interface.jsp" title="Kit elements">
 						<span class="tab_label">接口测试</span> <span class="tab_info">Interface Run</span>
 				</a></li>
-				<li class="active_tab i_32_tables"><a href="tables.jsp" title="Some Rows">
+				<li class="active_tab i_32_tables"><a href="./tables.jsp" title="Some Rows">
 						<span class="tab_label">调试工具</span> <span class="tab_info">Res Table</span>
 				</a></li>
 			</ul>
 		</aside>
-		<div class="contents">
+		
+		<div class="contents2">
 			<div class="grid_wrapper">
 				<a class="i_16_message tab_menu">输入</a>
 				<form id="debugA" action="../debugApi" method="post" onsubmit="return saveReport();">
@@ -132,6 +119,6 @@ function getOptions() {
 
 			</div>
 		</div>
-	</div>
+
 </body>
 </html>

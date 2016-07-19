@@ -1,17 +1,10 @@
 package com.test.tools;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -28,7 +21,7 @@ public class sendUrl {
 	// 实现get方法调用
 	public String sendGet(String url,	String param) {
 		String result = "";
-		BufferedReader in = null;
+		InputStream in = null;
 		try {
 			TrustManager[] tm = { new MyX509TrustManager() };
 			SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
@@ -69,22 +62,16 @@ public class sendUrl {
 			conn.setReadTimeout(5000);
 			conn.connect();
 
-			in = new BufferedReader(
-					new InputStreamReader(conn.getInputStream()));
-			result = in.readLine();
-			// System.out.println(result);
-			try {
-				result = new String(result.getBytes(), "GBK");
-				result = decodeUnicode(result);
-				// System.out.println(result);
-			} catch (UnsupportedEncodingException e1) {
-				// TODO 自动生成的 catch 块
-				e1.printStackTrace();
-			}
-			return result;
+			in = conn.getInputStream();
+			if (in != null) {    
+	            result = convertStreamToString(in); 
+	            //System.out.println("???");
+	            //System.out.println(result);
+				return result;
+	        }
 		} catch (Exception e) {
 			System.out.println("发送get请求失败！" + e);
-			e.printStackTrace();
+			//e.printStackTrace();
 		} finally {
 			try {
 				if (in != null) {
@@ -103,7 +90,6 @@ public class sendUrl {
 	// 实现post请求发包
 	public String sendPost(String url,	String param) {
 		PrintWriter out = null;
-		BufferedReader in = null;
 		String result = "";
 		try {
 			TrustManager[] tm = { new MyX509TrustManager() };
@@ -149,67 +135,50 @@ public class sendUrl {
 			// flush输出流的缓冲
 			out.flush();
 			// 定义BufferedReader输入流来读取URL的响应
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					conn.getInputStream()));
+			InputStream reader = conn.getInputStream();
 
-			result = reader.readLine();
+			if (reader != null) {    
+	            result = convertStreamToString(reader); 
+	            //System.out.println("???");
+	            //System.out.println(result);
+				return result;
+	        }
 
-			try {
-				result = new String(result.getBytes(), "utf-8");
-				result = decodeUnicode(result);
-			} catch (Exception e1) {
-			}
-			return result;
 
 		} catch (Exception e) {
 			 System.out.println("发送post请求失败！\n" + e);
 			 e.printStackTrace();
 		} finally {
-			try {
-				if (out != null) {
-					out.close();
-				}
-				if (in != null) {
-					in.close();
-				}
-			} catch (IOException ex) {
-				// ex.printStackTrace();
+			if (out != null) {
+				out.close();
 			}
 		}
-
-		 System.out.println(result);
+		// System.out.println(result);
 		//jsonPase(result, 1, false);
 
 		return null;
 	}
-
-	public static String decodeUnicode(String str) {	//解码类
-		Charset set = Charset.forName("UTF-16");
-		Pattern p = Pattern.compile("\\\\u([0-9a-fA-F]{4})");
-		Matcher m = p.matcher(str);
-		int start = 0;
-		int start2 = 0;
-		StringBuffer sb = new StringBuffer();
-		while (m.find(start)) {
-			start2 = m.start();
-			if (start2 > start) {
-				String seg = str.substring(start, start2);
-				sb.append(seg);
-			}
-			String code = m.group(1);
-			int i = Integer.valueOf(code, 16);
-			byte[] bb = new byte[4];
-			bb[0] = (byte) ((i >> 8) & 0xFF);
-			bb[1] = (byte) (i & 0xFF);
-			ByteBuffer b = ByteBuffer.wrap(bb);
-			sb.append(String.valueOf(set.decode(b)).trim());
-			start = m.end();
-		}
-		start2 = str.length();
-		if (start2 > start) {
-			String seg = str.substring(start, start2);
-			sb.append(seg);
-		}
-		return sb.toString();
-	}
+	
+	//编码转为utf-8
+	public static String convertStreamToString(InputStream is) {    
+        StringBuilder sb1 = new StringBuilder();    
+        byte[] bytes = new byte[4096];  
+        int size = 0;  
+        
+        try {    
+        	while ((size = is.read(bytes)) > 0) {  
+                String str = new String(bytes, 0, size, "UTF-8");  
+                sb1.append(str);  
+            }  
+        } catch (IOException e) {    
+            e.printStackTrace();    
+        } finally {    
+            try {    
+                is.close();    
+            } catch (IOException e) {    
+               e.printStackTrace();    
+            }    
+        }    
+        return sb1.toString();    
+    }
 }

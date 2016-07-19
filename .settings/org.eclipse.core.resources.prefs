@@ -3,6 +3,7 @@ encoding//WebContent/index.jsp=UTF-8
 encoding//WebContent/static/UI.jsp=UTF-8
 encoding//WebContent/static/inbox.jsp=UTF-8
 encoding//src/com/test/UI/servlet/UpdateCase.java=UTF-8
+encoding//src/com/test/UI/servlet/servletGetinfo.java=UTF-8
 encoding//src/com/test/interfaces/servlet/UpdateInterfaceCase.java=UTF-8
 encoding//src/com/test/tools/ChromeDriver.java=UTF-8
 encoding//src/com/test/tools/ChromeDriverTest.java=UTF-8

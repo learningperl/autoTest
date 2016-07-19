@@ -48,7 +48,7 @@ public class Mysql {
 				} catch (NumberFormatException e) {
 				}
 				//System.out.println("max:"+max+"  count:"+count);
-				if(count>1){
+				if(count>=1){
 					rs1=null;
 					sql="SELECT id FROM caseoption WHERE casesId="+casesId+" ORDER BY order_id DESC";
 					rs1 = sm1.executeQuery(sql);

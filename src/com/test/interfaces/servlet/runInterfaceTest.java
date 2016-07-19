@@ -38,6 +38,7 @@ public class runInterfaceTest extends HttpServlet {
 				out.print("当前有用例正在执行。请稍后再试。");
 			} else {
 				InterfacerunService.run(check);
+				//this.Run(check);
 				System.out.println(InterfacerunService.state);
 				out.print(InterfacerunService.state);
 			}

@@ -5,30 +5,18 @@
 <html lang="en-US">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AutoTest - A HTML5 Template for Test</title>
-<!--[if lt IE 9]>
-		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<script src="Javascript/Flot/excanvas.js"></script>
-	<![endif]-->
-<!-- The Fonts -->
-<link href="http://fonts.useso.com/css?family=Oswald|Droid+Sans:400,700"
-	rel="stylesheet">
 <!-- The Main CSS File -->
-<link rel="stylesheet" href="/static/CSS/style.css">
-<script src="/static/Javascript/jQuery/jquery.min.js"></script>
+<link rel="stylesheet" href="./CSS/style.css">
+<script src="./Javascript/jQuery/jquery.min.js"></script>
 
 </head>
 <body onload="">
-	<header class="main_header">
-		<div class="wrapper">
-			<div class="logo">
-				<a href="index.jsp" Title="autoTest框架"> <img
-					src="/static/Images/Testlogo.png"
-					alt="Testlogo">
-				</a>
-			</div>
+	<header>
+		<div class="logo">
+			<a href="../index.jsp" Title="autoTest框架"> <img
+				src="./Images/Testlogo.png"
+				alt="Testlogo">
+			</a>
 		</div>
 	</header>
 
@@ -44,8 +32,6 @@
 			<li><a title="Some Rows" class="i_22_tables" href="tables.jsp"></a></li>
 		</ul>
 	</div>
-
-	<div class="wrapper contents_wrapper">
 
 		<aside class="sidebar">
 			<ul class="tab_nav">
@@ -69,7 +55,8 @@
 				</a></li>
 			</ul>
 		</aside>
-		<div class="contents">
+		
+		<div class="contents2">
 			<div class="grid_wrapper">
 
 				<div class="g_6 contents_header">
@@ -84,7 +71,7 @@
 				</div>
 
 				
-				<div class="g_12">
+				<div class="g_t">
 
 					<h1>待实现</h1>
 				</div>

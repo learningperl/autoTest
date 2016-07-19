@@ -156,8 +156,11 @@ public class InterfacerunService { // 接口测试用例运行，未完成
 					|| map.get("url").toString().equals("")
 					|| map.get("url").toString() == null)
 				url = url_m;
-			else
+			else{
 				url = map.get("url").toString();
+				if (!url.contains("http"))
+					url = "http://" + url;
+			}
 			responseList.json = obj.sendPost(url, map.get("parameter")
 					.toString());
 			break;
@@ -166,8 +169,11 @@ public class InterfacerunService { // 接口测试用例运行，未完成
 					|| map.get("url").toString().equals("")
 					|| map.get("url").toString() == null)
 				url = url_m;
-			else
+			else{
 				url = map.get("url").toString();
+				if (!url.contains("http"))
+					url = "http://" + url;
+			}
 			responseList.json = obj.sendGet(url, map.get("parameter")
 					.toString());
 			break;

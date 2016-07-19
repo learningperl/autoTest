@@ -5,19 +5,9 @@
 <html lang="en-US">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AutoTest - A HTML5 Template for Test</title>
-<!--[if lt IE 9]>
-		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<script src="Javascript/Flot/excanvas.js"></script>
-	<![endif]-->
-<!-- The Fonts -->
-<link href="http://fonts.useso.com/css?family=Oswald|Droid+Sans:400,700"
-	rel="stylesheet">
 <!-- The Main CSS File -->
-<link rel="stylesheet" href="/static/CSS/style.css">
-<script src="/static/Javascript/jQuery/jquery.min.js"></script>
+<link rel="stylesheet" href="./CSS/style.css">
+<script src="./Javascript/jQuery/jquery.min.js"></script>
 
 </head>
 <script>
@@ -137,6 +127,60 @@
 			}, 1000);
 		});
 	});
+	
+	$(function($) {
+		$("#del").hover(function() {
+			$(this).stop().animate({
+				opacity : '1'
+			}, 600);
+		}, function() {
+			$(this).stop().animate({
+				opacity : '0.6'
+			}, 1000);
+		}).on('click', function() {
+			$("body").append("<div id='mask'></div>");
+			$("#mask").addClass("mask").fadeIn("slow");
+			$("#delBox").fadeIn("slow");
+		});
+		$(".close_btn").hover(function() {
+			$(this).css({
+				color : 'black'
+			});
+		}, function() {
+			$(this).css({
+				color : '#999'
+			});
+		}).on('click', function() {
+			$("#delBox").fadeOut("fast");
+			$("#mask").css({
+				display : 'none'
+			});
+		});
+		$("#loginbtn").hover(function() {
+			$(this).stop().animate({
+				opacity : '1'
+			}, 600);
+		}, function() {
+			$(this).stop().animate({
+				opacity : '0.8'
+			}, 1000);
+		});
+	});
+	
+	function operate()
+	{
+	    setTimeout("disappeare()",3000);
+	}
+	function disappeare(){
+	    document.getElementById('Msg').innerHTML="";
+	}
+	
+	function popdel(id1,id2) {
+		document.getElementById("del").click();
+		document.getElementById("delForm").name = id1;
+		document.getElementById("EditForm").name = id2;
+		document.getElementById("delText").innerText="删除操作是不可逆的，你确定删除这个用例？";
+	}
 
 	function Show_img(img) {
 		document.getElementById("Big_img").src = img;
@@ -145,6 +189,8 @@
 	function setInfo(me, ele) {
 		if (me == "name") {
 			ele.parentNode.style.height = "40px";
+			ele.parentNode.style.border = "";
+			ele.parentNode.style.margin = "";
 			var e=document.getElementsByName("check");
 			for(var i=0;i<e.length;i++){
 				e[i].style.display=""
@@ -156,6 +202,53 @@
 		}
 	}
 
+	function getCookie(name)
+	{
+		var arr=document.cookie.split('; ');
+		var i=0;
+		for(i=0;i<arr.length;i++)
+		{
+			//arr2->['username', 'abc']
+			var arr2=arr[i].split('=');
+			
+			if(arr2[0]==name)
+			{	
+				var getC = decodeURIComponent(arr2[1]);
+				return getC;
+			}
+		}
+		
+		return '';
+	}
+	
+	function keyOption(){
+	 	var keyStr=getCookie("key1");
+	 	keyStr = keyStr.replace('"','');
+	 	keyStr = keyStr.replace('"','');
+	 	var comStr=getCookie("key5");
+	 	comStr = comStr.replace('"','');
+	 	comStr = comStr.replace('"','');
+	 	keyStr=keyStr+","+comStr;
+	 	var keySet = keyStr.split(',');
+		var str="<select id=\"keyOption\" style=\"width: 110px\"> <option value=\"NULL\">NULL</option>";
+		for (i=0;i<keySet.length;i++){
+			str+="<option value=\""+keySet[i]+"\">"+keySet[i]+"</option>";
+		}
+		str+="</select>";
+		document.getElementById("keyOption").innerHTML=str;
+
+		keyStr=getCookie("key2");
+	 	keyStr = keyStr.replace('"','');
+	 	keyStr = keyStr.replace('"','');
+	 	keySet = keyStr.split(',');
+		str="<select id=\"keyMethod\" style=\"width: 110px\"> <option value=\"NULL\">NULL</option>";
+		for (i=0;i<keySet.length;i++){
+			str+="<option value=\""+keySet[i]+"\">"+keySet[i]+"</option>";
+		}
+		str+="</select>";
+		document.getElementById("keyMethod").innerHTML=str;
+	}
+	
 	function GetInfo(name, id, ele) {
 		if (document.getElementById("cases_Edits") != null)
 			alert("您的上一次修改还没保存，请先保存。");
@@ -186,6 +279,8 @@
 							ele.parentNode.parentNode.value = ele.parentNode.parentNode.innerHTML;
 							//alert(ele.parentNode.value);
 							ele.parentNode.style.height = "100px"
+							ele.parentNode.style.border = "2px solid #00A4FF";
+							ele.parentNode.style.margin = "10px 55px";
 							//alert(data);
 							ele.parentNode.innerHTML = data;
 							if(document.getElementsByName("xPath")[1].value!=null){
@@ -198,6 +293,8 @@
 							ele.parentNode.value = ele.parentNode.innerHTML;
 							//alert(ele.parentNode.value);
 							ele.parentNode.style.height = "120px"
+							ele.parentNode.style.border = "2px solid #00A4FF";
+							ele.parentNode.style.margin = "10px 55px";
 							var e=document.getElementsByName("check");
 							for(var i=0;i<e.length;i++){
 								if(e[i].value==id){
@@ -233,12 +330,22 @@
 					document.getElementById("tables").innerHTML = xmlhttp.responseText;
 
 		};
-	}
-
-	function openWin(url) {
-		var wind = window.open(url, 'newwindow',
-				'height=100,width=400,status=yes,scrollbars=yes,resizable=yes');
-		wind.locationbar = yes;
+		
+		var xmlhttp1;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp1 = new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		url = "../keySet";
+		xmlhttp1.open("GET", url, true);
+		xmlhttp1.send();
+		xmlhttp1.onreadystatechange = function() {
+			if (xmlhttp1.readyState == 4)
+				if (xmlhttp1.status == 200)
+					document.getElementById("tables").innerHTML = xmlhttp.responseText;
+	
+		};
 	}
 
 	function pops(id) {
@@ -262,35 +369,35 @@
 	}
 
 	function delCase(name, id) {
-		var flag = confirm("删除操作是不可逆的，你确定删除这条用例？");
-		var ret = 2;
-		if (flag > 0) {
-			var xmlhttp;
-			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-				xmlhttp = new XMLHttpRequest();
-			} else {// code for IE6, IE5
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			var url = "";
-			if (name == "name")
-				url = "../delCase?name=" + id;
-			else
-				url = "../delCase?id=" + id;
-			xmlhttp.open("GET", url, true);
-			xmlhttp.send();
-			xmlhttp.onreadystatechange = function() {
-				if (xmlhttp.readyState == 4)
-					if (xmlhttp.status == 200)
-						ret = xmlhttp.responseText;
-				if (ret == 1) {
-					alert("删除成功！");
-					document.getElementById("Search").click();
-				}
-
-			};
+		var xmlhttp;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		if (ret == 0)
-			alert("删除失败请重试！");
+		var url = "";
+		document.getElementById("delText").innerText="正在删除，请等待...";
+		if (name == "name")
+			url = "../delCase?name=" + id;
+		else
+			url = "../delCase?id=" + id;
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4)
+				if (xmlhttp.status == 200){
+					var ret = xmlhttp.responseText;
+					if (ret == 1) {
+						document.getElementById("Msg").innerText="删除成功！";
+						operate();
+						document.getElementById("closeBtn").click();
+						document.getElementById("searchImg").click();
+						}
+					else
+						document.getElementById("delText").innerText="删除失败，请重试！";
+				}else
+					document.getElementById("delText").innerText="删除失败，请重试！";
+		};
 	}
 
 	function selectAll() {
@@ -330,25 +437,38 @@
 
 	function runTest() {
 		var a = document.getElementsByTagName("input");
-		var str = "../runTest?";
+		var url = "../runTest?";
+		var str = "";
 		for ( var i = 0; i < a.length; i++) {
 			if (a[i].type == "checkbox" && a[i].value != "0"
 					&& a[i].checked == true)
 				str += "check=" + a[i].value + "&";
 		}
 		str = str.substring(0, str.length - 1);
+		url = url + str;
 		var xmlhttp;
 		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 			xmlhttp = new XMLHttpRequest();
 		} else {// code for IE6, IE5
 			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		xmlhttp.open("GET", str, true);
-		xmlhttp.send();
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			}
-		};
+		var flag = document.getElementById("load").hidden;
+		if (flag == true){
+			document.getElementById("Msg").innerText="用例场景："+ str + "正在运行...";
+			document.getElementById("load").hidden=false;
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					var ret = xmlhttp.responseText;
+					document.getElementById("Msg").innerText="运行结果:"+ret;
+					document.getElementById("load").hidden=true;
+					operate();
+				}
+			};
+		}else{
+			alert("当前有用例正在执行，请等待...");
+		}
 	}
 
 	function debugCase() {
@@ -359,26 +479,68 @@
 			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		var url = "../debug?id=" + document.getElementById("caseId").value;
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4)
-				if (xmlhttp.status == 200)
-					;
-
-		};
+		var flag = document.getElementById("load").hidden;
+		if (flag == true){
+			document.getElementById("Msg").innerText="用例正在调试...";
+			document.getElementById("load").hidden=false;
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4)
+					if (xmlhttp.status == 200){
+						var ret = xmlhttp.responseText;
+						document.getElementById("Msg").innerText="运行结果:"+ret;
+						document.getElementById("load").hidden=true;
+						operate();
+					}
+			};
+		}else{
+			alert("当前有用例正在执行，请等待...");
+		}
 	}
+	
+	function AjaxSubmit(Form) {
+		Form="#" + Form
+		var msg = "";
+		if(Form == "#cases_Edits")
+			msg = "编辑";
+		else
+			msg = "添加";
+		var AjaxURL = "../Update";
+		$.ajax({
+			type : "POST",
+			dataType : "html",
+			url : AjaxURL,
+			data : $(Form).serialize(),
+			success : function(result) {
+				var obj = eval("(" + result + ")");
+				if (obj["error"]=="0"){
+					document.getElementById("closeBtn").click();
+					SearchAll();
+					document.getElementById("Msg").innerText = msg + "成功！";
+					operate();
+				}else{
+					document.getElementById("Msg").innerText = msg + "失败，请重试！";
+					operate();
+					//alert(result);
+				}
+			},
+			error : function(data) {
+				document.getElementById("Msg").innerText = "服务器繁忙...";
+				operate();
+			}
+		});
+	}
+	
 </script>
 
 <body onload="SearchAll()">
-	<header class="main_header">
-		<div class="wrapper">
-			<div class="logo">
-				<a href="index.jsp" Title="autoTest框架"> <img
-					src="/static/Images/Testlogo.png"
-					alt="Testlogo">
-				</a>
-			</div>
+	<header>
+		<div class="logo">
+			<a href="../index.jsp" Title="autoTest框架"> <img
+				src="./Images/Testlogo.png"
+				alt="Testlogo">
+			</a>
 		</div>
 	</header>
 
@@ -387,42 +549,42 @@
 			<li><a title="General Info" class="i_22_dashboard"
 				href="./index.jsp"></a></li>
 			<li><a title="Your Messages" class="i_22_inbox smActive"
-				href="inbox.jsp"></a></li>
-			<li><a title="Visual Data" class="i_22_charts" href="UI.jsp"></a></li>
-			<li><a title="Kit elements" class="i_22_ui" href="Interface.jsp"></a></li>
-			<li><a title="Some Rows" class="i_22_tables" href="tables.jsp"></a></li>
+				href="./inbox.jsp"></a></li>
+			<li><a title="Visual Data" class="i_22_charts" href="./UI.jsp"></a></li>
+			<li><a title="Kit elements" class="i_22_ui" href="./Interface.jsp"></a></li>
+			<li><a title="Some Rows" class="i_22_tables" href="./tables.jsp"></a></li>
 		</ul>
 	</div>
-
-	<div class="wrapper contents_wrapper">
-
+	
 		<aside class="sidebar">
 			<ul class="tab_nav">
 				<li class="i_32_dashboard"><a href="../index.jsp"
 					title="General Info"> <span class="tab_label">Home Page</span>
 						<span class="tab_info">Frame Info</span>
 				</a></li>
-				<li class="active_tab i_32_charts"><a href="UI.jsp"
+				<li class="active_tab i_32_charts"><a href="./UI.jsp"
 					title="Visual Data"> <span class="tab_label">UI自动化</span> <span
 						class="tab_info">Edit and Run</span>
 				</a></li>
-				<li class="i_32_inbox"><a href="inbox.jsp"
+				<li class="i_32_inbox"><a href="./inbox.jsp"
 					title="Your Messages"> <span class="tab_label">用例生成</span> <span
 						class="tab_info">Interface Case</span>
 				</a></li>
-				<li class="i_32_ui"><a href="Interface.jsp" title="Kit elements">
+				<li class="i_32_ui"><a href="./Interface.jsp" title="Kit elements">
 						<span class="tab_label">接口测试</span> <span class="tab_info">Interface
 							Run</span>
 				</a></li>
-				<li class="i_32_tables"><a href="tables.jsp" title="Some Rows">
+				<li class="i_32_tables"><a href="./tables.jsp" title="Some Rows">
 						<span class="tab_label">调试工具</span> <span class="tab_info">Res
 							Table</span>
 				</a></li>
 			</ul>
 		</aside>
-		<div class="contents">
+		
+		<div class="contents2">
 			<div class="grid_wrapper">
-
+				<h3 id="Msg" style=" position: absolute; top: 3px;  left: 42%; color: red;"></h3>
+				<img id="load" title="正在运行" src="./Images/Loading.gif" style="position: absolute;left: 43%; top: 50px;" hidden>
 				<div class="g_6 contents_header">
 					<h3 class="i_16_message tab_label">UI &nbsp; Tester</h3>
 					<div>
@@ -433,30 +595,30 @@
 				<div id="Box_img">
 					<a href="javascript:void(0)" title="关闭窗口" class="close_btn"
 						id="closeBtn">X</a> <img id="Big_img" class="Big_img"
-						src="imgs/1.jpg"
+						src="./imgs/1.jpg"
 						onclick='document.getElementById("closeBtn").click();'>
 				</div>
 
 				<div id="EditBox1">
 					<div class="row1">
-						添加用例<a href="javascript:void(0)" title="关闭窗口" class="close_btn"
+						添加用例场景<a href="javascript:void(0)" title="关闭窗口" class="close_btn"
 							id="closeBtn">X</a>
 					</div>
-					<form id="EditForm1" action="../Update" method="post">
+					<form id="EditForm1" method="post" onsubmit="AjaxSubmit('EditForm1')">
 						<p class="p_input">
 						<div class="p_cli1">
 							casesId:<input id="casesId1" name="casesId" type="text"
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}'
-								readonly />&nbsp; casesN:<input id="casesN" name="casesN"
+								readonly />&nbsp;casesN:<input id="casesN" name="casesN"
 								type="text" value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
-								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />&nbsp;
+								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
 							Browser:<input id="Browser" name="Browser" type="text"
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
-								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />&nbsp;
+								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
 							Bpath:<input id="Bpath" name="Bpath" type="text" value="NULL"
 								class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
@@ -468,10 +630,8 @@
 						</div>
 					</form>
 					<div class="row2">
-						<a
-							href="javascript:document:EditForm1.submit(); javascript:document:closeBtn.click();"
-							id="loginbtn">保存</a> <a href="#" id="Cancelbtn"
-							onclick='document.getElementById("closeBtn").click();'>取消</a>
+						<a	href="javascript:AjaxSubmit('EditForm1'); " id="loginbtn">保存</a> 
+						<a href="#" id="Cancelbtn"	onclick='document.getElementById("closeBtn").click();'>取消</a>
 					</div>
 				</div>
 
@@ -480,7 +640,7 @@
 						添加用例<a href="javascript:void(0)" title="关闭窗口" class="close_btn"
 							id="closeBtn">X</a>
 					</div>
-					<form id="EditForm" action="../Update" method="post">
+					<form id="EditForm" name="EditForm" onsubmit="AjaxSubmit('EditForm')" method="post">
 						<p class="p_input">
 						<div class="p_cli1" name="p_cli1">
 							id:&nbsp;<input id="id" name="id" type="text" value="NULL"
@@ -495,10 +655,7 @@
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
-							option:<input id="optionss" name="optionss" type="text"
-								value="NULL" class="c_input"
-								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
-								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
+							option:<select id="keyOption" style="width: 110px"><option value="NULL">NULL</option></select>
 							xPath:<input id="xPath" name="xPath" type="text" value="NULL"
 								class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
@@ -509,10 +666,7 @@
 								class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
-							checkMethod:<input id="checkMethod" name="checkMethod"
-								type="text" value="NULL" class="c_input"
-								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
-								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
+							checkMethod:<select id="keyMethod" style="width: 110px"><option value="NULL">NULL</option></select>
 							checkName:<input id="checkName" name="checkName" type="text"
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
@@ -542,23 +696,42 @@
 						</div>
 					</form>
 					<div class="row">
-						<a href="javascript:document:EditForm.submit();" id="loginbtn">保存</a>
+						<a href="javascript:AjaxSubmit('EditForm');" id="loginbtn">保存</a>
 						<a href="#" id="Cancelbtn"
 							onclick='document.getElementById("closeBtn").click();'>取消</a>
 					</div>
 				</div>
 
-				<div class="g_12">
+				<div id="delBox">
+					<div class="row1">
+						删除测试用例<a href="javascript:void(0)" title="关闭窗口" class="close_btn"
+							id="closeBtn">X</a>
+					</div>
+					<form id="delForm" name="delForm" action="" method="post">
+						<h3 style="text-align: center;">
+							<br>
+						  <font id="delText" color="red">
+							  删除操作是不可逆的，你确定删除这条测试用例？
+ 						</font></h3>
+					</form>
+					<div class="row2">
+						<a  href="javascript:document:closeBtn.click();"
+							id="loginbtn" onclick='delCase(document.getElementById("delForm").name,document.getElementById("EditForm").name)'>删除</a> <a href="#" id="Cancelbtn"
+							onclick='document.getElementById("closeBtn").click();'>取消</a>
+					</div>
+				</div>
+
+				<div class="g_t">
 					<input class="checkboxM" type="checkbox" value="0"
 						onclick="checkAll()" />
 					<div class="widget_header">
 						<h4 class="widget_header_title wwIcon i_16_charts">Options:</h4>
 						<img
-							title="添加用例场景" src="/static/Images/Icons/16/add.png"
+							title="添加用例场景" src="./Images/Icons/16/add.png"
 							style="position: relative; top: 2px; left: 20px; cursor: pointer;"
 							onclick='pops("pop1");GetInfo("nameadd",this.name,this);' />
 						<img
-							title="执行选中用例" src="/static/Images/Icons/16/run.png"
+							title="执行选中用例" src="./Images/Icons/16/run.png"
 							style="position: relative; top: 2px; left: 20px; cursor: pointer; width: 18px"
 							onclick='runTest()' />
 						<input id="caseId" type="text" value="1"
@@ -566,7 +739,7 @@
 							onkeydown='if(event.keyCode==13){debugCase()}'
 							onblur = 'this.value = this.value.replace(/\D+/g, "");if(this.value==""){this.value="1";}' />
 						<img
-							title="调试选中用例" src="/static/Images/Icons/16/debug.png"
+							title="调试选中用例" src="./Images/Icons/16/debug.png"
 							style="position: relative; top: 2px; left: 28px; cursor: pointer; width: 18px"
 							onclick='debugCase()' />
 						<input id="searchText" type="text" value="Search"
@@ -575,7 +748,7 @@
 							onfocus='if(this.value=="Search"){this.value=""}'
 							onblur='if(this.value==""){this.value="Search"}' />
 						<img
-							id="Search" title="搜索" src="/static/Images/Icons/16/Search.png"
+							id="searchImg" title="搜索" src="./Images/Icons/16/Search.png"
 							style="position: relative; top: 11px; left: 125px; cursor: pointer; float: right;"
 							onclick='SearchAll()' />
 					</div>
@@ -583,8 +756,9 @@
 						<section id="help-left">
 							<a href="#" id="pop"> </a> <a href="#" id="pop1"> </a> <a
 								href="#" id="pop_img"> </a>
+								<a href="#" id="del"> </a>
 							<div id="tables"
-								style="width: 100%; height: 400px; overflow: auto;"></div>
+								style="width: 100%;position: absolute;overflow: auto;height: 98%;"></div>
 						</section>
 
 						<section id="help-right"></section>
@@ -594,10 +768,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div style="display: none">
-		<script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540'
-			language='JavaScript' charset='UTF-8'></script>
-	</div>
 </body>
 </html>

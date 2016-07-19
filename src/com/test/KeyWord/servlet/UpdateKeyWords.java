@@ -28,7 +28,7 @@ public class UpdateKeyWords extends HttpServlet {
 		String sqli = "";
 		String sqlu = "";
 		String type = "NULL";
-		int ret = 0;
+		String ret = "";
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
@@ -59,15 +59,17 @@ public class UpdateKeyWords extends HttpServlet {
 					+ request.getParameter("describes") + "','"
 					+ request.getParameter("useCase") + "')";
 			ret = updateKeyWords(sqli, sqlu, id);
-		} else
-			System.out.println("关键字信息有误，请检查。");
+		} else{
+			//System.out.println("关键字信息有误，请检查。");
+			ret = "{\"error\":501,\"msg\":\"id或者type不能为空！\"}";
+		}
 		out.print(ret);
-		resp.sendRedirect("index.jsp");
+		//resp.sendRedirect("index.jsp");
 	}
 
-	private int updateKeyWords(String sqli, String sqlu, String id) {
+	private String updateKeyWords(String sqli, String sqlu, String id) {
 		String str = "";
-		int rs1;
+		String ret = "";
 		// System.out.println(sqli);
 		// System.out.println(sqlu);
 		try {
@@ -78,18 +80,22 @@ public class UpdateKeyWords extends HttpServlet {
 				str = rs.getString(1);
 			}
 			if (str == "") {
-				rs1 = sm.executeUpdate(sqli);
+				sm.executeUpdate(sqli);
 			} else {
-				rs1 = sm.executeUpdate(sqlu);
+				sm.executeUpdate(sqlu);
 			}
 			rs = null;
 			sm = null;
+			ret="{\"error\":\"0\"}";
 		} catch (Exception e) {
-			rs1 = 0;
+			ret = "{\"error\":\"501\",\"msg\":\"";
 			System.out.println(sqlu);
 			e.printStackTrace();
+			String s=e.toString();
+			s = s.substring(s.indexOf(":")+2, s.length());
+			ret = ret + s + "\"}";
 		}
-		return rs1;
+		return ret;
 	}
 
 }

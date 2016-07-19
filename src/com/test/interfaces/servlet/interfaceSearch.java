@@ -80,9 +80,9 @@ public class interfaceSearch extends HttpServlet {
 						+ map.get("sceneId")
 						+ "\" class=\"edit_c\" href=\"#\" onclick='interfaceGetInfo(\"name\",this.name,this);'>编辑</a>&nbsp&nbsp<a name=\""
 						+ map.get("sceneId")
-						+ "\" class=\"edit_d\" href=\"#\" onclick='delInterfaceCase(\"name\",this.name);'>删除</a>&nbsp&nbsp<a name=\""
+						+ "\" class=\"edit_d\" href=\"#\" onclick='popdel(\"name\",this.name);'>删除</a>&nbsp&nbsp<a name=\""
 						+ map.get("sceneId")
-						+ "\" class=\"edit_e\" href=\"#\" onclick='pops(\"pop\");interfaceGetInfo(\"idadd\",this.name,this);'>添加</a>"
+						+ "\" class=\"edit_e\" href=\"#\" onclick='pops(\"pop\");interfaceGetInfo(\"idadd\",this.name,this);keyOption();'>添加</a>"
 						+ "<a class=\""+ map.get("runStates") +"\">" + map.get("runStates")
 						+"</a></summary>";
 				i++;
@@ -106,7 +106,7 @@ public class interfaceSearch extends HttpServlet {
 								+ map.get("id")
 								+ " class=\"edit_c\" href=\"#\" onclick='interfaceGetInfo(\"id\",this.name,this);'>编辑</a>"
 								+"&nbsp&nbsp<a name=" + map.get("id")
-								+ " class=\"edit_d\" href=\"#\" onclick='delInterfaceCase(\"id\",this.name);'>删除</a>"
+								+ " class=\"edit_d\" href=\"#\" onclick='popdel(\"id\",this.name);'>删除</a>"
 								+ "<img name=\"imgsjson\" id=\""
 								+ map.get("id")
 								+"\" class=\"edit_img\" src=\"/WebTester/static/Images/Icons/16/imgjson.png"

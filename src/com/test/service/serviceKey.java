@@ -3,6 +3,7 @@ package com.test.service;
 import com.test.statics.Mysql;
 import com.test.statics.outputList;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.sql.*;
 
@@ -79,6 +80,40 @@ public class serviceKey {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(sql);
+			e.printStackTrace();
+		}
+	}
+	
+	public serviceKey(boolean keySet){				//查询关键字
+		outputList.keySet.clear();
+		ArrayList <String> l = new ArrayList<String>();
+		String sql = "";
+		try {
+			Statement sm = Mysql.ct.createStatement();
+			ResultSet rs = sm.executeQuery("select DISTINCT type from keywords  order by type");
+			while (rs.next()) {
+				Statement sm1 = Mysql.ct.createStatement();
+				//System.out.println("+1");
+				sql="select keyName from keywords where type='" + rs.getString(1) +"' order by id";
+				ResultSet rs1 = sm1.executeQuery(sql);
+				while (rs1.next()) {
+					ResultSetMetaData rsmd1 = rs1.getMetaData();
+					for (int i = 1; i <= rsmd1.getColumnCount(); i++) {
+						l.add(rs1.getString(i).toString());
+					}
+				}
+				outputList.keySet.add(l);
+				l = new ArrayList<String>();
+			}
+
+//			System.out.println("size:"+outputList.keySet.size());
+//			for (int i=0;i<outputList.keySet.size();i++)
+//				System.out.println(outputList.keySet.get(i).toString());
+				
+			sm=null;
+			rs=null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

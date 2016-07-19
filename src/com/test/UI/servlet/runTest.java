@@ -36,7 +36,8 @@ public class runTest extends HttpServlet {
 			if (!servicerunTest.runable) {
 				out.print("当前有用例正在执行。请稍后再调试。");
 			} else {
-				this.Run(check);
+				servicerunTest.run(check);
+				//this.Run(check);
 				System.out.println(servicerunTest.state);
 				out.print(servicerunTest.state);
 			}

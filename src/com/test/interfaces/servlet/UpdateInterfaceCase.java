@@ -29,7 +29,7 @@ public class UpdateInterfaceCase extends HttpServlet {
 		String sqlu = "";
 		String sceneId = "NULL";
 		String order_id = "";
-		int ret = 0;
+		String ret = "";
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
@@ -91,15 +91,17 @@ public class UpdateInterfaceCase extends HttpServlet {
 					+ request.getParameter("delay") + ",'"
 					+ request.getParameter("runStates") + "')";
 			ret = updateSceneSql(sqli, sqlu, sceneId);
-		} else
-			System.out.println("方法不支持。");
+		} else{
+			ret = "{\"error\":501,\"msg\":\"主键不能为空！\"}";;
+		}
 		out.print(ret);
-		resp.sendRedirect("static/Interface.jsp");
+		//resp.sendRedirect("static/Interface.jsp");
 	}
 
-	private int updateCaseSql(String sqli, String sqlu, String id,
+	private String updateCaseSql(String sqli, String sqlu, String id,
 			String sceneId, String order_id) {
 		String str = "";
+		String ret="";
 		int rs1;
 		// System.out.println(sqlu);
 		// System.out.println(sqli);
@@ -119,10 +121,15 @@ public class UpdateInterfaceCase extends HttpServlet {
 			} else {
 				rs1 = sm1.executeUpdate(sqlu);
 			}
+			ret="{\"error\":\"0\"}";
 		} catch (Exception e) {
 			rs1 = 0;
-			System.out.println(sqli);
+			ret = "{\"error\":\"501\",\"msg\":\"";
+			System.out.println(sqlu);
 			e.printStackTrace();
+			String s=e.toString();
+			s = s.substring(s.indexOf(":")+2, s.length());
+			ret = ret + s + "\"}";
 		}
 
 		if (rs1 == 1) {
@@ -135,16 +142,17 @@ public class UpdateInterfaceCase extends HttpServlet {
 				sm = null;
 				Mysql.Sort();
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("排序时出错！");
+				//e.printStackTrace();
 			}
 		}
 
-		return rs1;
+		return ret;
 	}
 
-	private int updateSceneSql(String sqli, String sqlu, String id) {
+	private String updateSceneSql(String sqli, String sqlu, String id) {
 		String str = "";
-		int rs1;
+		String ret="";
 		// System.out.println(sqlu);
 		// System.out.println(sqli);
 		try {
@@ -158,16 +166,21 @@ public class UpdateInterfaceCase extends HttpServlet {
 			sm = null;
 			Statement sm1 = Mysql.ct.createStatement();
 			if (str == "") {
-				rs1 = sm1.executeUpdate(sqli);
+				sm1.executeUpdate(sqli);
 			} else {
-				rs1 = sm1.executeUpdate(sqlu);
+				sm1.executeUpdate(sqlu);
 			}
+			ret="{\"error\":\"0\"}";
 		} catch (Exception e) {
-			rs1 = 0;
+			ret = "{\"error\":\"501\",\"msg\":\"";
+			System.out.println(sqlu);
 			e.printStackTrace();
+			String s=e.toString();
+			s = s.substring(s.indexOf(":")+2, s.length());
+			ret = ret + s + "\"}";
 		}
 
-		return rs1;
+		return ret;
 
 	}
 

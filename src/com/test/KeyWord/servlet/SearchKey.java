@@ -57,6 +57,7 @@ public class SearchKey extends HttpServlet {
 		out.print(str);
 	}
 
+	//页面显示
 	private String FlushTable() {
 		ArrayList<Map<String, String>> myList = new ArrayList<Map<String, String>>();
 		Map<String, String> map = new HashMap<String, String>();
@@ -89,16 +90,15 @@ public class SearchKey extends HttpServlet {
 						d = "接口结果处理";
 						break;
 					case 4:
-						d = "通用方法";
+						d = "操作通用方法";
 						break;
 					default:
 						d = "请在SearchKey的servlet中添加type=" + t + "的描述。";
-						System.out.println("请在SearchKey的servlet中添加type=" + t
-								+ "的描述。");
+						//System.out.println("请在SearchKey的servlet中添加type=" + t	+ "的描述。");
 					}
 					Text += "<details class=\"menu\">";
-					Text += "<summary>"
-							+ d
+					Text += "<summary> <a>" + d + "</a>"
+							+ "<a name=" + t +" class=\"edit_e\" href=\"#\" onclick='pops(\"pop1\");GetKey(\"idadd\",this.name);'>添加</a>"
 							+ "</summary>";
 					//System.out.println("出了一个");
 				}
@@ -108,12 +108,13 @@ public class SearchKey extends HttpServlet {
 							+ map.get("id")
 							+ "</a> <a class=\"edit_b\">"
 							+ map.get("keyName")
-							+ "</a><a name="
-							+ map.get("id")
+							+ "</a><a name=" +  map.get("id")
+							+ " class=\"edit_f\" href=\"#\" onclick='GetKey(\"id\",this.name);pops(\"pop2\");'>查看说明</a>"
+							+ "</a><a name=" +  map.get("id")
 							+ " class=\"edit_c\" href=\"#\" onclick='pops(\"pop1\");GetKey(\"id\",this.name);'>编辑</a>"
 							+ "&nbsp&nbsp<a name="
 							+ map.get("id")
-							+ " class=\"edit_d\" href=\"#\" onclick='delKey(\"id\",this.name);'>删除</a>"
+							+ " class=\"edit_d\" href=\"#\" onclick='popdel(\"del\",this.name)'>删除</a>"
 							+ "</li>";
 					Text += "</ul>";
 				}

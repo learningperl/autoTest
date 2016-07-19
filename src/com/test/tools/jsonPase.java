@@ -130,7 +130,8 @@ public class jsonPase {//暂未使用
 					} else {
 						str = "";
 					}
-				} catch (Exception e6) {	
+				} catch (Exception e6){
+					e6.printStackTrace();
 					System.out.println("json汉字编码解析错误");
 					break;
 				}
@@ -268,8 +269,8 @@ public class jsonPase {//暂未使用
 				}
 			} catch (Exception e) {
 				// System.out.println("json 解析错误");
-				e.printStackTrace();
-				System.out.println("json 解析错误");
+				//e.printStackTrace();
+				System.out.println("log::info::json 解析错误：不标准的json返回！");
 			}
 		}
 	

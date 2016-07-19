@@ -22,12 +22,12 @@ public class debugApi extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
-		System.out.println("log::delInterfaceCase:"	+ request.getRequestURL().toString());
+		System.out.println("log::debugApi:"	+ request.getRequestURL().toString());
 		
 		InterfacerunService.debug(request.getParameter("url"), request.getParameter("param"), request.getParameter("selectOp"));
 		
 		out.print(responseList.json);
-		
+		System.out.println(responseList.json);
 		return;
 	}
 	

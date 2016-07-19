@@ -172,7 +172,7 @@ public class interfaceGetinfo extends HttpServlet {
 				str = outputList.l.get(i).get("id");
 			else
 				str = "NULL";
-			html += "<form id=\"cases_Edits\" action=\"../UpdateInterfaceCase\" method=\"post\"><a class=\"inedit_s\" >id</a><input id=\"id\" name=\"id\" class=\"edit_input_id\" type=\"text\" value=\""
+			html += "<form id=\"cases_Edits\" onsubmit=\"AjaxSubmit('cases_Edits')\" method=\"post\"><a class=\"inedit_s\" >id</a><input id=\"id\" name=\"id\" class=\"edit_input_id\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
 			if (outputList.l.get(i).get("sceneId") != null)
@@ -214,7 +214,7 @@ public class interfaceGetinfo extends HttpServlet {
 				str = outputList.l.get(i).get("url");
 			else
 				str = "NULL";
-			html += "<a class=\"inedit_s\" >url</a><input id=\"url\" name=\"url\" class=\"edit_input_id\" type=\"text\" value=\""
+			html += "<br><a class=\"inedit_s\" >url</a><input id=\"url\" name=\"url\" class=\"edit_input_id\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
 			if (outputList.l.get(i).get("parameter") != null)
@@ -260,7 +260,7 @@ public class interfaceGetinfo extends HttpServlet {
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" > </form>";
 		}
-		html += "<a class=\"edit_save\" href=\"javascript:document.getElementById('cases_Edits').submit()\">保存</a>";
+		html += "<a class=\"edit_save\" href=\"javascript:AjaxSubmit('cases_Edits');\">保存</a>";
 		html += "<a class=\"edit_cancle\" href=\"#\" onclick='setInfo(\"id\",this)'>取消</a>";
 		//System.out.println(html);
 		return html;
@@ -299,7 +299,7 @@ public class interfaceGetinfo extends HttpServlet {
 				str = outputList.l.get(i).get("sceneId");
 			else
 				str = "NULL";
-			html += "<form id=\"cases_Edits\" action=\"../UpdateInterfaceCase\" method=\"post\"><a class=\"inedit_s\" >sceneId</a><input id=\"sceneId\" name=\"sceneId\" class=\"edit_input\" type=\"text\" value=\""
+			html += "<form id=\"cases_Edits\" onsubmit=\"AjaxSubmit('cases_Edits')\" method=\"post\"><a class=\"inedit_s\" >sceneId</a><input id=\"sceneId\" name=\"sceneId\" class=\"edit_input\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
 			if (outputList.l.get(i).get("sceneDescription") != null)
@@ -322,18 +322,18 @@ public class interfaceGetinfo extends HttpServlet {
 				str = "0";
 			str = Integer.toString(Integer.parseInt(str));
 			//System.out.println(str);
-			html += "<a class=\"inedit_s\" >delay</a><input id=\"delay\" name=\"delay\" class=\"edit_input\" type=\"text\" value=\""
+			html += "<br><a>&nbsp&nbsp-&nbsp&nbsp&nbsp</a><a class=\"inedit_s\" >delay</a><input id=\"delay\" name=\"delay\" class=\"edit_input\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='' || this.value=='undefined'){this.value='0'}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='0'}\" >";
 			if (outputList.l.get(i).get("url") != null)
 				str = outputList.l.get(i).get("url");
 			else
 				str = "NULL";
-			html += "<a>&nbsp&nbsp-&nbsp&nbsp&nbsp</a><a class=\"inedit_s\" >url</a><input id=\"url\" name=\"url\" class=\"edit_input_l\" type=\"text\" value=\""
+			html += "<a class=\"inedit_s\" >url</a><input id=\"url\" name=\"url\" class=\"edit_input_l\" type=\"text\" value=\""
 					+ str
 					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" > </form>";
 		}
-		html += "<a class=\"edit_save\" href=\"javascript:document.getElementById('cases_Edits').submit()\">保存</a>";
+		html += "<a class=\"edit_save\" href=\"javascript:AjaxSubmit('cases_Edits');\">保存</a>";
 		html += "<a class=\"edit_cancle\" href=\"#\" onclick='setInfo(\"name\",this)'>取消</a>";
 		// System.out.println(html);
 		return html;

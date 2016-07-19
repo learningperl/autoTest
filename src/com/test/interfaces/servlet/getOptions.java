@@ -14,7 +14,7 @@ import com.test.statics.Mysql;
 
 public class getOptions extends HttpServlet {
 	/**
-	 * 删除接口用例
+	 * 获取关键字，可以去掉。
 	 */
 	private static final long serialVersionUID = -5857352318639105714L;
 

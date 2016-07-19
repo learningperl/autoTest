@@ -70,7 +70,7 @@
 		<url-pattern>/debug</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	<servlet>
 		<servlet-name>delKey</servlet-name>
 		<servlet-class>com.test.KeyWord.servlet.delKeyWords</servlet-class>
 	</servlet>
@@ -79,14 +79,23 @@
 		<url-pattern>/delKey</url-pattern>
 	</servlet-mapping>	
 	
-		<servlet>
+	<servlet>
 		<servlet-name>SearchKey</servlet-name>
 		<servlet-class>com.test.KeyWord.servlet.SearchKey</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SearchKey</servlet-name>
 		<url-pattern>/SearchKey</url-pattern>
-	</servlet-mapping>	
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>keySet</servlet-name>
+		<servlet-class>com.test.KeyWord.servlet.keySet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>keySet</servlet-name>
+		<url-pattern>/keySet</url-pattern>
+	</servlet-mapping>		
 	
 		<servlet>
 		<servlet-name>updateKeyWords</servlet-name>

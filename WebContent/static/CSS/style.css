@@ -166,22 +166,22 @@
 
 .p_cli1 {
 	height: 80px;
-	position: absolute;
-	top: 60px;
+	position: relative;
+	top: 40px;
 	left: 25px;
 }
 
 .p_cli2 {
-	height: 80px;
+	height: 60px;
 	position: relative;
-	top:40px;
+	top:0px;
 	left: 25px;
 }
 
 .p_cli3 {
-	height: 80px;
+	height: 60px;
 	position: relative;
-	top: 5px;
+	top: -20px;
 	left: 25px;
 }
 
@@ -212,6 +212,13 @@
 	position: relative;
 	top: 0px;
 	right: 20px;
+	float: right;
+}
+
+.edit_f {
+	position: relative;
+	top: 0px;
+	right: 5px;
 	float: right;
 }
 
@@ -365,7 +372,20 @@
 	display: none;
 }
 
-#EditBox {
+#EditBox{
+	position: absolute;
+	left: 210px;
+	top: 100px;
+	background: white;
+	width: 840px;
+	height: 322px;
+	border: 3px solid #444;
+	border-radius: 7px;
+	z-index: 10000;
+	display: none;
+}
+
+#EditBox1,#delBox {
 	position: absolute;
 	left: 260px;
 	top: 100px;
@@ -378,26 +398,13 @@
 	display: none;
 }
 
-#EditBox1 {
+#Box_json,#EditBox2{
 	position: absolute;
-	left: 260px;
-	top: 100px;
+	left: 25%;
+	top: 25%;
 	background: white;
 	width: 730px;
-	height: 200px;
-	border: 3px solid #444;
-	border-radius: 7px;
-	z-index: 10000;
-	display: none;
-}
-
-#Box_json {
-	position: absolute;
-	left: 260px;
-	top: 100px;
-	background: white;
-	width: 730px;
-	height: 240px;
+	height: 340px;
 	border: 3px solid #444;
 	border-radius: 7px;
 	z-index: 10000;
@@ -406,11 +413,11 @@
 
 #Box_img {
 	position: absolute;
-	left: 90px;
-	top: -60px;
+	left: -50px;
+	top: -50px;
 	background: white;
-	width: 1140px;
-	height: 480px;
+	width: 100%;
+	height: 100%;
 	border: 3px solid #444;
 	border-radius: 7px;
 	z-index: 10000;
@@ -419,8 +426,8 @@
 
 .Big_img {
 	position: relative;
-	width: 1140px;
-	height: 580px;
+	width: 100%;
+	height: 93%;
 }
 
 .row1 {
@@ -435,20 +442,19 @@
 
 .row {
 	height: 80px;
-	position: absolute;
+	position: relative;
 	left: 110px;
-	top: 180px;
+	top: -50px;
 	line-height: 77px;
 	padding: 0px 30px;
-	font-family: ���Ŀ���;
 	font-size: x-large;
 }
 
 .row2 {
 	height: 80px;
-	position: absolute;
+	position: relative;
 	left: 110px;
-	top: 90px;
+	top: 10px;
 	line-height: 77px;
 	padding: 0px 30px;
 	font-family: ���Ŀ���;
@@ -1041,26 +1047,28 @@ a.smActive {
 
 /* Sidebar */
 .sidebar {
+	height: 88%;
 	position: absolute;
 	left: -1px;
-	top: auto;
-	width: 143px;
+	top: 10%;
+	width: 10%;
 }
 
 .tab_nav {
+	height: 100%;
 	padding: 5px 0 5px 5px;
 	margin: -5px -1px 0 -5px;;
 	overflow: hidden;
 }
 
 .tab_nav>li {
-	width: 142px;
+	width: 100%;
+	height: 19%;
 	padding-left: 1px;
 	background-position: 10px 29px;
 }
 
 .tab_nav>li>a {
-	width: 100%;
 	height: 111px;
 	display: block;
 }
@@ -1105,9 +1113,8 @@ a.smActive {
 .tab_input {
 	position: relative;
     top: -5px;
-    width: 1000px;
+    width: 92%;
     height: 20px;
-    left: 40px;
     margin:5px 5px 5px 5px;
 }
 
@@ -1116,7 +1123,7 @@ a.smActive {
     top: -5px;
     width: 80px;
     height: 25px;
-    left: 375px;
+    left: 30%;
 }
 
 .tab_btn {
@@ -1124,7 +1131,7 @@ a.smActive {
     top: -5px;
     width: 80px;
     height: 25px;
-    left: 410px;
+    left: 40%;
 }
 
 .tab_div {
@@ -1150,6 +1157,19 @@ a.smActive {
 .contents {
 	float: right;
 	width: 1172px;
+	background-color: #f9f9f9;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+	border-radius: 0 3px 3px 0;
+	border: 1px solid #dadada;
+}
+
+.contents2 {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	float: right;
+	width: 89%;
+	height: 88%;
 	background-color: #f9f9f9;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 	border-radius: 0 3px 3px 0;
@@ -1517,6 +1537,7 @@ footer {
 	padding: 15.5px;
 	width: auto;
 	height: auto;
+	min-width: 600px;
 	min-height: 524px;
 	/* You can change here if you have more than 6 buttons on the sidebar */
 }
@@ -1529,6 +1550,20 @@ footer {
 	-ms-box-sizing: border-box;
 	box-sizing: border-box;
 	position: relative;
+}
+
+.g_t {
+	float: left;
+	top: 10%;
+    height: 85%;
+    float: left;
+    width: 98%;
+	border: 10px solid rgba(0, 0, 0, 0);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	position: absolute;
 }
 
 .g_2 {
