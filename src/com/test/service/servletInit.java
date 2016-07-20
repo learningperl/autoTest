@@ -15,9 +15,10 @@ public class servletInit extends HttpServlet{
 	private static final long serialVersionUID = 101;
 
 	public void init() {
+		new property();
 		new outputList();	//初始化静态数据类
 		new Mysql();		//初始化Mysql类
-		new responseList(); //初始化接口数据静态类
+		new responseList(); //初始化接口数据静态
 		//Mysql.Sort();
 		if(property.readRcErpURL("DISPLAY").toString().equals("true"))
 			new ImageTool();	//初始化图形处理类

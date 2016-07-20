@@ -4,27 +4,34 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class property {
-	
-	public static String readRcErpURL(String name){  
-	      try{  
-	             String url = property.class.getResource("").getPath().replaceAll("%20", " "); 
-	             String path = url.substring(1, url.length()) + "/Test.properties"; 
-	             //System.out.println("log::info:configpath="+path);
-	             Properties config = new Properties();
-	             try{
-	            	 config.load(new FileInputStream(path));  
-	            	 return config.getProperty(name); 
-	             }catch(Exception e1){
-	            	 path = "/" + path;
-	            	 config.load(new FileInputStream(path));  
-	            	 return config.getProperty(name);
-	             }
-	         }  
-	         catch(Exception e){  
-	             e.printStackTrace();  
-	         }  
-	      return null;  
-	     } 
 
+	public static String path = "";
+	public static String url = "";
+	private static Properties config = null;
+
+	public property() {
+		config = new Properties();
+		url = property.class.getResource("").getPath().replaceAll("%20", " ");
+		url = url.substring(1, url.length());
+		path = url + "Test.properties";
+		//System.out.println(url);
+	}
+
+	public static String readRcErpURL(String name) {
+		try {
+			config.load(new FileInputStream(path));
+			return config.getProperty(name);
+		} catch (Exception e1) {
+			path = "/" + path;
+			try {
+				config.load(new FileInputStream(path));
+				return config.getProperty(name);
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		return null;
+	}
 
 }

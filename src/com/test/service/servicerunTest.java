@@ -64,8 +64,7 @@ public class servicerunTest { // UI用例执行类
 					rs.next();
 					Browser = rs.getString(1);
 					// System.out.println(Browser);
-					sql = "select * from caseoption where casesId=" + check[i]
-							+ " order by order_id;";
+					sql = "select * from caseoption where casesId=" + check[i] + " order by order_id;";
 					rs = null;
 					rs = sm.executeQuery(sql);
 					while (rs.next()) {
@@ -78,10 +77,8 @@ public class servicerunTest { // UI用例执行类
 						try {
 							// System.out.println("**88888");
 							str = runCase();
-							sqlu = "update caseoption set imgName='"
-									+ ImageTool.ScreenSnapshot(id)
-									+ "', runState='" + str + "',actualRes='"
-									+ actualRes + "' where id=" + id;
+							sqlu = "update caseoption set imgName='" + ImageTool.ScreenSnapshot(id) + "', runState='"
+									+ str + "',actualRes='" + actualRes + "' where id=" + id;
 							// System.out.println(sqlu);
 							sm1.executeUpdate(sqlu);
 						} catch (Exception e) {
@@ -90,26 +87,22 @@ public class servicerunTest { // UI用例执行类
 					}
 					try {
 						rs = null;
-						sql = "select id from caseoption where casesId="
-								+ check[i] + " and runState='FAIL';";
+						sql = "select id from caseoption where casesId=" + check[i] + " and runState='FAIL';";
 						rs = sm.executeQuery(sql);
 						rs.next();
 						try {
-							System.out.println("len:" + check.length + "id:"
-									+ rs.getString(1));
+							System.out.println("len:" + check.length + "id:" + rs.getString(1));
 							if (rs != null && rs.getString(1) != null)
-								sqlu = "update casescene set runStates='FAIL' where casesId="
-										+ check[i];
+								sqlu = "update casescene set runStates='FAIL' where casesId=" + check[i];
 							else
-								sqlu = "update casescene set runStates='PASS' where casesId="
-										+ check[i];
+								sqlu = "update casescene set runStates='PASS' where casesId=" + check[i];
 						} catch (Exception e) {
-							sqlu = "update casescene set runStates='PASS' where casesId="
-									+ check[i];
+							sqlu = "update casescene set runStates='PASS' where casesId=" + check[i];
 						}
 						sm.executeUpdate(sqlu);
 						driver.quit();
 						driver = null;
+						closeBrowser(Browser);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -131,57 +124,44 @@ public class servicerunTest { // UI用例执行类
 		String method = "";
 		String url = "";
 		actualRes = "NULL";
-		
-		//用于调试时，没有打开浏览器的情况
-		if (driver == null && !map.get("optionss").equals("open")){
-			if (Browser.equals("") || Browser.equals("Chrome")
-					|| Browser.equals("chrome") || Browser == null) {
-				ChromeDriver browser1 = new ChromeDriver(
-						property.readRcErpURL("chromepath"),
+
+		// 用于调试时，没有打开浏览器的情况
+		if (driver == null && !map.get("optionss").equals("open")) {
+			if (Browser.equals("") || Browser.equals("Chrome") || Browser.equals("chrome") || Browser == null) {
+				ChromeDriver browser1 = new ChromeDriver(property.readRcErpURL("chromepath"),
 						property.readRcErpURL("chromedriverpath"));
 				driver = browser1.getdriver();
 				driver.manage().window().maximize();
-			} else if (Browser.equals("IE") || Browser.equals("ie")
-					|| Browser.equals("Ie")) {
+			} else if (Browser.equals("IE") || Browser.equals("ie") || Browser.equals("Ie")) {
 				IEDriver browser2 = new IEDriver(property.readRcErpURL("IEpath"),
 						property.readRcErpURL("IEdriverpath"));
 				driver = browser2.getdriver();
 				driver.manage().window().maximize();
 			} else
-				System.out.println("log--error:暂时不支持" + map.get("Browser")
-						+ "浏览器。");
+				System.out.println("log--error:暂时不支持" + map.get("Browser") + "浏览器。");
 		}
 
 		getParameter();
 
 		if (map.get("optionss").contains("(")) {// 处理关键字中带括号的情况
-			method = map.get("optionss").substring(
-					map.get("optionss").indexOf("(") + 1,
+			method = map.get("optionss").substring(map.get("optionss").indexOf("(") + 1,
 					map.get("optionss").indexOf(")"));
-			map.put("optionss",
-					map.get("optionss").substring(0,
-							map.get("optionss").indexOf("(")));
+			map.put("optionss", map.get("optionss").substring(0, map.get("optionss").indexOf("(")));
 			// System.out.println("method:" + method + " option:"+
 			// map.get("optionss"));
 		}
 
 		switch (map.get("optionss")) { // UI操作方法和实现，可以在此添加自定义关键字
-		
+
 		case "open":
 			driver = null;
-			if (Browser.equals("") || Browser.equals("Chrome")
-					|| Browser.equals("chrome") || Browser == null) {
-				System.out
-						.println(path
-								+ "\\workspace1\\WebTester\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
-				c = new ChromeDriver(property.readRcErpURL("chromepath"),
-						property.readRcErpURL("chromedriverpath"));
+			if (Browser.equals("") || Browser.equals("Chrome") || Browser.equals("chrome") || Browser == null) {
+				System.out.println(path + "\\workspace1\\WebTester\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
+				c = new ChromeDriver(property.readRcErpURL("chromepath"), property.readRcErpURL("chromedriverpath"));
 				driver = c.getdriver();
 				driver.manage().window().maximize();
-			} else if (Browser.equals("IE") || Browser.equals("ie")
-					|| Browser.equals("Ie")) {
-				e = new IEDriver(property.readRcErpURL("IEpath"),
-						property.readRcErpURL("IEdriverpath"));
+			} else if (Browser.equals("IE") || Browser.equals("ie") || Browser.equals("Ie")) {
+				e = new IEDriver(property.readRcErpURL("IEpath"), property.readRcErpURL("IEdriverpath"));
 				driver = e.getdriver();
 				driver.manage().window().maximize();
 			} else
@@ -191,13 +171,13 @@ public class servicerunTest { // UI用例执行类
 		case "get":
 			try {
 				url = map.get("xPath");
-				if(!url.contains("http"))
-					url="http//:"+url;
+				if (!url.contains("http"))
+					url = "http//:" + url;
 				Thread.sleep(1000);
 				driver.get(url);
 				Thread.sleep(3000);
 			} catch (Exception e) {
-				//e.printStackTrace();
+				// e.printStackTrace();
 				s = "FAIL";
 				actualRes = "打开网页失败！";
 				System.out.println("log--warn:打开网页失败！网页需要http形式。");
@@ -206,23 +186,19 @@ public class servicerunTest { // UI用例执行类
 
 		case "click":
 			try {
-				driver.findElement(By.xpath(map.get("xPath").toString()))
-						.click();
+				driver.findElement(By.xpath(map.get("xPath").toString())).click();
 				Thread.sleep(2000);
 			} catch (Exception e) {
 				s = "FAIL";
 				actualRes = "元素点击失败！";
-				System.out
-						.println("log--error:元素" + map.get("xPath") + "点击失败！");
+				System.out.println("log--error:元素" + map.get("xPath") + "点击失败！");
 			}
 			break;
 
 		case "sendKeys":
 			try {
-				driver.findElement(By.xpath(map.get("xPath").toString()))
-						.clear();
-				driver.findElement(By.xpath(map.get("xPath").toString()))
-						.sendKeys(map.get("datas"));
+				driver.findElement(By.xpath(map.get("xPath").toString())).clear();
+				driver.findElement(By.xpath(map.get("xPath").toString())).sendKeys(map.get("datas"));
 				Thread.sleep(300);
 			} catch (Exception e) {
 				s = "FAIL";
@@ -233,8 +209,7 @@ public class servicerunTest { // UI用例执行类
 
 		case "select":
 			try {
-				Select select = new Select(driver.findElement(By.xpath(map.get(
-						"xPath").toString())));
+				Select select = new Select(driver.findElement(By.xpath(map.get("xPath").toString())));
 				try {
 					select.selectByValue(map.get("datas"));
 				} catch (Exception e1) {
@@ -252,8 +227,7 @@ public class servicerunTest { // UI用例执行类
 			try {
 				Thread.sleep(3000);
 				// System.out.println(driver.findElement(By.xpath(map.get("xPath").toString())));
-				res = driver.findElement(By.xpath(map.get("xPath").toString()))
-						.getText().toString();
+				res = driver.findElement(By.xpath(map.get("xPath").toString())).getText().toString();
 				Thread.sleep(100);
 			} catch (Exception e) {
 				s = "FAIL";
@@ -265,12 +239,9 @@ public class servicerunTest { // UI用例执行类
 		case "getParameter":
 			try {
 				Thread.sleep(3000);
-				System.out.println(driver.findElement(By.xpath(map.get("xPath")
-						.toString())));
+				System.out.println(driver.findElement(By.xpath(map.get("xPath").toString())));
 				try {
-					res = driver
-							.findElement(By.xpath(map.get("xPath").toString()))
-							.getText().toString();
+					res = driver.findElement(By.xpath(map.get("xPath").toString())).getText().toString();
 					if (res.length() > 0) {
 						parameter = res;
 						break;
@@ -281,10 +252,8 @@ public class servicerunTest { // UI用例执行类
 				}
 
 				try {
-					res = driver
-							.findElement(By.xpath(map.get("xPath").toString()))
-							.getAttribute(map.get("datas").toString())
-							.toString();
+					res = driver.findElement(By.xpath(map.get("xPath").toString()))
+							.getAttribute(map.get("datas").toString()).toString();
 					// System.out.println(res.length());
 					if (res.length() > 1) {
 						parameter = res;
@@ -297,27 +266,23 @@ public class servicerunTest { // UI用例执行类
 				}
 
 				try {
-					res = driver
-							.findElement(By.xpath(map.get("xPath").toString()))
-							.getCssValue(map.get("datas").toString())
-							.toString();
+					res = driver.findElement(By.xpath(map.get("xPath").toString()))
+							.getCssValue(map.get("datas").toString()).toString();
 					// System.out.println(res.length());
 					// System.out.println("res" + res);
 					if (res.length() > 1) {
 						parameter = res;
 						break;
-					}else{
+					} else {
 						s = "FAIL";
 						actualRes = "属性获取失败！";
-						System.out.println("log--error属性" + map.get("xPath")
-								+ "获取失败！");
+						System.out.println("log--error属性" + map.get("xPath") + "获取失败！");
 					}
 					Thread.sleep(100);
 				} catch (Exception e) {
 					s = "FAIL";
 					actualRes = "属性获取失败！";
-					System.out.println("log--error属性" + map.get("xPath")
-							+ "获取失败！");
+					System.out.println("log--error属性" + map.get("xPath") + "获取失败！");
 				}
 
 			} catch (Exception e) {
@@ -328,8 +293,7 @@ public class servicerunTest { // UI用例执行类
 			break;
 
 		case "setParameter":
-			if (map.get("datas").equals("") || map.get("datas").equals("null")
-					|| map.get("datas").equals("NULL"))
+			if (map.get("datas").equals("") || map.get("datas").equals("null") || map.get("datas").equals("NULL"))
 				responseList.parameter.put(map.get("xPath"), parameter);
 			else
 				responseList.parameter.put(map.get("xPath"), map.get("datas"));
@@ -339,14 +303,12 @@ public class servicerunTest { // UI用例执行类
 			if (method.equals("post")) {
 				sendUrl obj = new sendUrl();
 				jsonPase json = new jsonPase();
-				responseList.json = obj.sendPost(map.get("xPath"),
-						map.get("datas"));
+				responseList.json = obj.sendPost(map.get("xPath"), map.get("datas"));
 				try {
 					Thread.sleep(2000);
 					responseList.res = new ArrayList<Map<String, Object>>();
 					json.Pase(responseList.json, 0, true);
-					responseList.jsonObject = responseList.res
-							.get(responseList.res.size() - 1);
+					responseList.jsonObject = responseList.res.get(responseList.res.size() - 1);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -362,13 +324,11 @@ public class servicerunTest { // UI用例执行类
 			} else if (method.equals("get")) {
 				sendUrl obj = new sendUrl();
 				jsonPase json = new jsonPase();
-				responseList.json = obj.sendGet(map.get("xPath"),
-						map.get("datas"));
+				responseList.json = obj.sendGet(map.get("xPath"), map.get("datas"));
 				responseList.res = new ArrayList<Map<String, Object>>();
 				json.Pase(responseList.json, 0, true);
 				try {
-					responseList.jsonObject = responseList.res
-							.get(responseList.res.size() - 1);
+					responseList.jsonObject = responseList.res.get(responseList.res.size() - 1);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -386,8 +346,7 @@ public class servicerunTest { // UI用例执行类
 		default:
 			s = "FAIL";
 			actualRes = "暂时不支持该关键字操作";
-			System.out.println("log--error:暂时不支持该关键字" + map.get("optionss")
-					+ "操作网页元素！");
+			System.out.println("log--error:暂时不支持该关键字" + map.get("optionss") + "操作网页元素！");
 		}
 
 		switch (map.get("checkMethod")) { // UI校验方法和实现
@@ -411,8 +370,7 @@ public class servicerunTest { // UI用例执行类
 		default:
 			s = "FAIL";
 			actualRes = res;
-			System.out.println("log--error:暂时不支持该关键字：" + map.get("checkMethod")
-					+ "处理结果！");
+			System.out.println("log--error:暂时不支持该关键字：" + map.get("checkMethod") + "处理结果！");
 		}
 
 		runable = true;
@@ -455,11 +413,9 @@ public class servicerunTest { // UI用例执行类
 						String str1 = str.substring(l + 1, r - 1);
 						// System.out.println("???"+str);
 						if (flag == 1)
-							datas += str.substring(0, l)
-									+ responseList.jsonObject.get(str1);
+							datas += str.substring(0, l) + responseList.jsonObject.get(str1);
 						else if (flag == 2)
-							datas += str.substring(0, l)
-									+ responseList.parameter.get(str1);
+							datas += str.substring(0, l) + responseList.parameter.get(str1);
 						str = str.substring(r, str.length());
 					} else {
 						System.out.println("log：参数引用格式错误！！");
@@ -474,10 +430,32 @@ public class servicerunTest { // UI用例执行类
 				datas += str;
 				map.put("datas", datas);
 			}
-			//System.out.println(map.get("datas"));
+			// System.out.println(map.get("datas"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	public static void closeBrowser(String B) {
+
+		if (B.contains("IE") || B.contains("ie"))
+			B = "IEDriver.exe";
+		else if (B.contains("Chrome") || B.contains("chrome"))
+			B = "chromedriver.exe";
+		else {
+			System.out.println("log::info:没有" + Browser + "的浏览器driver！");
+			return;
+		}
+		String cmd_str = "cmd /c start ";
+		cmd_str += property.url;
+		cmd_str += "process.vbs " + B;
+		System.out.println(cmd_str);
+		Runtime runtime = Runtime.getRuntime();
+		try {
+			runtime.exec(cmd_str);
+		} catch (Exception e) {
+			System.out.println("Error!");
+		}
 	}
 }
