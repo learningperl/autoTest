@@ -398,6 +398,19 @@
 	display: none;
 }
 
+#msgBox {
+	position: absolute;
+	left: 350px;
+	top: 140px;
+	background: white;
+	width: 540px;
+	height: 202px;
+	border: 3px solid #444;
+	border-radius: 7px;
+	z-index: 10000;
+	display: none;
+}
+
 #Box_json,#EditBox2{
 	position: absolute;
 	left: 25%;
@@ -461,7 +474,7 @@
 	font-size: x-large;
 }
 
-.close_btn {
+.close_btn,.close_btn_msg {
 	font-family: arial;
 	font-size: 30px;
 	font-weight: 700;

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.test.statics.outputList;
+import com.test.statics.property;
 import com.test.tools.encodeType;
 
 public class servletSearch extends HttpServlet {
@@ -88,14 +89,14 @@ public class servletSearch extends HttpServlet {
 								+ "</a><a name="
 								+ map.get("id")
 								+ " class=\"edit_c\" href=\"#\" onclick='GetInfo(\"id\",this.name,this);'>编辑</a>"
-								+"&nbsp&nbsp<a name=" + map.get("id")
+								+ "&nbsp&nbsp<a name=" + map.get("id")
 								+ " class=\"edit_d\" href=\"#\" onclick='popdel(\"id\",this.name);'>删除</a>"
-								+ "<img name=\"imgs/"
-								+ map.get("imgName")+"\" class=\"edit_img\" src=\"./imgs/"
+								+ "<img name=\"" + map.get("imgName")
+								+ "\" class=\"edit_img\" src=\""+property.readRcErpURL("imgUrl")
 								+ map.get("imgName")
-								+"\" onclick='pops(\"pop_img\");Show_img(this.name);'/>"
+								+ "\" onclick='pops(\"pop_img\");Show_img(this.src);'/>"
 								+ "<a class=\""+ map.get("runState") +"\">" + map.get("runState")
-								+"</a></li>";
+								+ "</a></li>";
 						Text += "</ul>";
 						i++;
 						if (i < myList.size()) {

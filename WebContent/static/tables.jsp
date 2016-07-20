@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <!-- The Main CSS File -->
 <link rel="stylesheet" href="./CSS/style.css">
-<script src="./Javascript/jQuery/jquery.min.js"></script>
-<script src="./Javascript/jQuery/jquery-form.js"></script>
+<script src="./Javascript/jquery.min.js"></script>
 
 <script>
 

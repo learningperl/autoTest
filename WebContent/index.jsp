@@ -7,256 +7,9 @@
 <meta charset="UTF-8">
 <!-- The Main CSS File -->
 <link rel="stylesheet" href="./static/CSS/style.css">
-<script src="./static/Javascript/jQuery/jquery.min.js"></script>
+<script src="./static/Javascript/jquery.min.js"></script>
+<script src="./static/Javascript/index.js"></script>
 </head>
-
-<script type="text/javascript">
-	$(function($) {
-		$("#pop1").hover(function() {
-			$(this).stop().animate({
-				opacity : '1'
-			}, 600);
-		}, function() {
-			$(this).stop().animate({
-				opacity : '0.6'
-			}, 1000);
-		}).on('click', function() {
-			$("body").append("<div id='mask'></div>");
-			$("#mask").addClass("mask").fadeIn("slow");
-			$("#EditBox1").fadeIn("slow");
-		});
-		$(".close_btn").hover(function() {
-			$(this).css({
-				color : 'black'
-			});
-		}, function() {
-			$(this).css({
-				color : '#999'
-			});
-		}).on('click', function() {
-			$("#EditBox1").fadeOut("fast");
-			$("#mask").css({
-				display : 'none'
-			});
-		});
-		$("#loginbtn").hover(function() {
-			$(this).stop().animate({
-				opacity : '1'
-			}, 600);
-		}, function() {
-			$(this).stop().animate({
-				opacity : '0.8'
-			}, 1000);
-		});
-	});
-
-	$(function($) {
-		$("#pop2").hover(function() {
-			$(this).stop().animate({
-				opacity : '1'
-			}, 600);
-		}, function() {
-			$(this).stop().animate({
-				opacity : '0.6'
-			}, 1000);
-		}).on('click', function() {
-			$("body").append("<div id='mask'></div>");
-			$("#mask").addClass("mask").fadeIn("slow");
-			$("#EditBox2").fadeIn("slow");
-		});
-		$(".close_btn").hover(function() {
-			$(this).css({
-				color : 'black'
-			});
-		}, function() {
-			$(this).css({
-				color : '#999'
-			});
-		}).on('click', function() {
-			$("#EditBox2").fadeOut("fast");
-			$("#mask").css({
-				display : 'none'
-			});
-		});
-		$("#loginbtn").hover(function() {
-			$(this).stop().animate({
-				opacity : '1'
-			}, 600);
-		}, function() {
-			$(this).stop().animate({
-				opacity : '0.8'
-			}, 1000);
-		});
-	});
-	
-	$(function($) {
-		$("#del").hover(function() {
-			$(this).stop().animate({
-				opacity : '1'
-			}, 600);
-		}, function() {
-			$(this).stop().animate({
-				opacity : '0.6'
-			}, 1000);
-		}).on('click', function() {
-			$("body").append("<div id='mask'></div>");
-			$("#mask").addClass("mask").fadeIn("slow");
-			$("#delBox").fadeIn("slow");
-		});
-		$(".close_btn").hover(function() {
-			$(this).css({
-				color : 'black'
-			});
-		}, function() {
-			$(this).css({
-				color : '#999'
-			});
-		}).on('click', function() {
-			$("#delBox").fadeOut("fast");
-			$("#mask").css({
-				display : 'none'
-			});
-		});
-		$("#loginbtn").hover(function() {
-			$(this).stop().animate({
-				opacity : '1'
-			}, 600);
-		}, function() {
-			$(this).stop().animate({
-				opacity : '0.8'
-			}, 1000);
-		});
-	});
-
-	function operate() {
-		setTimeout("disappeare()", 2000);
-	}
-	function disappeare() {
-		document.getElementById('Msg').innerHTML = "";
-	}
-
-	function pops(id) {
-		document.getElementById(id).click();
-	}
-
-	function popdel(id, id1) {
-		document.getElementById(id).click();
-		document.getElementById("delText").innerText = "删除操作是不可逆的，你确定删除这个用例？";
-		document.getElementById("delForm").name = id1;
-	}
-
-	function delKey(id) {
-		var xmlhttp;
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp = new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		var url = "";
-		document.getElementById("delText").innerText = "正在删除，请等待...";
-		url = "./delKey?id=" + id;
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4)
-				if (xmlhttp.status == 200) {
-					var ret = xmlhttp.responseText;
-					if (ret == 1) {
-						document.getElementById("Msg").innerText = "删除成功！";
-						operate();
-						document.getElementById("closeBtn").click();
-						document.getElementById("searchImg").click();
-					} else
-						document.getElementById("delText").innerText = "删除失败，请重试！";
-				} else {
-					document.getElementById("delText").innerText = "删除失败，请重试！";
-				}
-
-		};
-		document.getElementById("delText").innerText = "删除操作是不可逆的，你确定删除这个关键字？";
-	}
-
-	function AllKeyWords() {
-		var xmlhttp;
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp = new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		var url = "./SearchKey?param="
-				+ document.getElementById("searchText").value;
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4)
-				if (xmlhttp.status == 200)
-					document.getElementById("tables").innerHTML = xmlhttp.responseText;
-
-		};
-	}
-
-	function GetKey(name, id) {
-		var xmlhttp;
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp = new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		var data = "";
-		var url = "";
-		url = "./GetKey?" + name + "=" + id;
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4)
-				if (xmlhttp.status == 200) {
-					data = xmlhttp.responseText;
-					var obj = eval("(" + data + ")");
-					if (name == "id") {
-						document.getElementById("id").value = obj["id"];
-						document.getElementById("type").value = obj["type"];
-						document.getElementById("keyName").value = obj["keyName"];
-						document.getElementById("describes").value = obj["describes"];
-						document.getElementById("useCase").value = obj["useCase"];
-						document.getElementById("keyName2").innerHTML = obj["keyName"];
-						document.getElementById("Describe2").value = obj["describes"];
-						document.getElementById("useCase2").value = obj["useCase"];
-					} else {
-						document.getElementById("id").value = obj["id"];
-						document.getElementById("type").value = id;
-					}
-				}
-		};
-	}
-
-	function AjaxSubmit() {
-		var AjaxURL = "./updateKeyWords";
-		$.ajax({
-			type : "POST",
-			dataType : "html",
-			url : AjaxURL,
-			data : $('#EditForm1').serialize(),
-			success : function(result) {
-				var obj = eval("(" + result + ")");
-				if (obj["error"]=="0"){
-					document.getElementById("closeBtn").click();
-					AllKeyWords();
-					document.getElementById("Msg").innerText = "添加成功！";
-					operate();
-				}else{
-					document.getElementById("Msg").innerText = "添加失败，请重试！";
-					operate();
-					//alert(result);
-				}
-			},
-			error : function(data) {
-				document.getElementById("Msg").innerText = "服务器繁忙...";
-				operate();
-			}
-		});
-	}
-</script>
-
 <body onload="AllKeyWords()">
 	<header>
 		<div class="logo">
@@ -339,6 +92,20 @@
 				</div>
 			</div>
 			
+			<div id="msgBox">
+					<div class="row1">
+						异常信息！<a href="javascript:void(0)" title="关闭窗口" class="close_btn_msg"
+							id="closeBtn_msg">X</a>
+					</div>
+					<form id="msgForm" name="msgForm" action="" method="post">
+						<h3 style="text-align: center;">
+							<br>
+						  <font id="msgText" color="red">
+							  服务器忙...
+ 						</font></h3>
+					</form>
+				</div>
+			
 			<div id="EditBox2">
 				<div class="row1">
 					关键字说明<a href="javascript:void(0)" title="关闭窗口" class="close_btn"
@@ -392,6 +159,7 @@
 					<section id="conter">
 						<section id="help-left">
 							<a href="#" id="pop1"> </a> <a href="#" id="del"> </a> <a href="#" id="pop2"> </a>
+							<a href="#" id="pop_msg"> </a>
 							<div id="tables"
 								style="width: 100%; position: absolute; overflow: auto; height: 98%;"></div>
 						</section>

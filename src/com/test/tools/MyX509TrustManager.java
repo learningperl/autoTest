@@ -6,7 +6,9 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate; 
 import javax.net.ssl.TrustManager; 
 import javax.net.ssl.TrustManagerFactory; 
-import javax.net.ssl.X509TrustManager; 
+import javax.net.ssl.X509TrustManager;
+
+import com.test.statics.property; 
 public class MyX509TrustManager implements X509TrustManager { //开源证书类
     /*
      * The default X509TrustManager returned by SunX509.  We'll delegate
@@ -17,8 +19,7 @@ public class MyX509TrustManager implements X509TrustManager { //开源证书类
     MyX509TrustManager() throws Exception { 
         // create a "default" JSSE X509TrustManager. 
         KeyStore ks = KeyStore.getInstance("JKS"); 
-        property pro =new property();
-        ks.load(new FileInputStream(pro.readRcErpURL("cacerts")),"changeit".toCharArray()); 
+        ks.load(new FileInputStream(property.readRcErpURL("cacerts")),"changeit".toCharArray()); 
         TrustManagerFactory tmf = 
         TrustManagerFactory.getInstance("SunX509", "SunJSSE"); 
         tmf.init(ks); 

@@ -10,12 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.test.statics.Mysql;
+import com.test.statics.property;
 import com.test.statics.responseList;
 import com.test.tools.ChromeDriver;
 import com.test.tools.IEDriver;
 import com.test.tools.ImageTool;
 import com.test.tools.jsonPase;
-import com.test.tools.property;
 import com.test.tools.sendUrl;
 
 import org.openqa.selenium.By;
@@ -131,22 +131,26 @@ public class servicerunTest { // UI用例执行类
 		String method = "";
 		String url = "";
 		actualRes = "NULL";
-		property pro = new property();
-		if (driver == null && !map.get("optionss").equals("open"))
+		
+		//用于调试时，没有打开浏览器的情况
+		if (driver == null && !map.get("optionss").equals("open")){
 			if (Browser.equals("") || Browser.equals("Chrome")
 					|| Browser.equals("chrome") || Browser == null) {
 				ChromeDriver browser1 = new ChromeDriver(
-						pro.readRcErpURL("chromepath"),
-						pro.readRcErpURL("chromedriverpath"));
+						property.readRcErpURL("chromepath"),
+						property.readRcErpURL("chromedriverpath"));
 				driver = browser1.getdriver();
+				driver.manage().window().maximize();
 			} else if (Browser.equals("IE") || Browser.equals("ie")
 					|| Browser.equals("Ie")) {
-				IEDriver browser2 = new IEDriver(pro.readRcErpURL("IEpath"),
-						pro.readRcErpURL("IEdriverpath"));
+				IEDriver browser2 = new IEDriver(property.readRcErpURL("IEpath"),
+						property.readRcErpURL("IEdriverpath"));
 				driver = browser2.getdriver();
+				driver.manage().window().maximize();
 			} else
 				System.out.println("log--error:暂时不支持" + map.get("Browser")
 						+ "浏览器。");
+		}
 
 		getParameter();
 
@@ -161,7 +165,8 @@ public class servicerunTest { // UI用例执行类
 			// map.get("optionss"));
 		}
 
-		switch (map.get("optionss")) { // UI操作方法和实现
+		switch (map.get("optionss")) { // UI操作方法和实现，可以在此添加自定义关键字
+		
 		case "open":
 			driver = null;
 			if (Browser.equals("") || Browser.equals("Chrome")
@@ -169,14 +174,16 @@ public class servicerunTest { // UI用例执行类
 				System.out
 						.println(path
 								+ "\\workspace1\\WebTester\\WebContent\\WEB-INF\\lib\\chromedriver.exe");
-				c = new ChromeDriver(pro.readRcErpURL("chromepath"),
-						pro.readRcErpURL("chromedriverpath"));
+				c = new ChromeDriver(property.readRcErpURL("chromepath"),
+						property.readRcErpURL("chromedriverpath"));
 				driver = c.getdriver();
+				driver.manage().window().maximize();
 			} else if (Browser.equals("IE") || Browser.equals("ie")
 					|| Browser.equals("Ie")) {
-				e = new IEDriver(pro.readRcErpURL("IEpath"),
-						pro.readRcErpURL("IEdriverpath"));
+				e = new IEDriver(property.readRcErpURL("IEpath"),
+						property.readRcErpURL("IEdriverpath"));
 				driver = e.getdriver();
+				driver.manage().window().maximize();
 			} else
 				System.out.println("log--error:暂时不支持" + Browser + "浏览器。");
 			break;
@@ -467,7 +474,7 @@ public class servicerunTest { // UI用例执行类
 				datas += str;
 				map.put("datas", datas);
 			}
-			System.out.println(map.get("datas"));
+			//System.out.println(map.get("datas"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

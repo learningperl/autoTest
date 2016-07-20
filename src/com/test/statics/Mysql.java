@@ -2,8 +2,6 @@ package com.test.statics;
 
 import java.sql.*;
 
-import com.test.tools.property;
-
 public class Mysql {
 
 	public static Connection ct;
@@ -11,8 +9,7 @@ public class Mysql {
 	public Mysql() {	//Mysql地址配置
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			property pro =new property();
-			ct = DriverManager.getConnection(pro.readRcErpURL("mysqlPath"), pro.readRcErpURL("mysqlu"), pro.readRcErpURL("mysqlp"));
+			ct = DriverManager.getConnection(property.readRcErpURL("mysqlPath"), property.readRcErpURL("mysqlu"), property.readRcErpURL("mysqlp"));
 
 		} catch (Exception e) {
 			e.printStackTrace();

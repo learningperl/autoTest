@@ -14,16 +14,23 @@ import javax.net.ssl.TrustManager;
 //http接口请求类
 public class sendUrl {
 	//private static ArrayList<List<Map<String, Object>>>[] listret = new ArrayList[6];
+	private MyX509TrustManager cacert = null;
 
 	public sendUrl() {
-		
+		try {
+			cacert = new MyX509TrustManager();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("获取证书失败！");
+			e.printStackTrace();
+		}
 	}
 	// 实现get方法调用
 	public String sendGet(String url,	String param) {
 		String result = "";
 		InputStream in = null;
 		try {
-			TrustManager[] tm = { new MyX509TrustManager() };
+			TrustManager[] tm = { this.cacert };
 			SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
 			sslContext.init(null, tm, new java.security.SecureRandom());
 			// 从上述SSLContext对象中得到SSLSocketFactory对象
@@ -92,7 +99,7 @@ public class sendUrl {
 		PrintWriter out = null;
 		String result = "";
 		try {
-			TrustManager[] tm = { new MyX509TrustManager() };
+			TrustManager[] tm = { this.cacert };
 			SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
 			sslContext.init(null, tm, new java.security.SecureRandom());
 			// 从上述SSLContext对象中得到SSLSocketFactory对象
