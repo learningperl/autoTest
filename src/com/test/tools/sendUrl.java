@@ -1,5 +1,6 @@
 package com.test.tools;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import javax.net.ssl.TrustManager;
 public class sendUrl {
 	//private static ArrayList<List<Map<String, Object>>>[] listret = new ArrayList[6];
 	private MyX509TrustManager cacert = null;
+	private String cookie;
 
 	public sendUrl() {
 		try {
@@ -57,10 +59,13 @@ public class sendUrl {
 			conn.setRequestProperty("user-agent",
 					"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
 			if (param.contains("cookie=1")) {
-				conn.setRequestProperty("Cookie", "here");
+				conn.setRequestProperty("Cookie", this.cookie);
 				param = param.substring(param.indexOf("&") + 1, param.length());
-			} else if (param.contains("cookie")) {
-				param = param.substring(param.indexOf("&") + 1, param.length());
+			} else {
+				if (param.contains("cookie")) {
+					param = param.substring(param.indexOf("&") + 1,
+							param.length());
+				}
 			}
 			// 初始化请求头
 			conn.setDoInput(true);
@@ -93,6 +98,65 @@ public class sendUrl {
 
 		return null;
 	}
+	
+	/**
+	 * 根据地址获得数据的字节流
+	 * @param strUrl 网络连接地址
+	 * @return
+	 */
+	public byte[] getImageFromNetByUrl(String url,String param){
+		InputStream in = null;
+		try {
+			TrustManager[] tm = { this.cacert };
+			SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
+			sslContext.init(null, tm, new java.security.SecureRandom());
+			// 从上述SSLContext对象中得到SSLSocketFactory对象
+			SSLSocketFactory ssf = sslContext.getSocketFactory();
+			// 创建URL对象\
+			URL realUrl;
+			if(param.length()>0)
+				realUrl = new URL(url + "?" + param);
+			else
+				realUrl = new URL(url);
+			// 创建HttpsURLConnection对象，并设置其SSLSocketFactory对象
+			HttpURLConnection conn = null;
+			// 创建HttpsURLConnection对象，并设置其SSLSocketFactory对象
+			// 设置同时调用http和https协议
+			try {
+				conn = (HttpURLConnection) realUrl.openConnection();
+				((HttpsURLConnection) conn).setSSLSocketFactory(ssf);
+			} catch (Exception e) {
+				conn = (HttpURLConnection) realUrl.openConnection();
+			}
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			conn.setRequestProperty("user-agent",
+					"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+			if (param.contains("cookie=1")) {
+				conn.setRequestProperty("Cookie", this.cookie);
+				param = param.substring(param.indexOf("&") + 1, param.length());
+			} else {
+				if (param.contains("cookie")) {
+					param = param.substring(param.indexOf("&") + 1,
+							param.length());
+				}
+			}
+			// 初始化请求头
+			conn.setDoInput(true);
+			conn.setDoOutput(true);
+			conn.setConnectTimeout(5000);
+			conn.setReadTimeout(5000);
+			conn.connect();
+			in = conn.getInputStream();//通过输入流获取图片数据
+			byte[] btImg = readInputStream(in);//得到图片的二进制数据
+			return btImg;
+		} catch (Exception e) {
+			System.out.println("log::error:图片下载时出错。");
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	// 实现post请求发包
 	public String sendPost(String url,	String param) {
@@ -122,7 +186,7 @@ public class sendUrl {
 			conn.setRequestProperty("user-agent",
 					"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
 			if (param.contains("cookie=1")) {
-				conn.setRequestProperty("Cookie", "here");
+				conn.setRequestProperty("Cookie", this.cookie);
 				param = param.substring(param.indexOf("&") + 1, param.length());
 			} else {
 				if (param.contains("cookie")) {
@@ -188,4 +252,33 @@ public class sendUrl {
         }    
         return sb1.toString();    
     }
+	/**
+	 * @return the cookie
+	 */
+	public String getCookie() {
+		return cookie;
+	}
+	/**
+	 * @param cookie the cookie to set
+	 */
+	public void setCookie(String cookie) {
+		this.cookie = cookie;
+	}
+	
+	/**
+	 * 从输入流中获取数据
+	 * @param inStream 输入流
+	 * @return
+	 * @throws Exception
+	 */
+	public static byte[] readInputStream(InputStream inStream) throws Exception{
+		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		int len = 0;
+		while( (len=inStream.read(buffer)) != -1 ){
+			outStream.write(buffer, 0, len);
+		}
+		inStream.close();
+		return outStream.toByteArray();
+	}
 }

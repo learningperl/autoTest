@@ -1,14 +1,16 @@
 package com.test.service;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.test.statics.Mysql;
 import com.test.statics.property;
 import com.test.statics.responseList;
@@ -19,6 +21,8 @@ import com.test.tools.jsonPase;
 import com.test.tools.sendUrl;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -28,15 +32,22 @@ public class servicerunTest { // UI用例执行类
 	private static String path = "";
 	public static String parameter = "";
 	private static String Browser = "IE";
+	private static String verifyStr = "";
+	private static sendUrl obj = null;
+	private static jsonPase json = null;
 	private static ChromeDriver c = null;
 	private static IEDriver e = null;
 	public static WebDriver driver = null;
 	public static HashMap<String, String> map = null;
 	public static boolean runable = true;
+	public static int id = 0;
+	public static ArrayList <Map<String,String>> rss = null;
 
 	public servicerunTest() {
 		servicerunTest.state = "开始运行";
 		File directory = new File("");
+		obj = new sendUrl();
+		json = new jsonPase();
 		try {
 			path = directory.getCanonicalPath();
 		} catch (IOException e) {
@@ -49,15 +60,15 @@ public class servicerunTest { // UI用例执行类
 		state = "正在运行...";
 		String sql = "";
 		String sqlu = "";
-		String id = "";
+		String caseid = "";
 		String str = "";
+		rss = new ArrayList<Map<String,String>>();
 
 		try {
 			Statement sm = Mysql.ct.createStatement();
 			Statement sm1 = Mysql.ct.createStatement();
 			for (int i = 0; i < check.length; i++) {
 				try {
-					map = new HashMap<String, String>();
 					sql = "select Browser from casescene where casesId=" // 查询所选用例场景用例
 							+ check[i] + ";";
 					ResultSet rs = sm.executeQuery(sql);
@@ -67,19 +78,30 @@ public class servicerunTest { // UI用例执行类
 					sql = "select * from caseoption where casesId=" + check[i] + " order by order_id;";
 					rs = null;
 					rs = sm.executeQuery(sql);
+					int ii=0;
 					while (rs.next()) {
+						map = null;
+						map = new HashMap<String, String>();
 						ResultSetMetaData rsmd = rs.getMetaData();
 						for (int j = 1; j <= rsmd.getColumnCount(); j++) {
 							if (j == 1)
-								id = rs.getString(j);
+								caseid = rs.getString(j);
 							map.put(rsmd.getColumnName(j), rs.getString(j));
 						}
+						rss.add(map);
 						try {
 							// System.out.println("**88888");
-							str = runCase();
-							sqlu = "update caseoption set imgName='" + ImageTool.ScreenSnapshot(id) + "', runState='"
-									+ str + "',actualRes='" + actualRes + "' where id=" + id;
+							str = runCase(ii);
+							ii++;
+							String sqls = "select imgName from caseoption where id=" +caseid;
+							sqlu = "update caseoption set imgName='" + ImageTool.ScreenSnapshot(caseid)
+									+ "', runState='" + str + "',actualRes='" + actualRes + "' where id=" + caseid;
 							// System.out.println(sqlu);
+							ResultSet rs1 = sm1.executeQuery(sqls);
+							rs1.next();
+							String imgName = rs1.getString(1);
+							imgName = ImageTool.path + "/" + imgName;
+							ImageTool.DelImageFromDisk(imgName);
 							sm1.executeUpdate(sqlu);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -100,6 +122,7 @@ public class servicerunTest { // UI用例执行类
 							sqlu = "update casescene set runStates='PASS' where casesId=" + check[i];
 						}
 						sm.executeUpdate(sqlu);
+						rss=null;
 						driver.quit();
 						driver = null;
 						closeBrowser(Browser);
@@ -117,12 +140,48 @@ public class servicerunTest { // UI用例执行类
 		runable = true;
 	}
 
-	public static String runCase() {// 单用例执行方法
+	public static void checkVerify(int index) {
+		//System.out.println(index);
+		String caseid = "";
+		map = null;
+		map = new HashMap<String, String>();
+		try {
+			caseid = rss.get(index).get("id");
+			for (String it : rss.get(index).keySet()) {
+				map.put(it,rss.get(index).get(it));
+			}
+			//System.out.println(rss.toString());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			// System.out.println("**88888");
+			String str = runCase(index);
+			String sqls = "select imgName from caseoption where id=" +caseid;
+			String sqlu = "update caseoption set imgName='" + ImageTool.ScreenSnapshot(caseid)
+					+ "', runState='" + str + "',actualRes='" + actualRes + "' where id=" + caseid;
+			// System.out.println(sqlu);
+			Statement sm1 = Mysql.ct.createStatement();;
+			ResultSet rs1 = sm1.executeQuery(sqls);
+			rs1.next();
+			String imgName = rs1.getString(1);
+			imgName = ImageTool.path + "/" + imgName;
+			ImageTool.DelImageFromDisk(imgName);
+			sm1.executeUpdate(sqlu);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static String runCase(int index) {// 单用例执行方法
 		runable = false;
 		String s = "PASS";
 		String res = "";
 		String method = "";
 		String url = "";
+		String cmd_str;
 		actualRes = "NULL";
 
 		// 用于调试时，没有打开浏览器的情况
@@ -160,10 +219,16 @@ public class servicerunTest { // UI用例执行类
 				c = new ChromeDriver(property.readRcErpURL("chromepath"), property.readRcErpURL("chromedriverpath"));
 				driver = c.getdriver();
 				driver.manage().window().maximize();
+				cmd_str = "cmd /c start ";
+				cmd_str += property.url + "sendKeys.vbs " + "F11";
+				runCmd(cmd_str);
 			} else if (Browser.equals("IE") || Browser.equals("ie") || Browser.equals("Ie")) {
 				e = new IEDriver(property.readRcErpURL("IEpath"), property.readRcErpURL("IEdriverpath"));
 				driver = e.getdriver();
 				driver.manage().window().maximize();
+				cmd_str = "cmd /c start ";
+				cmd_str += property.url + "sendKeys.vbs " + "F11";
+				runCmd(cmd_str);
 			} else
 				System.out.println("log--error:暂时不支持" + Browser + "浏览器。");
 			break;
@@ -301,8 +366,6 @@ public class servicerunTest { // UI用例执行类
 
 		case "getJson":
 			if (method.equals("post")) {
-				sendUrl obj = new sendUrl();
-				jsonPase json = new jsonPase();
 				responseList.json = obj.sendPost(map.get("xPath"), map.get("datas"));
 				try {
 					Thread.sleep(2000);
@@ -322,8 +385,6 @@ public class servicerunTest { // UI用例执行类
 				break;
 
 			} else if (method.equals("get")) {
-				sendUrl obj = new sendUrl();
-				jsonPase json = new jsonPase();
 				responseList.json = obj.sendGet(map.get("xPath"), map.get("datas"));
 				responseList.res = new ArrayList<Map<String, Object>>();
 				json.Pase(responseList.json, 0, true);
@@ -343,6 +404,94 @@ public class servicerunTest { // UI用例执行类
 				System.out.println("关键字getJson不支持" + method + "方法!");
 			break;
 
+		case "getVerify":
+			try {
+				Thread.sleep(2000);
+				// System.out.println(driver.findElement(By.xpath(map.get("xPath").toString())));
+				/*
+				 * obj.setCookie(driver.manage().getCookies().toString());
+				 * System.out.println(obj.getCookie());
+				 * ImageTool.writeImageToDisk(obj.getImageFromNetByUrl(driver.
+				 * findElement(By.xpath(map.get("xPath").toString())).
+				 * getAttribute("src"), map.get("datas")),
+				 * property.url+"verify.jpg"); cmd_str =
+				 * "cmd /c start tesseract "; cmd_str += property.url +
+				 * "verify.jpg " + property.url + "verify";
+				 * System.out.println(cmd_str); runCmd(cmd_str);
+				 */
+				/*
+				 * JavascriptExecutor jse = (JavascriptExecutor)driver; Object
+				 * res1 = jse.executeScript(
+				 * "var h=window.screen.availHeight;return h;"); Object res2 =
+				 * jse.executeScript(
+				 * "var h=document.body.offsetHeight;return h;");
+				 * System.out.println(res1+","+res2); int h1=0,h2=0; try{ h1 =
+				 * Integer.parseInt(res1.toString()); h2 =
+				 * Integer.parseInt(res2.toString()); }catch (Exception e){
+				 * System.out.println("log::error:获取屏幕位置错误。");
+				 * e.printStackTrace(); }
+				 */
+				try{
+					id = index - Integer.parseInt(map.get("datas"));
+				}catch (Exception e){
+					id = index;
+				}
+				Point l = driver.findElement(By.xpath(map.get("xPath").toString())).getLocation();
+				Dimension size = driver.findElement(By.xpath(map.get("xPath").toString())).getSize();
+				ImageTool.ScreenSnapshot(l.x, l.y, size.width, size.height, property.url + "verify.png");
+				System.out.println(l.x + "," + l.y + "," + size.width + "," + size.height);
+				System.out.println(property.url + "verify.png");
+				cmd_str = "cmd /c start tesseract ";
+				cmd_str += property.url + "verify.png " + property.url + "verify";
+				System.out.println(cmd_str);
+				runCmd(cmd_str);
+				Thread.sleep(2000);
+				verifyStr = readLine(property.url + "verify.txt");
+				if(verifyStr==null || verifyStr.length()<4)
+					verifyStr = "1111";
+				//System.out.println(verifyStr);
+				res = verifyStr;
+			} catch (Exception e) {
+				s = "FAIL";
+				actualRes = "元素获取失败！";
+				System.out.println("log--error元素" + map.get("xPath") + "获取失败！");
+				e.printStackTrace();
+			}
+			break;
+
+		case "setVerify":
+			try {
+				driver.findElement(By.xpath(map.get("xPath").toString())).clear();
+				driver.findElement(By.xpath(map.get("xPath").toString())).sendKeys(verifyStr);
+				Thread.sleep(300);
+			} catch (Exception e) {
+				s = "FAIL";
+				actualRes = "元素赋值失败！";
+				System.out.println("log--error元素" + map.get("xPath") + "赋值失败！");
+			}
+			break;
+			
+		case "checkVerify":
+			try {
+				Thread.sleep(2000);
+				// System.out.println(driver.findElement(By.xpath(map.get("xPath").toString())));
+				try{
+					res = driver.findElement(By.xpath(map.get("xPath").toString())).getText().toString();
+				}catch (Exception e1){
+					res = "验证通过。";
+				}
+				System.out.println(res);
+				if(res.contains(map.get("datas"))){
+					for (int i=id;i<=index;i++)
+						checkVerify(i);					
+				}	
+			} catch (Exception e) {
+				s = "FAIL";
+				actualRes = "元素获取失败！";
+				System.out.println("log--error元素" + map.get("xPath") + "获取失败！");
+			}
+			break;
+
 		default:
 			s = "FAIL";
 			actualRes = "暂时不支持该关键字操作";
@@ -351,6 +500,9 @@ public class servicerunTest { // UI用例执行类
 
 		switch (map.get("checkMethod")) { // UI校验方法和实现
 		case "NULL":
+			actualRes = res;
+			break;
+		case "null":
 			actualRes = res;
 			break;
 		case "equel":
@@ -450,12 +602,35 @@ public class servicerunTest { // UI用例执行类
 		String cmd_str = "cmd /c start ";
 		cmd_str += property.url;
 		cmd_str += "process.vbs " + B;
-		System.out.println(cmd_str);
+		// System.out.println(cmd_str);
+		runCmd(cmd_str);
+	}
+
+	public static void runCmd(String cmd) {
 		Runtime runtime = Runtime.getRuntime();
 		try {
-			runtime.exec(cmd_str);
+			runtime.exec(cmd);
 		} catch (Exception e) {
 			System.out.println("Error!");
 		}
+	}
+
+	@SuppressWarnings("resource")
+	public static String readLine(String Path) {
+		File file = new File(Path);
+		String encoding = "UTF-8";
+		if (file.isFile() && file.exists()) { // 判断文件是否存在
+			try {
+				InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);
+				BufferedReader bufferedReader = new BufferedReader(read);
+				return bufferedReader.readLine();
+			} catch (Exception e) {
+				System.out.println("文件读取错误！");
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("找不到指定的文件");
+		}
+		return null;
 	}
 }

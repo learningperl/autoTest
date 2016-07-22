@@ -101,8 +101,8 @@ public class UpdateCase extends HttpServlet {
 	private String updateCaseSql(String sqli, String sqlu, String id,
 			String casesId, String order_id) {
 		String str = "";
-		// System.out.println(sqlu);
-		// System.out.println(sqli);
+		//System.out.println(sqlu);
+		//System.out.println(sqli);
 		int rs1;
 		String ret="";
 		try {

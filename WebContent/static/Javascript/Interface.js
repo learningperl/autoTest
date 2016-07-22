@@ -251,9 +251,11 @@ function getCookie(name) {
 
 function keyOption() {
 	var keyStr = getCookie("key3");
+	comStr = comStr.replace(/ /g, '');
 	keyStr = keyStr.replace('"', '');
 	keyStr = keyStr.replace('"', '');
 	var comStr = getCookie("key5");
+	comStr = comStr.replace(/ /g, '');
 	comStr = comStr.replace('"', '');
 	comStr = comStr.replace('"', '');
 	keyStr = keyStr + "," + comStr;
@@ -266,6 +268,7 @@ function keyOption() {
 	document.getElementById("keyOption").innerHTML = str;
 
 	keyStr = getCookie("key4");
+	comStr = comStr.replace(/ /g, '');
 	keyStr = keyStr.replace('"', '');
 	keyStr = keyStr.replace('"', '');
 	keySet = keyStr.split(',');

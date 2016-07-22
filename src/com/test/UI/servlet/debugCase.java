@@ -51,7 +51,7 @@ public class debugCase extends HttpServlet {
 				System.out.println("正在运行。。。");
 				sm=null;
 				//运行用例
-				servicerunTest.runCase();
+				servicerunTest.runCase(0);
 				out.print("正在运行。。。");
 
 			} catch (SQLException e) {

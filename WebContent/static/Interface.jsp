@@ -115,7 +115,7 @@
 							value="NULL" class="c_input"
 							onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 							onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
-						method:<select id="keyOption" style="width: 110px"><option value="NULL">NULL</option></select>
+						method:<select id="keyOption" name="optionss" style="width: 110px"><option value="NULL">NULL</option></select>
 						url:<input id="url" name="url" type="text" value="NULL"
 							class="c_input"
 							onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
@@ -130,7 +130,7 @@
 							value="NULL" class="c_input"
 							onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 							onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
-						checkMethod:<select id="keyMethod" style="width: 110px"><option value="NULL">NULL</option></select>
+						checkMethod:<select id="keyMethod" name="checkMethod" style="width: 110px"><option value="NULL">NULL</option></select>
 						expRes:<input id="expRes" name="expRes" type="text" value="NULL"
 							class="c_input"
 							onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'

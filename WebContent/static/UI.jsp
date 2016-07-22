@@ -132,7 +132,7 @@
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
-							option:<select id="keyOption" style="width: 110px"><option value="NULL">NULL</option></select>
+							option:<select id="keyOption" name="optionss" style="width: 110px"><option value="NULL">NULL</option></select>
 							xPath:<input id="xPath" name="xPath" type="text" value="NULL"
 								class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
@@ -143,7 +143,7 @@
 								class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'
 								onblur='if(this.value=="" || this.value=="undefined"){this.value="NULL"}' />
-							checkMethod:<select id="keyMethod" style="width: 110px"><option value="NULL">NULL</option></select>
+							checkMethod:<select id="keyMethod" name="checkMethod" style="width: 110px"><option value="NULL">NULL</option></select>
 							checkName:<input id="checkName" name="checkName" type="text"
 								value="NULL" class="c_input"
 								onfocus='if(this.value=="NULL" || this.value=="undefined"){this.value=""}'

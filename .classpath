@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json.jar"/>
 	<classpathentry kind="lib" path="F:/apache-tomcat-8.0.26/lib/selenium-server-standalone-2.42.2.jar"/>
 	<classpathentry kind="lib" path="F:/apache-tomcat-8.0.26/lib/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
