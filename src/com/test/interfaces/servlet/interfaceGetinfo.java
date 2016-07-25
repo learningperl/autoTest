@@ -174,14 +174,14 @@ public class interfaceGetinfo extends HttpServlet {
 				str = "NULL";
 			html += "<form id=\"cases_Edits\" onsubmit=\"AjaxSubmit('cases_Edits')\" method=\"post\"><a class=\"inedit_s\" >id</a><input id=\"id\" name=\"id\" class=\"edit_input_id\" type=\"text\" value=\""
 					+ str
-					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
+					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\"  disabled=\"true\">";
 			if (outputList.l.get(i).get("sceneId") != null)
 				str = outputList.l.get(i).get("sceneId");
 			else
 				str = "NULL";
 			html += "<a class=\"inedit_s\" >sceneId</a><input id=\"sceneId\" name=\"sceneId\" class=\"edit_input_id\" type=\"text\" value=\""
 					+ str
-					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
+					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\"  disabled=\"true\">";
 			if (outputList.l.get(i).get("order_id") != null)
 				str = outputList.l.get(i).get("order_id");
 			else
@@ -301,7 +301,7 @@ public class interfaceGetinfo extends HttpServlet {
 				str = "NULL";
 			html += "<form id=\"cases_Edits\" onsubmit=\"AjaxSubmit('cases_Edits')\" method=\"post\"><a class=\"inedit_s\" >sceneId</a><input id=\"sceneId\" name=\"sceneId\" class=\"edit_input\" type=\"text\" value=\""
 					+ str
-					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
+					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\"  disabled=\"true\">";
 			if (outputList.l.get(i).get("sceneDescription") != null)
 				str = outputList.l.get(i).get("sceneDescription");
 			else

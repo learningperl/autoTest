@@ -123,6 +123,10 @@ public class servicerunTest { // UI用例执行类
 						}
 						sm.executeUpdate(sqlu);
 						rss=null;
+						String cmd_str = "cmd /c start ";
+						cmd_str += property.url + "sendKeys.vbs " + "F11";
+						runCmd(cmd_str);
+						Thread.sleep(2000);
 						driver.quit();
 						driver = null;
 						closeBrowser(Browser);

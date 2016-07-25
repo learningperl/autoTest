@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,66 +32,62 @@ public class UpdateCase extends HttpServlet {
 		String casesId = "NULL";
 		String order_id = "";
 		String ret = "";
+		Map<String,String> map = null;
+		map = Mysql.disposeRequest(request);
 		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			id = request.getParameter("id");
+			id = map.get("id");
 			if (id.equals("NULL") || id.equals(""))
 				id = null;
 		} catch (Exception e) {
 		}
 
 		try {
-			casesId = request.getParameter("casesId");
+			casesId = map.get("casesId");
 			if (casesId.equals("NULL") || casesId.equals(""))
 				casesId = null;
-			order_id = request.getParameter("order_id");
+			order_id = map.get("order_id");
 		} catch (Exception e) {
 		}
 		if (id != null && casesId != null) {
 			sqlu += "update caseoption set casesId='" + casesId
-					+ "', order_id='" + request.getParameter("order_id")
-					+ "', optionss='" + request.getParameter("optionss")
-					+ "', xPath='" + request.getParameter("xPath")
-					+ "', datas='" + request.getParameter("datas")
-					+ "', checkName='" + request.getParameter("checkName")
-					+ "', checkMethod='" + request.getParameter("checkMethod")
-					+ "', expectedRes='" + request.getParameter("expectedRes")
-					+ "', actualRes='" + request.getParameter("actualRes")
-					+ "', imgName='" + request.getParameter("imgName")
+					+ "', order_id='" + map.get("order_id")
+					+ "', optionss='" + map.get("optionss")
+					+ "', xPath='" + map.get("xPath")
+					+ "', datas='" + map.get("datas")
+					+ "', checkName='" + map.get("checkName")
+					+ "', checkMethod='" + map.get("checkMethod")
+					+ "', expectedRes='" + map.get("expectedRes")
+					+ "', actualRes='" + map.get("actualRes")
+					+ "', imgName='" + map.get("imgName")
 					+ "', caseDescription='"
-					+ request.getParameter("Description") + "', runState='"
-					+ request.getParameter("runState") + "' where id='" + id
+					+ map.get("Description") + "', runState='"
+					+ map.get("runState") + "' where id='" + id
 					+ "'";
 			sqli += "insert into caseoption values(" + id + "," + casesId + ","
-					+ request.getParameter("order_id") + ",'"
-					+ request.getParameter("optionss") + "','"
-					+ request.getParameter("xPath") + "','"
-					+ request.getParameter("datas") + "','"
-					+ request.getParameter("checkName") + "','"
-					+ request.getParameter("checkMethod") + "','"
-					+ request.getParameter("expectedRes") + "','"
-					+ request.getParameter("actualRes") + "','"
-					+ request.getParameter("imgName") + "','"
-					+ request.getParameter("Description") + "','"
-					+ request.getParameter("runState") + "')";
+					+ map.get("order_id") + ",'"
+					+ map.get("optionss") + "','"
+					+ map.get("xPath") + "','"
+					+ map.get("datas") + "','"
+					+ map.get("checkName") + "','"
+					+ map.get("checkMethod") + "','"
+					+ map.get("expectedRes") + "','"
+					+ map.get("actualRes") + "','"
+					+ map.get("imgName") + "','"
+					+ map.get("Description") + "','"
+					+ map.get("runState") + "')";
 			ret = updateCaseSql(sqli, sqlu, id, casesId, order_id);
 		} else if (casesId != null) {
 			sqlu += "update casescene set casesN='"
-					+ request.getParameter("casesN") + "', Browser='"
-					+ request.getParameter("Browser") + "', Bpath='"
-					+ request.getParameter("Bpath") + "', runStates='"
-					+ request.getParameter("runStates") + "' where casesId='"
+					+ map.get("casesN") + "', Browser='"
+					+ map.get("Browser") + "', Bpath='"
+					+ map.get("Bpath") + "', runStates='"
+					+ map.get("runStates") + "' where casesId='"
 					+ casesId + "'";
 			sqli += "insert into casescene values(" + casesId + ",'"
-					+ request.getParameter("casesN") + "','"
-					+ request.getParameter("Browser") + "','"
-					+ request.getParameter("Bpath") + "','"
-					+ request.getParameter("runStates") + "')";
+					+ map.get("casesN") + "','"
+					+ map.get("Browser") + "','"
+					+ map.get("Bpath") + "','"
+					+ map.get("runStates") + "')";
 			ret = updateSceneSql(sqli, sqlu, casesId);
 		} else{
 			ret = "{\"error\":501,\"msg\":\"主键字段不能为空！\"}";

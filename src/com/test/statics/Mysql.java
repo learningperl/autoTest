@@ -1,6 +1,10 @@
 package com.test.statics;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class Mysql {
 
@@ -15,6 +19,20 @@ public class Mysql {
 			e.printStackTrace();
 		}
 	}
+	
+	public static Map<String,String> disposeRequest(HttpServletRequest request){
+		Map<String,String> map = new HashMap<String,String>();
+		for (String it : request.getParameterMap().keySet()) {
+			String value =  request.getParameterMap().get(it)[0];
+			value = value.replaceAll("'", "\\\\'");
+			value = value.replaceAll("\"", "\\\\\"");
+			value = value.replaceAll("#", "\\\\#");
+			map.put(it, value);
+		}
+		
+		return map;	
+	}
+	
 	public static void Sort(){	//处理UI用例order_id不连续
 		String id,casesId = "",sql;
 		int count=0;

@@ -242,6 +242,9 @@ function GetKey(name, id) {
 					document.getElementById("id").value = obj["id"];
 					document.getElementById("type").value = id;
 				}
+				if(!(id=="")){
+					document.getElementById("type").readOnly = true;
+				}
 			}
 	};
 }

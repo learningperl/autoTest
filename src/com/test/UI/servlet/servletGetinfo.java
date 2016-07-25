@@ -146,14 +146,14 @@ public class servletGetinfo extends HttpServlet {
 				str = "NULL";
 			html += "<form id=\"cases_Edits\" onsubmit=\"AjaxSubmit('cases_Edits')\" method=\"post\"><a class=\"inedit_s\" >id</a><input id=\"id\" name=\"id\" class=\"edit_input_id\" type=\"text\" value=\""
 					+ str
-					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
+					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\"  disabled=\"true\">";
 			if (outputList.l.get(i).get("casesId") != null)
 				str = outputList.l.get(i).get("casesId");
 			else
 				str = "NULL";
 			html += "<a class=\"inedit_s\" >casesId</a><input id=\"casesId\" name=\"casesId\" class=\"edit_input_id\" type=\"text\" value=\""
 					+ str
-					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
+					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\"  disabled=\"true\">";
 			if (outputList.l.get(i).get("order_id") != null)
 				str = outputList.l.get(i).get("order_id");
 			else
@@ -273,7 +273,7 @@ public class servletGetinfo extends HttpServlet {
 				str = "NULL";
 			html += "<form id=\"cases_Edits\" onsubmit=\"AjaxSubmit('cases_Edits')\" method=\"post\"><a class=\"inedit_s\" >casesId</a><input id=\"casesId\" name=\"casesId\" class=\"edit_input\" type=\"text\" value=\""
 					+ str
-					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" >";
+					+ "\" onfocus=\"if(this.value=='NULL' || this.value=='undefined'){this.value=''}\" onblur=\"if(this.value=='' || this.value=='undefined'){this.value='NULL'}\" disabled=\"true\">";
 			if (outputList.l.get(i).get("casesN") != null)
 				str = outputList.l.get(i).get("casesN");
 			else

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,66 +32,62 @@ public class UpdateInterfaceCase extends HttpServlet {
 		String sceneId = "NULL";
 		String order_id = "";
 		String ret = "";
+		Map<String,String> map = null;
+		map = Mysql.disposeRequest(request);
 		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			id = request.getParameter("id");
+			id = map.get("id");
 			if (id.equals("NULL") || id.equals(""))
 				id = null;
 		} catch (Exception e) {
 		}
 
 		try {
-			sceneId = request.getParameter("sceneId");
+			sceneId = map.get("sceneId");
 			if (sceneId.equals("NULL") || sceneId.equals(""))
 				sceneId = null;
-			order_id = request.getParameter("order_id");
+			order_id = map.get("order_id");
 		} catch (Exception e) {
 		}
 		if (id != null && sceneId != null) {
 			sqlu += "update interfacecase set sceneId='" + sceneId
-					+ "', order_id='" + request.getParameter("order_id")
-					+ "', method='" + request.getParameter("method")
-					+ "', url='" + request.getParameter("url")
-					+ "', parameter='" + request.getParameter("parameter")
-					+ "', checkName='" + request.getParameter("checkName")
-					+ "', checkMethod='" + request.getParameter("checkMethod")
-					+ "', expRes='" + request.getParameter("expRes")
-					+ "', actualRes='" + request.getParameter("actualRes")
-					+ "', jsonResult='" + request.getParameter("jsonResult")
+					+ "', order_id='" + map.get("order_id")
+					+ "', method='" + map.get("method")
+					+ "', url='" + map.get("url")
+					+ "', parameter='" + map.get("parameter")
+					+ "', checkName='" + map.get("checkName")
+					+ "', checkMethod='" + map.get("checkMethod")
+					+ "', expRes='" + map.get("expRes")
+					+ "', actualRes='" + map.get("actualRes")
+					+ "', jsonResult='" + map.get("jsonResult")
 					+ "', caseDescription='"
-					+ request.getParameter("Description") + "', runState='"
-					+ request.getParameter("runState") + "' where id='" + id
+					+ map.get("Description") + "', runState='"
+					+ map.get("runState") + "' where id='" + id
 					+ "'";
 			sqli += "insert into interfacecase values(" + id + ","
-					+ request.getParameter("order_id") + "," + sceneId + ",'"
-					+ request.getParameter("method") + "','"
-					+ request.getParameter("url") + "','"
-					+ request.getParameter("parameter") + "','"
-					+ request.getParameter("checkName") + "','"
-					+ request.getParameter("checkMethod") + "','"
-					+ request.getParameter("expRes") + "','"
-					+ request.getParameter("actualRes") + "','"
-					+ request.getParameter("runState") + "','"
-					+ request.getParameter("jsonResult") + "','"
-					+ request.getParameter("Description") + "')";
+					+ map.get("order_id") + "," + sceneId + ",'"
+					+ map.get("method") + "','"
+					+ map.get("url") + "','"
+					+ map.get("parameter") + "','"
+					+ map.get("checkName") + "','"
+					+ map.get("checkMethod") + "','"
+					+ map.get("expRes") + "','"
+					+ map.get("actualRes") + "','"
+					+ map.get("runState") + "','"
+					+ map.get("jsonResult") + "','"
+					+ map.get("Description") + "')";
 			ret = updateCaseSql(sqli, sqlu, id, sceneId, order_id);
 		} else if (sceneId != null) {
 			sqlu += "update interfacescene set sceneDescription='"
-					+ request.getParameter("Description") + "', url='"
-					+ request.getParameter("url") + "', delay="
-					+ request.getParameter("delay") + ", runStates='"
-					+ request.getParameter("runStates") + "' where sceneId='"
+					+ map.get("Description") + "', url='"
+					+ map.get("url") + "', delay="
+					+ map.get("delay") + ", runStates='"
+					+ map.get("runStates") + "' where sceneId='"
 					+ sceneId + "'";
 			sqli += "insert into interfacescene values(" + sceneId + ",'"
-					+ request.getParameter("Description") + "','"
-					+ request.getParameter("url") + "',"
-					+ request.getParameter("delay") + ",'"
-					+ request.getParameter("runStates") + "')";
+					+ map.get("Description") + "','"
+					+ map.get("url") + "',"
+					+ map.get("delay") + ",'"
+					+ map.get("runStates") + "')";
 			ret = updateSceneSql(sqli, sqlu, sceneId);
 		} else{
 			ret = "{\"error\":501,\"msg\":\"主键不能为空！\"}";;

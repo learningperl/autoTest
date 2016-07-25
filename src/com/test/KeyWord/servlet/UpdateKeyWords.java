@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,35 +31,31 @@ public class UpdateKeyWords extends HttpServlet {
 		String sqlu = "";
 		String type = "NULL";
 		String ret = "";
+		Map<String,String> map = null;
+		map = Mysql.disposeRequest(request);
 		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			id = request.getParameter("id");
+			id = map.get("id");
 			if (id.equals("NULL") || id.equals(""))
 				id = null;
 		} catch (Exception e) {
 		}
 
 		try {
-			type = request.getParameter("type");
+			type = map.get("type");
 			if (type.equals("NULL") || type.equals(""))
 				type = null;
 		} catch (Exception e) {
 		}
 		if (id != null && type != null) {
 			sqlu += "update keywords set id=" + id + ", type=" + type
-					+ ", keyName='" + request.getParameter("keyName")
-					+ "', describes='" + request.getParameter("describes")
-					+ "', useCase='" + request.getParameter("useCase")
+					+ ", keyName='" + map.get("keyName")
+					+ "', describes='" + map.get("describes")
+					+ "', useCase='" + map.get("useCase")
 					+ "' where id='" + id + "'";
 			sqli += "insert into keywords values(" + id + "," + type + ",'"
-					+ request.getParameter("keyName") + "','"
-					+ request.getParameter("describes") + "','"
-					+ request.getParameter("useCase") + "')";
+					+ map.get("keyName") + "','"
+					+ map.get("describes") + "','"
+					+ map.get("useCase") + "')";
 			ret = updateKeyWords(sqli, sqlu, id);
 		} else{
 			//System.out.println("关键字信息有误，请检查。");
